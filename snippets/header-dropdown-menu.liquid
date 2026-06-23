@@ -1,0 +1,103 @@
+{% comment %}
+  Renders a standard dropdown style menu for the header.
+
+  Usage:
+  {% render 'header-dropdown-menu' %}
+{% endcomment %}
+
+<nav class="header__inline-menu twcss-mt-[1.05rem] twcss-ml-[-1.2rem] twcss-hidden lg:twcss-block">
+  <ul class="twcss-list-none twcss-p-0 twcss-m-0 twcss-inline-flex twcss-flex-wrap" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li>
+        {%- if link.links != blank -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ forloop.index }}">
+              <summary
+                id="HeaderMenu-{{ link.handle }}"
+                class="twcss-flex twcss-p-[1.2rem] twcss-pr-[2.7rem] twcss-items-center twcss-leading-[calc(1 + 0.3 / 1.0)]"
+              >
+                <span
+                  {%- if link.child_active %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </span>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <ul
+                id="HeaderMenu-MenuList-{{ forloop.index }}"
+                class="twcss-absolute twcss-min-w-full twcss-w-[20rem] twcss-border twcss-border-[rgba(18,18,18,0.2)] twcss-py-4 twcss-text-[1.3rem] twcss-leading-[calc(1+0.5/1.0)] twcss-tracking-[0.04rem] header__submenu list-menu focus:twcss-outline-none list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+                role="list"
+                tabindex="-1"
+              >
+                {%- for childlink in link.links -%}
+                  <li>
+                    {%- if childlink.links == blank -%}
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                        href="{{ childlink.url }}"
+                        class="twcss-list-none twcss-relative twcss-cursor-pointer twcss-text-[1.3rem] twcss-leading-[calc(1+0.5/1.0)] twcss-tracking-[0.04rem] twcss-text-[rgba(18,18,18,0.75)] twcss-px-[2rem] twcss-py-[0.8rem] twcss-flex twcss-justify-between twcss-no-underline header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ childlink.title | escape }}
+                      </a>
+                    {%- else -%}
+                      <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
+                        <summary
+                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                          class="twcss-list-none twcss-relative twcss-cursor-pointer twcss-text-[1.3rem] twcss-leading-[calc(1+0.5/1.0)] twcss-tracking-[0.04rem] twcss-text-[rgba(18,18,18,0.75)] twcss-px-[2rem] twcss-py-[0.8rem] twcss-flex twcss-justify-between twcss-no-underline header__menu-item link link--text list-menu__item focus-inset caption-large"
+                        >
+                          <span>{{ childlink.title | escape }}</span>
+                          <svg class="twcss-flex-shrink-0 twcss-ml-[1rem] twcss-static twcss-block twcss-h-[0.6rem] twcss-align-middle twcss-top-[calc(50%-0.2rem)] twcss-right-[0.8rem] icon icon-caret" viewBox="0 0 10 6"><path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/></svg>
+                        </summary>
+                        <ul
+                          id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                          class="header__submenu list-menu motion-reduce"
+                        >
+                          {%- for grandchildlink in childlink.links -%}
+                            <li>
+                              <a
+                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                href="{{ grandchildlink.url }}"
+                                class="twcss-list-none twcss-relative twcss-cursor-pointer twcss-text-[1.3rem] twcss-leading-[calc(1+0.5/1.0)] twcss-tracking-[0.04rem] twcss-text-[rgba(18,18,18,0.75)] twcss-px-[2rem] twcss-py-[0.8rem] twcss-flex twcss-justify-between twcss-no-underline header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
+                                {% if grandchildlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                {{ grandchildlink.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          </header-menu>
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="twcss-flex twcss-p-[1.2rem] twcss-items-center twcss-leading-[calc(1 + 0.3 / 1.0)]"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- link.title | escape -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>

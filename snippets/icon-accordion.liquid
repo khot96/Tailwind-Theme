@@ -1,0 +1,4 @@
+{%- if icon != 'none' -%}
+  {%- assign file = icon | replace: '_', '-' | prepend: 'icon-' | append: '.svg' -%}
+  <span class="svg-wrapper twcss-self-center twcss-fill-[rgb(18,18,18)] twcss-h-8 twcss-w-8 twcss-mr-4">{{ file | inline_asset_content }}</span>
+{%- endif -%}

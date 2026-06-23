@@ -1,0 +1,296 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/vitaly-gariev-lYckmNl4eCY-unsplash.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "hero_section_XYweAx": {
+      "type": "hero-section",
+      "name": "Hero Style Section",
+      "settings": {
+        "heading_top": "Step Into",
+        "heading_light": "Style –",
+        "heading_bottom": "Redefining Your",
+        "heading_light_2": "Wardrobe",
+        "card_image": "shopify://shop_images/ChatGPT_Image_May_6_2026_04_43_42_PM.png",
+        "card_text": "Discover the perfect blend of comfort, quality, and timeless fashion.",
+        "button_texts": "Shop Now",
+        "button_links": "",
+        "heading_tops": "Step Into",
+        "heading_lights": "Style –",
+        "heading_bottoms": "Redefining Your",
+        "heading_light_new": "Wardrobe",
+        "ratings": "4.8",
+        "reviewer_names": "Michael Ballack",
+        "reviewer_roles": "Chief Executive Officer",
+        "avatars": "shopify://shop_images/ChatGPT_Image_May_8_2026_03_43_09_PM.png",
+        "card_texts": "Discover the perfect blend of comfort, quality, and timeless fashion for every occasion.",
+        "button_text": "Shop Now",
+        "button_link": ""
+      }
+    },
+    "image_banner_Ucfb6w": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/vitaly-gariev-lYckmNl4eCY-unsplash.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "fashion_hero_pp4kRp": {
+      "type": "fashion-hero",
+      "blocks": {
+        "logo_BPB76B": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/ChatGPT_Image_May_23_2026_06_08_48_PM.png",
+            "logo_width": 180
+          }
+        },
+        "logo_JVAjPL": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/ChatGPT_Image_May_26_2026_11_58_39_AM.png",
+            "logo_width": 180
+          }
+        },
+        "logo_dDKWeV": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/ChatGPT_Image_May_26_2026_11_59_49_AM.png",
+            "logo_width": 180
+          }
+        },
+        "logo_Y7RYGF": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/shopify_logo_crop.png",
+            "logo_width": 180
+          }
+        },
+        "logo_X3tept": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/ChatGPT_Image_May_26_2026_11_52_28_AM.png",
+            "logo_width": 180
+          }
+        }
+      },
+      "block_order": [
+        "logo_BPB76B",
+        "logo_JVAjPL",
+        "logo_dDKWeV",
+        "logo_Y7RYGF",
+        "logo_X3tept"
+      ],
+      "name": "Fashion Hero",
+      "settings": {
+        "mission_heading": "Our Mission",
+        "mission_text": "We offer timeless, high-quality, and sustainable fashion that enhances your style and confidence.",
+        "first_text": "At",
+        "brand_name": "Fabrio",
+        "fashion_text": "fashion",
+        "second_line_text": "is how you",
+        "express_text": "express",
+        "third_line_text": "yourself with confidence.",
+        "button_text": "Know Us Better",
+        "left_image": "shopify://shop_images/ChatGPT_Image_May_9_2026_05_11_42_PM.png",
+        "girl_image": "shopify://shop_images/ChatGPT_Image_May_9_2026_05_13_08_PM.png"
+      }
+    },
+    "explore_products_GwnVTW": {
+      "type": "explore-products",
+      "name": "Explore Products",
+      "settings": {
+        "sub_heading": "Explore Our Products",
+        "title_1": "Men's Collection",
+        "desc_1": "Effortless style for every occasion.",
+        "title_2": "Women's Collection",
+        "desc_2": "Chic, sophisticated, and versatile pieces.",
+        "floating_image": "shopify://shop_images/ChatGPT_Image_May_27_2026_05_30_51_PM.png",
+        "title_3": "Accessories",
+        "desc_3": "The perfect finishing touch for any outfit.",
+        "title_4": "New Arrivals",
+        "desc_4": "Stay ahead with the latest trends and designs.",
+        "back_image": "shopify://shop_images/ChatGPT_Image_May_28_2026_11_36_11_AM_bca21f20-336c-4b67-a525-1f9ddaf53146.png",
+        "side_title": "Find Your Perfect Fit",
+        "side_desc": "Discover a curated selection of timeless designs,bold trends, and everyday essentials crafted to elevate your style.",
+        "button_text": "Shop Now",
+        "button_link": ""
+      }
+    },
+    "testimonial_C9D7F8": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonial_yPaKLB": {
+          "type": "testimonial",
+          "settings": {
+            "customer_image": "shopify://shop_images/ChatGPT_Image_May_29_2026_12_12_19_PM.png",
+            "customer_name": "Sophia R.",
+            "customer_role": "Loyal Customer",
+            "main_heading": "Absolutely love the quality and style of the products!",
+            "light_heading": "Every piece feels like it was made just for me.",
+            "button_text": "Join Our Happy Customers",
+            "button_link": ""
+          }
+        },
+        "testimonial_rFmQFd": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Sophia R.",
+            "customer_role": "Loyal Customer",
+            "main_heading": "Absolutely love the quality and style of the products!",
+            "light_heading": "Every piece feels like it was made just for me.",
+            "button_text": "Join Our Happy Customers",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_yPaKLB",
+        "testimonial_rFmQFd"
+      ],
+      "name": "Testimonial Slider",
+      "settings": {
+        "small_heading": "Explore Our Products",
+        "small_text": "See why our customers love us and how our products have become a part of their everyday lives."
+      }
+    },
+    "trend_subscribe_banner_AEjLaN": {
+      "type": "trend_subscribe_banner",
+      "name": "Trend Subscribe Banner",
+      "settings": {
+        "heading": "Stay Ahead of the Trends",
+        "button_text": "Subscribe Now",
+        "back_image": "shopify://shop_images/ChatGPT_Image_May_28_2026_11_36_11_AM_bca21f20-336c-4b67-a525-1f9ddaf53146.png",
+        "button_link": "",
+        "description": "Sign up for exclusive deals, early access to new collections, and a 10% welcome discount!"
+      }
+    },
+    "blog_showcase_VHfwcL": {
+      "type": "blog_showcase",
+      "name": "Blog Showcase",
+      "settings": {
+        "heading_line_1": "Explore Our Latest",
+        "heading_line_2": "Blog",
+        "heading_line_3": "Articles",
+        "blog": "latest-blog"
+      }
+    },
+    "comfort_slider_W6iDFC": {
+      "type": "comfort-slider",
+      "blocks": {
+        "slide_UBJwi6": {
+          "type": "slide",
+          "settings": {
+            "heading": "COMFORT YOU CAN FEEL",
+            "description": "<p>Desgin to support your feet with lasting comfort, all day and every day</p>",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_23_2026_11_24_51_AM.png"
+          }
+        },
+        "slide_tzfTja": {
+          "type": "slide",
+          "settings": {
+            "heading": "COMFORT YOU CAN FEEL",
+            "description": "",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_23_2026_11_43_32_AM.png"
+          }
+        },
+        "slide_DPhXPU": {
+          "type": "slide",
+          "settings": {
+            "heading": "COMFORT YOU CAN FEEL",
+            "description": "",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_23_2026_11_24_51_AM.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_UBJwi6",
+        "slide_tzfTja",
+        "slide_DPhXPU"
+      ],
+      "disabled": true,
+      "name": "Comfort Slider",
+      "settings": {
+        "bg_image": "shopify://shop_images/bg-slider.png",
+        "enable_autoplay": true,
+        "autoplay_speed": 4
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "hero_section_XYweAx",
+    "image_banner_Ucfb6w",
+    "fashion_hero_pp4kRp",
+    "explore_products_GwnVTW",
+    "testimonial_C9D7F8",
+    "trend_subscribe_banner_AEjLaN",
+    "blog_showcase_VHfwcL",
+    "comfort_slider_W6iDFC"
+  ]
+}

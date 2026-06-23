@@ -1,0 +1,75 @@
+<section class="maxsm:twcss-py-[20px] twcss-py-[40px] twcss-px-[15px]">
+  <div class="twcss-max-w-[1400px] twcss-mx-auto twcss-bg-black twcss-rounded-[40px] twcss-overflow-hidden twcss-relative">
+    <div class="twcss-absolute twcss-left-[40px] twcss-bottom-[40px] max-md:twcss-hidden">
+      <div class="twcss-grid twcss-grid-cols-4 twcss-gap-[8px] twcss-opacity-20">
+        <img src="{{ section.settings.back_image | image_url: width: 300 }}" alt="" class="twcss-w-full twcss-h-full twcss-object-contain" loading="lazy" >
+      </div>
+    </div>
+    <div class="twcss-relative twcss-z-[2] twcss-flex twcss-flex-col twcss-items-center twcss-justify-center twcss-text-center md:twcss-px-[30px] md:twcss-py-[90px] maxsm:twcss-py-[20px] twcss-px-[40px] maxsm:twcss-px-[20px] twcss-py-[40px]">
+      <h2 class="twcss-font-satoshi twcss-font-medium twcss-text-white md:twcss-text-[12rem] md:twcss-leading-[11.2rem] maxsm:twcss-text-[20px] twcss-text-[5rem] twcss-leading-[6.2rem]twcss-font-[800] twcss-max-w-[900px]">{{ section.settings.heading }}</h2>
+      <a href="{{ section.settings.button_link }}"
+         class="twcss-mt-[50px] maxsm:twcss-mt-[20px] twcss-relative twcss-inline-flex twcss-items-center twcss-justify-center
+                twcss-w-[130px] twcss-h-[130px] maxsm:twcss-w-[100px] maxsm:twcss-h-[100px] twcss-rounded-full twcss-bg-[#b7f36a] twcss-text-black maxsm:twcss-text-[15px]twcss-text-[20px] twcss-leading-[1.2] twcss-font-medium twcss-transition-all hover:twcss-scale-[1.05]">
+        <span class="twcss-text-center twcss-font-inter twcss-font-light"> {{ section.settings.button_text }}</span>
+        <span class="twcss-absolute twcss-inset-[-6px] twcss-rounded-full twcss-border-[3px]twcss-border-[#b7f36a]"></span>
+      </a>
+       <div class="md:twcss-absolute twcss-unset twcss-right-[60px] twcss-bottom-[60px] twcss-flex twcss-items-start md:twcss-mt-[0px] twcss-mt-[20px] twcss-gap-[18px] twcss-max-w-[300px]">
+          <div class="twcss-flex twcss-flex-col maxsm:twcss-items-center twcss-items-start twcss-gap-[20px]">
+            <div class="twcss-relative twcss-w-[82px] twcss-h-[36px] twcss-bg-[#F6E2D6] twcss-rounded-full">
+              <div class="twcss-absolute twcss-left-0 twcss-top-1/2 -twcss-translate-y-1/2 twcss-w-[36px] twcss-h-[36px] twcss-rounded-full twcss-bg-[#FF8A4C] twcss-flex twcss-items-center twcss-justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 22C13.1046 22 14 21.1046 14 20H10C10 21.1046 10.8954 22 12 22Z" fill="white"/>
+                  <path d="M18 16V11C18 7.68629 15.3137 5 12 5C8.68629 5 6 7.68629 6 11V16L4 18V19H20V18L18 16Z" fill="white"/><circle cx="18" cy="6" r="3" fill="white"/><circle cx="18" cy="6" r="1.5" fill="#FF8A4C"/>
+                </svg>
+              </div>
+            </div>
+                <div class="twcss-max-w-[320px]"> 
+                  <p class="twcss-font-inter twcss-font-light twcss-text-white twcss-text-left maxsm:twcss-text-[15px] twcss-text-[18px] twcss-leading-[1.2] twcss-m-0">
+                    {{ section.settings.description }}
+                  </p>
+                </div>
+            </div>
+         </div>
+       </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trend Subscribe Banner",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stay Ahead of the Trends"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe Now"
+    },
+    {
+      "type": "image_picker",
+      "id": "back_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Sign up for exclusive deals, early access to new collections, and a 10% welcome discount!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trend Subscribe Banner"
+    }
+  ]
+}
+{% endschema %}

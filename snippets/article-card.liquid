@@ -1,0 +1,102 @@
+{% comment %}
+  Modern Tailwind Blog Card
+{% endcomment %}
+
+{%- if article and article != empty -%}
+
+<article class="twcss-group twcss-h-full">
+
+  {% if show_image and article.image %}
+    <a
+      href="{{ article.url }}"
+      class="twcss-block twcss-overflow-hidden twcss-rounded-[24px]"
+    >
+      <img
+        src="{{ article.image | image_url: width: 1200 }}"
+        alt="{{ article.title | escape }}"
+        width="{{ article.image.width }}"
+        height="{{ article.image.height }}"
+        loading="lazy"
+        class="
+          twcss-w-full
+          twcss-aspect-[4/3]
+          twcss-object-cover
+          twcss-rounded-[24px]
+          twcss-transition-all
+          twcss-duration-700
+          group-hover:twcss-scale-[1.03]
+        "
+      >
+    </a>
+  {% endif %}
+
+  <div class="twcss-pt-[24px]">
+
+    {% if show_date or show_author %}
+      <div class="twcss-flex twcss-items-center twcss-gap-[10px] twcss-text-[13px] twcss-text-[#777]">
+
+        {% if show_date %}
+          <span>
+            {{ article.published_at | date: "%B %d, %Y" }}
+          </span>
+        {% endif %}
+
+        {% if show_author %}
+          <span>•</span>
+          <span>{{ article.author }}</span>
+        {% endif %}
+
+      </div>
+    {% endif %}
+
+    <h2 class="
+      twcss-text-[32px]
+      max-lg:twcss-text-[28px]
+      max-md:twcss-text-[24px]
+      twcss-leading-[1.15]
+      twcss-font-medium
+      twcss-mt-[12px]
+      twcss-mb-[14px]
+    ">
+      <a
+        href="{{ article.url }}"
+        class="maxsm:twcss-text-[30px] twcss-text-black twcss-no-underline"
+      >
+        {{ article.title }}
+      </a>
+    </h2>
+
+    {% if show_excerpt %}
+      <div class="
+        twcss-text-[16px]
+        twcss-leading-[1.8]
+        twcss-text-[#666]
+      ">
+        {% if article.excerpt.size > 0 %}
+          {{ article.excerpt | strip_html | truncatewords: 25 }}
+        {% else %}
+          {{ article.content | strip_html | truncatewords: 25 }}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <a
+      href="{{ article.url }}"
+      class="maxsm:twcss-text-[20px]
+        twcss-inline-flex
+        twcss-items-center
+        twcss-gap-[8px]
+        twcss-mt-[20px]
+        twcss-font-medium
+        twcss-text-black
+        twcss-no-underline
+      "
+    >
+      Read Article →
+    </a>
+
+  </div>
+
+</article>
+
+{%- endif -%}

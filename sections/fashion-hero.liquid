@@ -1,0 +1,214 @@
+<section class="twcss-relative twcss-bg-[#f3f3f3] twcss-rounded-[40px]">
+  <div class="twcss-max-w-[120rem] twcss-mx-auto twcss-px-[5rem] maxsm:twcss-py-[30px] twcss-py-[60px] twcss-overflow-hidden">
+    <!-- TOP RIGHT MISSION -->
+    <div class="max-lg:twcss-static lg:twcss-absolute lg:twcss-top-[72px] lg:twcss-right-[8.5rem]
+        twcss-w-full lg:twcss-w-[360px] twcss-mb-[30px] lg:twcss-mb-0">
+      <div class="twcss-flex twcss-items-start twcss-gap-[12px] md:twcss-gap-[16px]">
+        <div class="twcss-flex-1 twcss-text-right">
+          <h4 class="twcss-font-inter twcss-text-[20px] md:twcss-text-[24px] twcss-text-black twcss-font-medium twcss-leading-none twcss-mb-[10px] md:twcss-mb-[12px]">
+            {{ section.settings.mission_heading }}
+          </h4>
+          <p class="twcss-font-inter twcss-text-[13px] md:twcss-text-[14px] twcss-leading-[22px] md:twcss-leading-[23px] twcss-text-[#5b5b5b]">
+            {{ section.settings.mission_text }}
+          </p>  
+        </div>
+        <div class="twcss-relative twcss-w-[50px] twcss-h-[120px] twcss-bg-[#ffffffd9] twcss-rounded-full twcss-flex twcss-items-start twcss-justify-center">
+          <div class="twcss-w-[38px] md:twcss-w-[48px] twcss-h-[38px] md:twcss-h-[48px] twcss-rounded-full twcss-bg-[#ff8a43] twcss-flex twcss-items-center twcss-justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="7" stroke="white" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="3.5" stroke="white" stroke-width="1.8"/>
+              <path d="M12 2V5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M22 12H19" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M12 19V22" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M5 12H2" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M16.5 7.5L21 3" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="twcss-max-w-[1250px]">
+      <h1 class="twcss-font-satoshi maxsm:twcss-my-[20px] md:twcss-text-[80px] twcss-text-[34px] maxsm:twcss-text-[20px] maxsm:twcss-leading-[1] 
+       twcss-leading-[1.15] twcss-font-medium twcss-text-black max-xl:twcss-text-[70px] max-lg:twcss-text-[55px] max-md:twcss-text-[38px]">
+        <div>
+          <span twcss-font-inter>{{ section.settings.first_text }}</span>
+          <span class="twcss-text-[#b8b8b8]">{{ section.settings.brand_name }}</span>
+          <span>{{ section.settings.fashion_text }}</span>
+      </div>
+      <div class="twcss-flex twcss-items-center twcss-justify-center twcss-gap-[14px] maxsm:twcss-my-[10px] twcss-my-[15px]">
+          <span>
+            {{ section.settings.second_line_text }}
+          </span>
+          {% if section.settings.girl_image != blank %}
+            <img
+              src="{{ section.settings.girl_image | image_url }}"
+              alt=""
+              class="twcss-mr-[-24px] md:twcss-w-[72px] md:twcss-h-[72px] twcss-w-[30px] twcss-h-[30px] twcss-rounded-full"
+            >
+          {% endif %}
+          <span class="twcss-w-[30px] twcss-h-[30px] md:twcss-w-[72px] md:twcss-h-[72px] twcss-rounded-full twcss-bg-black twcss-flex twcss-items-center twcss-justify-center twcss-text-white twcss-text-[28px]">
+            ↗
+          </span>
+          <span>{{ section.settings.express_text }}</span>
+        </div>
+       <div>
+      <span>{{ section.settings.third_line_text }}</span>
+    </div>
+  </h1>
+</div>
+    <div class="twcss-flex twcss-justify-between max-lg:twcss-flex-col max-lg:twcss-gap-[40px]">
+            <div class="twcss-relative">
+              {% if section.settings.left_image != blank %}
+                <img
+                  src="{{ section.settings.left_image | image_url }}" alt=""
+                  class="twcss-w-[320px] twcss-h-[220px] maxsm:twcss-w-auto maxsm:twcss-h-auto  twcss-object-cover twcss-rounded-[26px]"
+                >
+              {% endif %}
+            </div>
+            <div class="twcss-flex twcss-items-center twcss-justify-center twcss-flex-1">
+              <a
+                href="#"
+                class="twcss-relative twcss-w-[150px] twcss-h-[150px] maxsm:twcss-w-[115px] maxsm:twcss-h-[115px] twcss-rounded-full twcss-bg-[#b8ff63] twcss-flex twcss-items-center twcss-justify-center twcss-text-center twcss-font-medium twcss-text-black twcss-leading-[24px] twcss-leading-[38px] maxsm:twcss-text-[17px] twcss-text-[22px]"
+              >
+                <span class="twcss-relative twcss-z-[2] twcss-font-inter">{{ section.settings.button_text }} </span>
+                <span class="twcss-absolute twcss-left-[-6px] twcss-bottom-[-6px] twcss-w-full twcss-h-full twcss-rounded-full twcss-border-[2px] twcss-border-[#a4e25b] twcss-border-t-transparent twcss-rotate-[-8deg]"></span>
+              </a>
+            </div>
+      </div>
+    <div class="twcss-grid twcss-grid-cols-2 sm:twcss-grid-cols-3 lg:twcss-grid-cols-5 maxsm:twcss-gap-[0px] twcss-gap-[30px] md:twcss-gap-[50px] twcss-items-center maxsm:twcss-mt-[20px] twcss-mt-[50px] md:twcss-mt-[70px]">
+      {% for block in section.blocks %}
+        {% if block.settings.logo_image != blank %}
+          <div
+            class="twcss-flex twcss-items-center twcss-justify-center" style="max-width: {{ block.settings.logo_width }}px;" {{ block.shopify_attributes }}
+          >
+            <img
+              src="{{ block.settings.logo_image | image_url }}" alt="Logo" class="twcss-w-full twcss-h-auto twcss-object-contain"
+            >
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fabrio Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "mission_heading",
+      "label": "Mission Heading",
+      "default": "Our Mission"
+    },
+    {
+      "type": "textarea",
+      "id": "mission_text",
+      "label": "Mission Text",
+      "default": "We offer timeless, high-quality, and sustainable fashion that enhances your style and confidence."
+    },
+
+    {
+      "type": "text",
+      "id": "first_text",
+      "label": "First Text",
+      "default": "At"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "Fabrio,"
+    },
+    {
+      "type": "text",
+      "id": "fashion_text",
+      "label": "Fashion Text",
+      "default": "fashion"
+    },
+    {
+      "type": "text",
+      "id": "second_line_text",
+      "label": "Second Line Text",
+      "default": "is how you"
+    },
+    {
+      "type": "text",
+      "id": "express_text",
+      "label": "Express Text",
+      "default": "express"
+    },
+    {
+      "type": "text",
+      "id": "third_line_text",
+      "label": "Third Line Text",
+      "default": "yourself with confidence."
+    },
+
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Know Us Better"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "girl_image",
+      "label": "Girl Image"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo Image"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo Width",
+          "min": 80,
+          "max": 260,
+          "step": 10,
+          "default": 180
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Fabrio Hero Section",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,54 @@
+{% comment %}
+  Renders share button.
+  Accepts:
+  - block: {Object} passes in the block information.
+  - share_link: {String} url to be added to the input the user will get/copy.
+
+  Usage:
+  {% render 'share-button',
+    block: block,
+    share_link: share_url
+  %}
+{% endcomment %}
+<script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
+
+<share-button id="Share-{{ section.id }}" class="twcss-my-6 twcss-block twcss-relative share-button quick-add-hidden" {{ block.shopify_attributes }}>
+  <button class="twcss-hidden twcss-cursor-pointer twcss-bg-transparent twcss-border-none twcss-text-[1.4rem] twcss-items-center twcss-text-[rgb(18,18,18)] twcss-ml-0 twcss-pl-0 twcss-min-h-[4.4rem] share-button__button hidden">
+    <span class="twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-5 twcss-h-5 svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" fill="none" class="twcss-block twcss-h-[1.2rem] twcss-mr-4 twcss-min-w-[1.3rem] twcss-align-middle icon icon-share" viewBox="0 0 13 12"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M1.625 8.125v2.167a1.083 1.083 0 0 0 1.083 1.083h7.584a1.083 1.083 0 0 0 1.083-1.083V8.125"/><path fill="currentColor" fill-rule="evenodd" d="M6.148 1.271a.5.5 0 0 1 .707 0L9.563 3.98a.5.5 0 0 1-.707.707L6.501 2.332 4.147 4.687a.5.5 0 1 1-.708-.707z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M6.5 1.125a.5.5 0 0 1 .5.5v6.5a.5.5 0 0 1-1 0v-6.5a.5.5 0 0 1 .5-.5" clip-rule="evenodd"/></svg></span>
+    {{ block.settings.share_label | escape }}
+  </button>
+  <details id="Details-{{ block.id }}-{{ section.id }}" class="twcss-w-fit">
+    <summary class="share-button__button">
+      <span class="twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-5 twcss-h-5 svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" fill="none" class="twcss-block twcss-h-[1.2rem] twcss-mr-4 twcss-min-w-[1.3rem] twcss-align-middle icon icon-share" viewBox="0 0 13 12"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M1.625 8.125v2.167a1.083 1.083 0 0 0 1.083 1.083h7.584a1.083 1.083 0 0 0 1.083-1.083V8.125"/><path fill="currentColor" fill-rule="evenodd" d="M6.148 1.271a.5.5 0 0 1 .707 0L9.563 3.98a.5.5 0 0 1-.707.707L6.501 2.332 4.147 4.687a.5.5 0 1 1-.708-.707z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M6.5 1.125a.5.5 0 0 1 .5.5v6.5a.5.5 0 0 1-1 0v-6.5a.5.5 0 0 1 .5-.5" clip-rule="evenodd"/></svg>
+      </span>
+      {{ block.settings.share_label | escape }}
+    </summary>
+    <div class="share-button__fallback motion-reduce">
+      <div class="field">
+        <span id="ShareMessage-{{ section.id }}" class="share-button__message hidden" role="status"> </span>
+        <input
+          type="text"
+          class="field__input"
+          id="ShareUrl-{{ section.id }}"
+          value="{{ share_link }}"
+          placeholder="{{ 'general.share.share_url' | t }}"
+          onclick="this.select();"
+          readonly
+        >
+        <label class="field__label" for="ShareUrl-{{ section.id }}">{{ 'general.share.share_url' | t }}</label>
+      </div>
+      <button class="share-button__close hidden">
+        <span class="svg-wrapper">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+        <span class="visually-hidden">{{ 'general.share.close' | t }}</span>
+      </button>
+      <button class="share-button__copy">
+        <span class="svg-wrapper">
+          {{- 'icon-copy.svg' | inline_asset_content -}}
+        </span>
+        <span class="visually-hidden">{{ 'general.share.copy_to_clipboard' | t }}</span>
+      </button>
+    </div>
+  </details>
+</share-button>

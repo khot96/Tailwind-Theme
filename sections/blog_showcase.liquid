@@ -1,0 +1,141 @@
+<section class="twcss-bg-[#f3f3f3] twcss-rounded-[40px] twcss-py-[50px]">
+  <div class="">
+    <div class="twcss-max-w-[120rem] twcss-mx-auto twcss-px-[5rem] twcss-bg-[#f3f3f3] twcss-rounded-[40px]">
+      <div class="twcss-grid lg:twcss-grid-cols-[420px_1fr] twcss-gap-[40px]">
+        <div class="twcss-flex twcss-flex-col twcss-justify-between">
+          <div>
+            <h2 class="twcss-font-satoshi twcss-font-medium twcss-text-black maxsm:twcss-text-[20px] twcss-text-[42px] lg:twcss-text-[44px] twcss-leading-[1.05]">
+            {{ section.settings.heading_line_1 }}
+              <span class="twcss-text-[#b4b4b4]">
+                 {{ section.settings.heading_line_2 }}
+              </span>
+              {{ section.settings.heading_line_3 }}
+            </h2>
+          </div>
+          <div class="twcss-flex twcss-gap-[12px] twcss-mt-[40px]">
+            <button
+              class="blog-prev maxsm:twcss-w-[30px] maxsm:twcss-h-[30px] twcss-w-[44px] twcss-h-[44px] twcss-rounded-full twcss-bg-[#d8d8d8] twcss-flex twcss-items-center twcss-justify-center">
+               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <path d="M18 12H8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M13 7L8 12L13 17" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+            </button>
+            <button
+              class="blog-next maxsm:twcss-w-[30px] maxsm:twcss-h-[30px] twcss-w-[44px] twcss-h-[44px] twcss-rounded-full twcss-bg-black twcss-flex twcss-items-center twcss-justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 12H16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M11 7L16 12L11 17" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </button>
+          </div>
+        </div>
+       <div class="twcss-flex twcss-overflow-hidden twcss-justify-end">
+            <div id="blogSlider" class="twcss-flex twcss-gap-[24px] twcss-transition-all twcss-duration-500">
+              {% assign blog = blogs[section.settings.blog] %}
+              {% for article in blog.articles limit: 8 %}
+                <div class="twcss-flex-shrink-0 twcss-w-[240px] lg:twcss-w-[250px]">
+                  <a href="{{ article.url }}" class="twcss-block">
+                    <div class="twcss-relative">
+                      {% if article.image %}
+                        <img src="{{ article.image | image_url: width: 900 }}" alt="{{ article.title }}"
+                          class="twcss-w-full maxsm:twcss-h[220px] twcss-h-[280px] twcss-object-cover twcss-rounded-[24px]">
+                      {% endif %}
+                      <div class="twcss-absolute twcss-text-black twcss-left-[12px] twcss-bottom-[12px] twcss-bg-white twcss-rounded-[14px] twcss-px-[16px] twcss-py-[8px]">
+                        {{ article.published_at | date: "%-d %b" }}
+                      </div>
+                    </div>
+                    <h3 class="twcss-font-inter twcss-font-light twcss-mt-[14px] twcss-text-[17px] twcss-text-black twcss-leading-[1.3]">
+                      {{ article.title }}
+                    </h3>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading Line 1",
+      "default": "Explore Our Latest"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading Line 2",
+      "default": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_3",
+      "label": "Heading Line 3",
+      "default": "Articles"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Showcase"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  const slider = document.querySelector('#blogSlider');
+  const nextBtn = document.querySelector('.blog-next');
+  const prevBtn = document.querySelector('.blog-prev');
+
+  if (!slider || !nextBtn || !prevBtn) return;
+
+  let position = 0;
+
+  nextBtn.addEventListener('click', function() {
+    const card = slider.children[0];
+    const moveAmount = card.offsetWidth + 24;
+
+    const maxScroll =
+      slider.scrollWidth -
+      slider.parentElement.offsetWidth;
+
+    position += moveAmount;
+
+    if(position > maxScroll){
+      position = maxScroll;
+    }
+
+    slider.style.transform =
+      `translateX(-${position}px)`;
+  });
+
+  prevBtn.addEventListener('click', function() {
+    const card = slider.children[0];
+    const moveAmount = card.offsetWidth + 24;
+
+    position -= moveAmount;
+
+    if(position < 0){
+      position = 0;
+    }
+
+    slider.style.transform =
+      `translateX(-${position}px)`;
+  });
+
+});
+</script>

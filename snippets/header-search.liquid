@@ -1,0 +1,108 @@
+{% comment %}
+  Renders a header search modal. Should be used with 'header.liquid'
+
+  Accepts:
+  - input_id: {String} Id for the search input element (required)
+
+  Usage:
+  {% render 'header-search', input_id: 'My-Id'%}
+{% endcomment %}
+
+<details-modal class="twcss-inline-flex twcss-leading-0">
+  <details>
+    <summary
+      class="1header__icon twcss-h-[4.4rem] twcss-w-[4.4rem] twcss-p-0 header__icon--search header__icon--summary link focus-inset modal__toggle"
+      aria-haspopup="dialog"
+      aria-label="{{ 'general.search.search' | t }}"
+    >
+      <span>
+        <span class="twcss-w-[44px] twcss-h-[44px] twcss-h-full twcss-flex twcss-items-center twcss-justify-center 1svg-wrapper">
+          {{- 'icon-search.svg' | inline_asset_content -}}
+        </span>
+        <span class="twcss-w-[44px] twcss-h-[44px] twcss-h-[100%] twcss-hidden">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+      </span>
+    </summary>
+    <div
+      class="search-modal twcss-border-b-[0.1rem] twcss-border-[#12121214] twcss-h-full twcss-absolute twcss-inset-0 twcss-z-[4] twcss-flex twcss-justify-center twcss-items-center twcss-bg-white modal__content gradient"
+      role="dialog"
+      aria-modal="true"
+      aria-label="{{ 'general.search.search' | t }}"
+    >
+      <div class="modal-overlay"></div>
+      <div
+        class="twcss-flex twcss-items-center twcss-justify-center twcss-w-full twcss-h-full md:twcss-px-[6rem] md:twcss-py-0 twcss-px-[1rem] twcss-pr-[5rem] twcss-relative search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
+        tabindex="-1"
+      >
+        {%- if settings.predictive_search_enabled -%}
+          <predictive-search class="md:twcss-relative lg:twcss-max-w-[74.2rem] twcss-w-full search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+        {%- else -%}
+          <search-form class="search-modal__form">
+        {%- endif -%}
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+          <div class="field twcss-relative twcss-w-full twcss-flex">
+            <input
+              class="twcss-border twcss-h-[4.5rem] twcss-transition-shadow twcss-duration-[100ms] twcss-ease-[ease] twcss-m-[1px] twcss-pr-[9.8rem] twcss-flex-grow twcss-text-left twcss-p-[1.5rem] search__input field__input"
+              id="{{ input_id }}"
+              type="search"
+              name="q"
+              value="{{ search.terms | escape }}"
+              placeholder="{{ 'general.search.search' | t }}"
+              {%- if settings.predictive_search_enabled -%}
+                role="combobox"
+                aria-expanded="false"
+                aria-owns="predictive-search-results"
+                aria-controls="predictive-search-results"
+                aria-haspopup="listbox"
+                aria-autocomplete="list"
+                autocorrect="off"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+              {%- endif -%}
+            >
+            {% comment %}<label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>{% endcomment %}
+            <input type="hidden" name="options[prefix]" value="last">
+            <button
+              type="reset"
+              class="reset__button field__button twcss-flex twcss-items-center twcss-justify-center twcss-bg-transparent twcss-border-0 twcss-cursor-pointer twcss-h-[4.4rem] twcss-w-[4.4rem] twcss-overflow-hidden twcss-p-0 twcss-absolute twcss-right-0 twcss-top-0 {% if search.terms == blank %} twcss-hidden {% endif %}"
+              aria-label="{{ 'general.search.reset' | t }}"
+            >
+              <span class="svg-wrapper twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-5 twcss-h-5">
+                {{- 'icon-reset.svg' | inline_asset_content -}}
+              </span>
+            </button>
+            <button class="search__button field__button twcss-flex twcss-items-center twcss-justify-center twcss-bg-transparent twcss-border-0 twcss-cursor-pointer twcss-h-[4.4rem] twcss-w-[4.4rem] twcss-overflow-hidden twcss-p-0 twcss-absolute twcss-right-0 twcss-top-0" aria-label="{{ 'general.search.search' | t }}">
+              <span class="svg-wrapper twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-[2.5rem] twcss-h-[2.5rem]">
+                {{- 'icon-search.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </div>
+
+          {%- if settings.predictive_search_enabled -%}
+            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+              {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+            </div>
+
+            <span class="predictive-search-status twcss-sr-only visually-hidden" role="status" aria-hidden="true"></span>
+          {%- endif -%}
+        </form>
+        {%- if settings.predictive_search_enabled -%}
+          </predictive-search>
+        {%- else -%}
+          </search-form>
+        {%- endif -%}
+        <button
+          type="button"
+          class="twcss-flex twcss-justify-center twcss-items-center twcss-p-0 twcss-h-[4.4rem] twcss-w-[4.4rem] twcss-bg-transparent md:twcss-right-4 md:twcss-right-4 lg:twcss-ml-2 search-modal__close-button modal__close-button link link--text focus-inset"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <span class="svg-wrapper twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-5 twcss-h-5">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+        </button>
+      </div>
+    </div>
+  </details>
+</details-modal>

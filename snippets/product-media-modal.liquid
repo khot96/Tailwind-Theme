@@ -1,0 +1,57 @@
+{% comment %}
+  Renders a product media modal. Also see 'product-media-gallery'
+
+  Accepts:
+  - product: {Object} Product liquid object
+  - variant_images: {Array} Product images associated with a variant
+
+  Usage:
+  {% render 'product-media-modal' %}
+{% endcomment %}
+
+<product-modal id="ProductModal-{{ section.id }}" class="twcss-bg-[rgb(255,255,255)] twcss-h-full twcss-fixed twcss-top-0 twcss-left-0 twcss-w-full twcss-invisible twcss-opacity-0 twcss-z-[-1] twcss-cursor-zoom-out product-media-modal media-modal">
+  <div
+    class="twcss-flex twcss-items-center twcss-h-screen product-media-modal__dialog color-{{ section.settings.color_scheme }} gradient"
+    role="dialog"
+    aria-label="{{ 'products.modal.label' | t }}"
+    aria-modal="true"
+    tabindex="-1"
+  >
+    <button
+      id="ModalClose-{{ section.id }}"
+      type="button"
+      class="md:twcss-right-20 md:twcss-top-[2.2rem] twcss-bg-[rgb(255,255,255)] twcss-border twcss-border-[rgba(18,18,18,0.1)] twcss-rounded-full twcss-text-[rgba(255,255,255,0.55)] twcss-flex twcss-items-center twcss-justify-center twcss-cursor-pointer twcss-fixed twcss-right-8 twcss-top-8 twcss-p-[1.2rem] twcss-w-[4rem] twcss-z-[2] product-media-modal__toggle"
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="twcss-h-auto twcss-m-0 twcss-w-[2.2rem] twcss-block twcss-fill-none twcss-align-middle twcss-opacity-100 icon icon-close" viewBox="0 0 18 17"><path fill="currentColor" d="M.865 15.978a.5.5 0 0 0 .707.707l7.433-7.431 7.579 7.282a.501.501 0 0 0 .846-.37.5.5 0 0 0-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 1 0-.707-.708L8.991 7.853 1.413.573a.5.5 0 1 0-.693.72l7.563 7.268z"/></svg>
+    </button>
+
+    <div
+      class="twcss-max-h-screen twcss-w-full twss-overflow-auto lg:twcss-py-8 lg:twcss-px-[11rem] product-media-modal__content color-{{ section.settings.color_scheme }} gradient"
+      role="document"
+      aria-label="{{ 'products.modal.label' | t }}"
+      tabindex="0"
+    >
+      {%- liquid
+        if product.selected_or_first_available_variant.featured_media != null
+          assign media = product.selected_or_first_available_variant.featured_media
+          render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
+        endif
+      -%}
+
+      {%- for media in product.media -%}
+        {%- liquid
+          if section.settings.hide_variants and variant_images contains media.src or variant_images contains media.id
+            assign variant_image = true
+          else
+            assign variant_image = false
+          endif
+
+          unless media.id == product.selected_or_first_available_variant.featured_media.id
+            render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
+          endunless
+        -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</product-modal>

@@ -1,0 +1,189 @@
+<section class="twcss-border twcss-border-[#e1e1e166] twcss-rounded-[35px] twcss-py-[20px] twcss-shadow-2xl">
+  <div class="twcss-max-w-[120rem] twcss-mx-auto twcss-px-[5rem]  twcss-mx-auto twcss-overflow-hidden">
+    <div class="twcss-grid twcss-grid-cols-1 lg:twcss-grid-cols-[1fr_300px]">
+      <div class="">
+        <p class="twcss-font-inter maxsm:twcss-py-[20px] twcss-py-[50px] twcss-text-[20px] twcss-font-medium twcss-text-black">
+          {{ section.settings.sub_heading }}
+        </p>
+       <div class="maxsm:twcss-pl-[0px] twcss-pb-[40px] twcss-pl-[30px] md:twcss-pl-[70px]">
+        <div class="twcss-pb-[28px] twcss-border-b twcss-border-[#e5e5e5]">
+          <h2 class="twcss-font-satoshi md:twcss-text-[60px] maxsm:twcss-text-[20px] twcss-text-[28px] twcss-leading-none twcss-font-medium twcss-text-[#b7b7b7]">
+            {{ section.settings.title_1 }}
+          </h2>
+          <p class="twcss-font-inter md:twcss-text-[24px] maxsm:twcss-text-[15px] twcss-text-[16px] twcss-text-[#555] twcss-mt-[12px]">
+            {{ section.settings.desc_1 }}
+          </p>
+        </div>
+        <div class="twcss-relative twcss-py-[28px] twcss-border-b twcss-border-black">
+          <h2 class="twcss-font-satoshi md:twcss-text-[70px] maxsm:twcss-text-[20px] twcss-text-[28px] max-md:twcss-text-[34px] twcss-leading-none twcss-font-medium twcss-text-black">
+            {{ section.settings.title_2 }}
+          </h2>
+          <p class="twcss-font-inter md:twcss-text-[24px] maxsm:twcss-text-[15px] twcss-text-[16px] twcss-text-black twcss-mt-[12px]">
+            {{ section.settings.desc_2 }}
+          </p>
+          {% if section.settings.floating_image != blank %}
+            <div class="twcss-absolute twcss-right-[40px] twcss-top-[50%] twcss--translate-y-1/2 max-md:twcss-static max-md:twcss-translate-y-0 max-md:twcss-mt-[25px]">
+              <div class="twcss-relative maxsm:twcss-w-[80px] maxsm:twcss-h-[80px] twcss-w-[200px] twcss-h-[200px] twcss-rounded-[22px] twcss-overflow-hidden twcss-rotate-[-10deg] twcss-shadow-xl">
+                <img
+                  src="{{ section.settings.floating_image | image_url: width: 300 }}"
+                  alt=""
+                  class="twcss-w-full twcss-h-full twcss-object-cover"
+                  loading="lazy"
+                >
+                <div class="twcss-absolute twcss-top-[10px] twcss-right-[10px] twcss-w-[28px] twcss-h-[28px] twcss-rounded-full twcss-bg-black twcss-flex twcss-items-center twcss-justify-center">
+                  <span class="twcss-text-white twcss-text-[14px]">↗</span>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+        <div class="twcss-py-[28px] twcss-border-b twcss-border-[#e5e5e5]">
+          <h2 class="twcss-font-satoshi md:twcss-text-[60px] maxsm:twcss-text-[20px] twcss-text-[28px] twcss-leading-none twcss-font-medium twcss-text-[#b7b7b7]">
+            {{ section.settings.title_3 }}
+          </h2>
+          <p class="twcss-font-inter md:twcss-text-[24px] maxsm:twcss-text-[15px] twcss-text-[16px] twcss-text-[#555] twcss-mt-[12px]">
+            {{ section.settings.desc_3 }}
+          </p>
+        </div>
+        <div class="twcss-pt-[28px]">
+          <h2 class="twcss-font-satoshi md:twcss-text-[60px] maxsm:twcss-text-[20px] twcss-text-[28px] twcss-leading-none twcss-font-medium twcss-text-[#b7b7b7]">
+            {{ section.settings.title_4 }}
+          </h2>
+          <p class="twcss-font-inter md:twcss-text-[24px] maxsm:twcss-text-[15px] twcss-text-[16px] twcss-text-[#555] twcss-mt-[12px]">
+            {{ section.settings.desc_4 }}
+          </p>
+        </div>
+       </div>
+      </div>
+      <div class="twcss-relative twcss-border-l twcss-border-[#e5e5e5] twcss-flex twcss-items-end twcss-justify-center twcss-p-[30px] md:twcss-p-[40px]">
+         <div class="twcss-absolute maxsm:twcss-top-[0px] maxsm:twcss-unset twcss-top-[40px] twcss-w-[500px] twcss-h-[500px] twcss-opacity-70 max-md:twcss-hidden">
+            <img
+              src="{{ section.settings.back_image | image_url: width: 300 }}"
+              alt=""
+              class="maxsm:twcss-w-[auto] maxsm:twcss-h-[auto] twcss-w-full twcss-h-full twcss-object-contain"
+              loading="lazy"
+            >
+          </div>
+        <div class="twcss-max-w-[220px] twcss-text-end">
+          <h3 class="twcss-font-inter twcss-text-[21px] twcss-leading-tight twcss-font-medium twcss-text-black">
+            {{ section.settings.side_title }}
+          </h3>
+          <p class="twcss-font-inter twcss-text-right twcss-text-[13px] twcss-leading-[1.5] twcss-text-[#777] twcss-mt-[16px]">
+            {{ section.settings.side_desc }}
+          </p>
+          {% if section.settings.button_text != blank %}
+            <a
+              href="{{ section.settings.button_link }}"
+              class="twcss-inline-flex twcss-items-center twcss-gap-[10px] twcss-bg-[#b6ff4d] twcss-rounded-full twcss-px-[18px] twcss-py-[10px] twcss-text-black twcss-text-[14px] twcss-font-medium twcss-mt-[24px] twcss-transition hover:twcss-scale-105"
+            >
+              {{ section.settings.button_text }}
+              <span class="twcss-w-[24px] twcss-h-[24px] twcss-rounded-full twcss-bg-black twcss-text-white twcss-flex twcss-items-center twcss-justify-center twcss-text-[12px]">
+                ↗
+              </span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Explore Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Explore Our Products"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title 1",
+      "default": "Men's Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "desc_1",
+      "label": "Description 1",
+      "default": "Effortless style for every occasion."
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title 2",
+      "default": "Women's Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "desc_2",
+      "label": "Description 2",
+      "default": "Chic, sophisticated, and versatile pieces."
+    },
+    {
+      "type": "image_picker",
+      "id": "floating_image",
+      "label": "Floating Image"
+    },
+    {
+      "type": "text",
+      "id": "title_3",
+      "label": "Title 3",
+      "default": "Accessories"
+    },
+    {
+      "type": "textarea",
+      "id": "desc_3",
+      "label": "Description 3",
+      "default": "The perfect finishing touch for any outfit."
+    },
+    {
+      "type": "text",
+      "id": "title_4",
+      "label": "Title 4",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "textarea",
+      "id": "desc_4",
+      "label": "Description 4",
+      "default": "Stay ahead with the latest trends and designs."
+    },
+    {
+      "type": "image_picker",
+      "id": "back_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "side_title",
+      "label": "Side Title",
+      "default": "Find Your Perfect Fit"
+    },
+    {
+      "type": "textarea",
+      "id": "side_desc",
+      "label": "Side Description",
+      "default": "Discover a curated selection of timeless designs."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Explore Products"
+    }
+  ]
+}
+{% endschema %}

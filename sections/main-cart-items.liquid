@@ -1,0 +1,494 @@
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- unless settings.cart_type == 'drawer' -%}
+  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<cart-items class="md:twcss-pt-9 md:twcss-pb-9 twcss-pt-[27px] twcss-pb-[27px] twcss-text-[rgba(18,18,18,0.75)] twcss-bg-white gradient color-{{ section.settings.color_scheme }} isolate {% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
+  <div class="page-width twcss-max-w-[120rem] twcss-mx-auto twcss-px-6 md:px-20">
+    <div class="twcss-mt-0 lg:twcss-items-center lg:twcss-mt-20 lg:twcss-mb-12 twcss-mx-0 twcss-flex twcss-justify-between twcss-items-end twcss-flex-wrap twcss-gap-4 twcss-mt-12 twcss-mb-8 title-wrapper-with-link">
+      <h1 class="title title--primary twcss-m-0 md:twcss-text-[4rem] twcss-text-[3rem]">{{ 'sections.cart.title' | t }}</h1>
+      <a href="{{ routes.all_products_collection_url }}" class="twcss-underline twcss-underline-offset-[0.3rem] 
+      twcss-transition-[text-decoration-thickness] twcss-ease-in twcss-duration-100 twcss-text-[rgba(18,18,18,0.85)] twcss-mt-0 twcss-shrink-0 underlined-link">
+        {{- 'general.continue_shopping' | t -}}
+      </a>
+    </div>
+
+    <div class="cart__warnings lg:twcss-pt-[7rem] lg:twcss-px-0 lg:twcss-pb-[1rem] lg:twcss-pt-[7rem] twcss-hidden twcss-text-center twcss-pt-[3rem] twcss-pb-[1rem] twcss-px-0">
+      <h1 class="cart__empty-text md:twcss-text-[4rem] twcss-text-[3rem] twcss-hidden lg:twcss-mt-0 lg:twcss-mx-0 lg:twcss-mb-[3rem]">{{ 'sections.cart.empty' | t }}</h1>
+      <a href="{{ routes.all_products_collection_url }}" class="twcss-text-[1.5rem] twcss-tracking-[0.1rem] twcss-leading-[1.2] twcss-inline-flex twcss-justify-center twcss-items-center twcss-border-0 twcss-px-[3rem] twcss-py-0 twcss-cursor-pointer twcss-font-inherit twcss-no-underline twcss-text-[rgb(255,255,255)] twcss-transition-[box-shadow] twcss-ease twcss-duration-100 twcss-appearance-none twcss-min-w-[calc(12rem+2px)] twcss-min-h-[calc(4.5rem+2px)] twcss-bg-[rgba(18,18,18,1)] button">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+
+      {%- if shop.customer_accounts_enabled and customer == null -%}
+        <h2 class="cart__login-title twcss-mt-[5.5rem] twcss-mx-0 twcss-mb-[0.5rem] md:twcss-text-[4rem] twcss-text-[3rem]">{{ 'sections.cart.login.title' | t }}</h2>
+        <p class="cart__login-paragraph twcss-mt-[0.8rem]">
+          {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
+      <div class="md:twcss-col-start-1 md:twcss-col-end-3 md:twcss-pb-16 twcss-relative twcss-pb-12 twcss-border-b twcss-border-[rgba(18,18,18,0.08)] twcss-border-b-[0.1rem] cart__items" id="main-cart-items" data-id="{{ section.id }}">
+        <div class="js-contents">
+          {%- if cart != empty -%}
+            <table class="cart-items md:twcss-table md:twcss-w-full md:twcss-border-separate md:twcss-border-spacing-0 md:twcss-shadow-none">
+              <caption class="twcss-sr-only visually-hidden">
+                {{ 'sections.cart.title' | t }}
+              </caption>
+              <thead>
+                <tr>
+                  <th class="twcss-text-base twcss-tracking-[0.13rem] twcss-leading-[1.2] twcss-uppercase twcss-border-none twcss-font-normal twcss-pb-[1.8rem] twcss-text-left md:twcss-border-b md:twcss-border-b-[0.1rem] md:twcss-border-[rgba(18,18,18,0.08)] md:twcss-w-1/2 lg:twcss-w-[60%] twcss-uppercase caption-with-letter-spacing" colspan="2" scope="col">
+                    {{ 'sections.cart.headings.product' | t }}
+                  </th>
+                  <th class="twcss-text-base twcss-tracking-[0.13rem] twcss-leading-[1.2] twcss-uppercase twcss-border-none twcss-font-normal twcss-pb-[1.8rem] twcss-text-right twcss-uppercase lg:twcss-hidden medium-hide large-up-hide right caption-with-letter-spacing" colspan="1" scope="col">
+                    {{ 'sections.cart.headings.total' | t }}
+                  </th>
+                  <th
+                    class="twcss-text-base twcss-tracking-[0.13rem] twcss-leading-[1.2] twcss-uppercase twcss-border-none twcss-font-normal twcss-pb-[1.8rem] twcss-text-left twcss-uppercase cart-items__heading--wide cart-items__heading--quantity small-hide caption-with-letter-spacing"
+                    colspan="1"
+                    scope="col"
+                  >
+                    {{ 'sections.cart.headings.quantity' | t }}
+                  </th>
+                  <th class="twcss-text-base twcss-tracking-[0.13rem] twcss-leading-[1.2] twcss-uppercase md:twcss-pl-16 twcss-text-right md:twcss-border-b md:twcss-border-neutral-900/10 twcss-font-normal twcss-pb-[1.8rem] twcss-text-left twcss-border-none twcss-uppercase small-hide right caption-with-letter-spacing" colspan="1" scope="col">
+                    {{ 'sections.cart.headings.total' | t }}
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {%- for item in cart.items -%}
+                  <tr class="md:twcss-table md:twcss-table-row cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+                    <td class="md:twcss-align-top md:twcss-pt-16 twcss-border-0 twcss-relative md:twcss-w-40 cart-item__media">
+                      {% if item.image %}
+                        {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
+                        <a href="{{ item.url }}" class="twcss-block twcss-absolute twcss-inset-0 twcss-w-full twcss-h-full cart-item__link" aria-hidden="true" tabindex="-1"> </a>
+                        <div class="twcss-inline-flex twcss-items-start twcss-relative twcss-border twcss-border-[rgba(18,18,18,0.05)] twcss-rounded-none twcss-overflow-visible twcss-bg-white cart-item__image-container gradient global-media-settings">
+                          <img
+                            src="{{ item.image | image_url: width: 300 }}"
+                            class="twcss-max-w-[calc(10rem/var(1.0))] twcss-h-auto md:twcss-max-w-full cart-item__image"
+                            alt="{{ item.image.alt | escape }}"
+                            loading="lazy"
+                            width="150"
+                            height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+                          >
+                        </div>
+                      {% endif %}
+                    </td>
+
+                    <td class="md:twcss-align-top md:twcss-pt-16 md:twcss-pl-16 twcss-p-0 twcss-border-none lg:twcss-w-[50rem] md:twcss-w-[35rem] twcss-text-[1.6rem] twcss-leading-[calc(1+0.4/var(1.0))] cart-item__details">
+                      {%- if settings.show_vendor -%}
+                        <p class="caption-with-letter-spacing">{{ item.product.vendor }}</p>
+                      {%- endif -%}
+
+                      <a href="{{ item.url }}" class="twcss-break-words twcss-not-italic 
+                      twcss-text-[calc(var(1.0)*1.5rem)] twcss-no-underline twcss-block twcss-m-0 twcss-max-w-[30rem] cart-item__name h4 break">{{ item.product.title | escape }}</a>
+
+                      {%- if item.original_price != item.final_price -%}
+                        <div class="cart-item__discounted-prices">
+                          <span class="twcss-sr-only visually-hidden">
+                            {{ 'products.product.price.regular_price' | t }}
+                          </span>
+                          <s class="cart-item__old-price product-option">
+                            {{- item.original_price | money -}}
+                          </s>
+                          <span class="twcss-sr-only visually-hidden">
+                            {{ 'products.product.price.sale_price' | t }}
+                          </span>
+                          <strong class="cart-item__final-price product-option">
+                            {{ item.final_price | money }}
+                          </strong>
+                        </div>
+                      {%- else -%}
+                        <div class="product-option twcss-text-[1.4rem] twcss-break-words 
+                        twcss-leading-[calc(1+0.5/var(1.0))] twcss-mt-[0.6rem] twcss-m-0 twcss-max-w-[30rem]">
+                          {{ item.original_price | money }}
+                        </div>
+                      {%- endif -%}
+
+                      {%- if item.product.has_only_default_variant == false
+                        or item.properties.size != 0
+                        or item.selling_plan_allocation != null
+                      -%}
+                        <dl class="twcss-mt-[0.6rem] twcss-mr-0 twcss-mb-0 twcss-ml-0 twcss-max-w-[30rem]">
+                          {%- if item.product.has_only_default_variant == false -%}
+                            {%- for option in item.options_with_values -%}
+                              <div class="twcss-text-[1.4rem] twcss-break-words twcss-leading-[calc(1+0.5/var(1.0))] twcss-mt-[0.6rem] twcss-m-0 twcss-max-w-[30rem]product-option">
+                                <dt>{{ option.name }}:</dt>
+                                <dd class="twcss-m-0">{{ option.value }}</dd>
+                              </div>
+                            {%- endfor -%}
+                          {%- endif -%}
+
+                          {%- for property in item.properties -%}
+                            {%- assign property_first_char = property.first | slice: 0 -%}
+                            {%- if property.last != blank and property_first_char != '_' -%}
+                              <div class="product-option">
+                                <dt>{{ property.first }}:</dt>
+                                <dd>
+                                  {%- if property.last contains '/uploads/' -%}
+                                    <a href="{{ property.last }}" class="link" target="_blank">
+                                      {{ property.last | split: '/' | last }}
+                                    </a>
+                                  {%- else -%}
+                                    {{ property.last }}
+                                  {%- endif -%}
+                                </dd>
+                              </div>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </dl>
+
+                        <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                      {%- endif -%}
+
+                      <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                        {%- for discount in item.line_level_discount_allocations -%}
+                          <li class="discounts__discount">
+                            {{- 'icon-discount.svg' | inline_asset_content -}}
+                            {{ discount.discount_application.title | escape }}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </td>
+
+                    <td class="cart-item__totals twcss-relative twcss-text-right md:twcss-hidden lg:twcss-hidden right medium-hide large-up-hide">
+                      {%- render 'loading-spinner' -%}
+                      <div class="cart-item__price-wrapper">
+                        {%- if item.original_line_price != item.final_line_price -%}
+                          <dl class="cart-item__discounted-prices">
+                            <dt class="twcss-sr-only visually-hidden">
+                              {{ 'products.product.price.regular_price' | t }}
+                            </dt>
+                            <dd>
+                              <s class="cart-item__old-price price price--end">
+                                {{ item.original_line_price | money }}
+                              </s>
+                            </dd>
+                            <dt class="twcss-sr-only visually-hidden">
+                              {{ 'products.product.price.sale_price' | t }}
+                            </dt>
+                            <dd class="price price--end">
+                              {{ item.final_line_price | money }}
+                            </dd>
+                          </dl>
+                        {%- else -%}
+                          <span class="price price--end">
+                            {{ item.original_line_price | money }}
+                          </span>
+                        {%- endif -%}
+
+                        {%- if item.variant.available and item.unit_price_measurement -%}
+                          <div class="unit-price caption">
+                            <span class="twcss-sr-only visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                            {{ item.unit_price | money }}
+                            <span aria-hidden="true">/</span>
+                            <span class="twcss-sr-only visually-hidden"
+                              >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
+                            >
+                            {%- if item.unit_price_measurement.reference_value != 1 -%}
+                              {{- item.unit_price_measurement.reference_value -}}
+                            {%- endif -%}
+                            {{ item.unit_price_measurement.reference_unit }}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </td>
+                    {%- liquid
+                      assign has_qty_rules = false
+                      if item.variant.quantity_rule.increment > 1 or item.variant.quantity_rule.min > 1 or item.variant.quantity_rule.max != null
+                        assign has_qty_rules = true
+                      endif
+
+                      assign has_vol_pricing = false
+                      if item.variant.quantity_price_breaks.size > 0
+                        assign has_vol_pricing = true
+                      endif
+                    -%}
+                    <td class="twcss-relative twcss-block md:twcss-align-top md:twcss-pt-16 md:twcss-pl-20 lg:twcss-pl-24 twcss-p-0 twcss-border-none cart-item__quantity{% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}">
+                      <quantity-popover class="twcss-relative twcss-flex twcss-block">
+                        <div class="twcss-flex cart-item__quantity-wrapper quantity-popover-wrapper">
+                          <label class="twcss-sr-only visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+                            {{ 'products.product.quantity.label' | t }}
+                          </label>
+                          <div class="twcss-flex twcss-items-center lg:twcss-w-auto lg:twcss-max-w-80 twcss-py-2 twcss-pr-2 twcss-pl-0 quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
+                            {%- if has_qty_rules or has_vol_pricing -%}
+                              <button
+                                type="button"
+                                aria-expanded="false"
+                                class="quantity-popover__info-button quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide"
+                              >
+                                {{- 'icon-info.svg' | inline_asset_content -}}
+                              </button>
+                            {%- endif -%}
+                            <quantity-input class="twcss-bg-white twcss-relative twcss-flex twcss-rounded-none twcss-min-h-[74px] twcss-w-[14.125rem] quantity cart-quantity">
+                              <button class="twcss-[4.5rem] twcss-shrink-0 twcss-text-[1.8rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-p-0 quantity__button" name="minus" type="button">
+                                <span class="twcss-sr-only visually-hidden">
+                                  {{- 'products.product.quantity.decrease' | t: product: item.product.title | escape -}}
+                                </span>
+                                <span class="svg-wrapper twcss-w-4 twcss-pointer-events-none">
+                                  {{- 'icon-minus.svg' | inline_asset_content -}}
+                                </span>
+                              </button>
+                              <input
+                                class="twcss-not-italic twcss-font-medium twcss-text-[1.6rem] twcss-opacity-[0.85] twcss-text-center twcss-bg-transparent twcss-border-0 twcss-px-2 twcss-w-full twcss-grow twcss-appearance-none quantity__input"
+                                data-quantity-variant-id="{{ item.variant.id }}"
+                                type="number"
+                                name="updates[]"
+                                value="{{ item.quantity }}"
+                                {% # theme-check-disable %}
+                                data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                                min="0"
+                                data-min="{{ item.variant.quantity_rule.min }}"
+                                {% if item.variant.quantity_rule.max != null %}
+                                  max="{{ item.variant.quantity_rule.max }}"
+                                {% endif %}
+                                step="{{ item.variant.quantity_rule.increment }}"
+                                {% # theme-check-enable %}
+                                aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                                id="Quantity-{{ item.index | plus: 1 }}"
+                                data-index="{{ item.index | plus: 1 }}"
+                              >
+                              <button class="twcss-[4.5rem] twcss-shrink-0 twcss-text-[1.8rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-p-0 quantity__button" name="plus" type="button">
+                                <span class="twcss-sr-only visually-hidden">
+                                  {{- 'products.product.quantity.increase' | t: product: item.product.title | escape -}}
+                                </span>
+                                <span class="twcss-w-4 twcss-pointer-events-none svg-wrapper">
+                                  {{- 'icon-plus.svg' | inline_asset_content -}}
+                                </span>
+                              </button>
+                            </quantity-input>
+                          </div>
+                          <cart-remove-button
+                          class="twcss-flex twcss-ml-4"
+                            id="Remove-{{ item.index | plus: 1 }}"
+                            data-index="{{ item.index | plus: 1 }}"
+                          >
+                            <a
+                              href="{{ item.url_to_remove }}"
+                              class="twcss-flex twcss-items-center twcss-justify-end md:twcss-min-w-[3.5rem] md:twcss-min-h-[3.5rem] twcss-min-w-[4.5rem] twcss-min-h-[4.5rem] twcss-p-0 twcss-m-[0_0.1rem_0.1rem_0] button button--tertiary"
+                              aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
+                            >
+                              <span class="twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-5 twcss-h-5 svg-wrapper">
+                                {{- 'icon-remove.svg' | inline_asset_content -}}
+                              </span>
+                            </a>
+                          </cart-remove-button>
+                        </div>
+                        {%- if has_qty_rules or has_vol_pricing -%}
+                          <button
+                            type="button"
+                            class="quantity-popover__info-button quantity-popover__info-button--icon-with-label button button--tertiary large-up-hide"
+                            aria-expanded="false"
+                          >
+                            {{- 'icon-info.svg' | inline_asset_content -}}
+                            <span>
+                              {%- if has_vol_pricing -%}
+                                {{ 'products.product.volume_pricing.note' | t }}
+                              {%- elsif has_qty_rules -%}
+                                {{ 'products.product.quantity.note' | t }}
+                              {%- endif -%}
+                            </span>
+                          </button>
+                        {%- endif -%}
+                        {%- if has_vol_pricing or has_qty_rules -%}
+                          <div
+                            class="cart-items__info global-settings-popup quantity-popover__info"
+                            tabindex="-1"
+                            hidden
+                          >
+                            {%- if has_qty_rules == false -%}
+                              <span class="volume-pricing-label caption">
+                                {{- 'products.product.volume_pricing.title' | t -}}
+                              </span>
+                            {%- endif -%}
+                            <div class="quantity__rules caption">
+                              {%- if item.variant.quantity_rule.increment > 1 -%}
+                                <span class="divider">
+                                  {{-
+                                    'products.product.quantity.multiples_of'
+                                    | t: quantity: item.variant.quantity_rule.increment
+                                  -}}
+                                </span>
+                              {%- endif -%}
+                              {%- if item.variant.quantity_rule.min > 1 -%}
+                                <span class="divider">
+                                  {{-
+                                    'products.product.quantity.min_of'
+                                    | t: quantity: item.variant.quantity_rule.min
+                                  -}}
+                                </span>
+                              {%- endif -%}
+                              {%- if item.variant.quantity_rule.max != null -%}
+                                <span class="divider">
+                                  {{-
+                                    'products.product.quantity.max_of'
+                                    | t: quantity: item.variant.quantity_rule.max
+                                  -}}
+                                </span>
+                              {%- endif -%}
+                            </div>
+                            <button
+                              class="button-close button button--tertiary large-up-hide"
+                              type="button"
+                              aria-label="{{ 'accessibility.close' | t }}"
+                            >
+                              <span class="svg-wrapper">
+                                {{- 'icon-close.svg' | inline_asset_content -}}
+                              </span>
+                            </button>
+                            {%- if item.variant.quantity_price_breaks.size > 0 -%}
+                              <volume-pricing class="parent-display">
+                                <ul class="list-unstyled">
+                                  <li>
+                                    <span>{{ item.variant.quantity_rule.min }}+</span>
+                                    {%- assign price = item.variant.price | money_with_currency -%}
+                                    <span> {{ 'sections.quick_order_list.each' | t: money: price }}</span>
+                                  </li>
+                                  {%- for price_break in item.variant.quantity_price_breaks -%}
+                                    <li>
+                                      <span>
+                                        {{- price_break.minimum_quantity -}}
+                                        <span aria-hidden="true">+</span></span
+                                      >
+                                      {%- assign price = price_break.price | money_with_currency -%}
+                                      <span> {{ 'sections.quick_order_list.each' | t: money: price }}</span>
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              </volume-pricing>
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                        <div class="md:twcss-ml-[0.3rem] twcss-flex twcss-items-start twcss-mt-[0.2rem] twcss-w-min cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+                          <small class="twcss-text-[1.3rem] twcss-leading-[1.4] twcss-tracking-[0.04rem] twcss-order-1 cart-item__error-text"></small>
+                          <span class="twcss-shrink-0 twcss-w-[1.5rem] twcss-h-[1.5rem] twcss-mr-[0.7rem] twcss-mt-1 svg-wrapper">
+                            {{- 'icon-error.svg' | inline_asset_content -}}
+                          </span>
+                        </div>
+                      </quantity-popover>
+                    </td>
+
+                    <td class="md:twcss-align-top md:twcss-pt-16 twcss-text-right twcss-pl-16 twcss-relative twcss-border-none cart-item__totals right small-hide">
+                      {%- render 'loading-spinner' -%}
+                      <div class="cart-item__price-wrapper">
+                        {%- if item.original_line_price != item.final_line_price -%}
+                          <dl class="cart-item__discounted-prices">
+                            <dt class="twcss-sr-only visually-hidden">
+                              {{ 'products.product.price.regular_price' | t }}
+                            </dt>
+                            <dd>
+                              <s class="cart-item__old-price price price--end">
+                                {{ item.original_line_price | money }}
+                              </s>
+                            </dd>
+                            <dt class="twcss-sr-only visually-hidden">
+                              {{ 'products.product.price.sale_price' | t }}
+                            </dt>
+                            <dd class="md:twcss-mt-12 twcss-block twcss-p-0 price price--end">
+                              {{ item.final_line_price | money }}
+                            </dd>
+                          </dl>
+                        {%- else -%}
+                          <span class="md:twcss-mt-12 twcss-block twcss-p-0 price price--end">
+                            {{ item.original_line_price | money }}
+                          </span>
+                        {%- endif -%}
+
+                        {%- if item.variant.available and item.unit_price_measurement -%}
+                          <div class="unit-price caption">
+                            <span class="twcss-sr-only visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                            {{ item.unit_price | money }}
+                            <span aria-hidden="true">/</span>
+                            <span class="twcss-sr-only visually-hidden"
+                              >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
+                            >
+                            {%- if item.unit_price_measurement.reference_value != 1 -%}
+                              {{- item.unit_price_measurement.reference_value -}}
+                            {%- endif -%}
+                            {{ item.unit_price_measurement.reference_unit }}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <p class="twcss-sr-only visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
+      <p
+        class="twcss-sr-only visually-hidden"
+        id="shopping-cart-line-item-status"
+        aria-live="polite"
+        aria-hidden="true"
+        role="status"
+      >
+        {{ 'accessibility.loading' | t }}
+      </p>
+    </form>
+  </div>
+</cart-items>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart-items.name",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

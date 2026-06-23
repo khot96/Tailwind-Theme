@@ -1,0 +1,222 @@
+<section class="maxsm:twcss-py-[20px] twcss-max-w-[120rem] twcss-mx-auto twcss-px-[5rem] twcss-pt-[0px] twcss-pb-[25px]">
+  <div class="">
+      <div class="maxsm:twcss-justify-start twcss-grid md:twcss-grid-cols-[1fr_300px] twcss-gap-10 maxsm:twcss-mt-5 twcss-mt-10">
+       <div class="twcss-flex twcss-items-center lg:twcss-grid-cols-[1fr_300px] twcss-justify-center md:twcss-justify-start">
+         <h1 class="twcss-font-satoshi maxsm:twcss-text-[20px] twcss-text-[90px] twcss-text-[#121212] twcss-font-bold twcss-leading-tight">
+          {{ section.settings.heading_top }}
+          <span class="twcss-text-grey-300 twcss-font-extrabold">
+            {{ section.settings.heading_light }}
+          </span>
+        </h1>
+      </div>
+      <div class="twcss-flex maxsm:twcss-justify-center twcss-justify-end">
+        <div class="twcss-bg-white twcss-rounded-xl twcss-px-4">
+          <div class="twcss-flex maxsm:twcss-justify-center twcss-justify-end">
+            {% if section.settings.card_image %}
+              <img 
+                src="{{ section.settings.card_image | image_url: width: 600 }}"
+                class="maxsm:twcss-w-[120px] maxsm:twcss-h-full twcss-h-56 twcss-object-cover twcss-rounded-lg twcss-w-[20rem]"
+                alt="image"
+              >
+            {% endif %}
+          </div>
+          <p class="twcss-font-inter maxsm:twcss-text-center maxsm:twcss-w-full twcss-mt-4 twcss-text-lg twcss-text-black twcss-w-[20rem]">
+            {{ section.settings.card_text }}
+          </p>
+          <div class="twcss-flex maxsm:twcss-justify-center">
+            <a href="{{ section.settings.button_link }}"
+               class="twcss-mt-[10px] twcss-inline-flex twcss-items-center twcss-bg-lime-400 twcss-rounded-full twcss-pl-6 twcss-pr-2 twcss-py-2 twcss-gap-6 twcss-font-medium twcss-text-black">
+              <span class="twcss-text-[14px] twcss-leading-none twcss-font-medium twcss-font-inter">
+                {{ section.settings.button_text }}
+              </span>
+              <span class="twcss-w-14 twcss-h-14 twcss-rounded-full twcss-bg-black twcss-text-white twcss-flex twcss-items-center twcss-justify-center twcss-text-3xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="twcss-w-6 twcss-h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7V16" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="twcss-text-color twcss-px-6">
+       <div class="md:twcss-grid-cols-[300px_1fr] twcss-grid twcss-grid-cols-1 md:twcss-grid-cols-2 twcss-gap-10">
+        <div class="twcss-content-center maxsm:twcss-text-center twcss-pt-8">
+          <div class="twcss-font-inter twcss-font-medium twcss-text-[#121212] twcss-text-[4rem] maxsm:twcss-text-[3rem]">
+            {{ section.settings.ratings }}
+            <span class="twcss-text-custom-grey twcss-text-2xl">
+              /5
+            </span>
+          </div>
+          <div class="twcss-text-yellow-400 twcss-text-2xl twcss-my-3">
+            ★★★★★
+          </div>
+          <h4 class="twcss-text-2xl twcss-font-medium twcss-font-inter">
+            {{ section.settings.reviewer_names }}
+          </h4>
+          <p class="twcss-text-custom-grey twcss-text-xl twcss-italic twcss-font-inter">
+            {{ section.settings.reviewer_roles }}
+          </p>
+          <div class="twcss-flex twcss-items-center twcss-gap-3 twcss-mt-6 maxsm:twcss-justify-center">
+            {% if section.settings.avatars %}
+              <img
+                src="{{ section.settings.avatars | image_url: width: 100 }}"
+                alt="avatar"
+                class="twcss-w-14 twcss-h-14 twcss-rounded-full twcss-object-cover"
+              >
+            {% endif %}
+            <div class="twcss-relative twcss-w-fit">
+              {% if section.settings.reviewer_image %}
+                <img
+                  src="{{ section.settings.reviewer_image | image_url }}"
+                  alt="Reviewer"
+                  class="twcss-w-20 twcss-h-20 twcss-rounded-full twcss-object-cover"
+                >
+              {% endif %}
+              <span class="twcss-absolute twcss-bg-black twcss-top-[-20px] twcss-flex twcss-h-14 twcss-items-center twcss-justify-center twcss-left-[-1.2rem] twcss-rounded-full twcss-text-3xl twcss-text-white twcss-w-14">
+                ↗
+              </span>
+            </div>
+          </div>
+      </div>
+      <div class="">
+        <h2 class="twcss-font-satoshi maxsm:twcss-text-center maxsm:twcss-text-[20px] twcss-text-right twcss-text-[90px] twcss-text-[#121212] twcss-font-bold twcss-leading-tight">
+          {{ section.settings.heading_bottoms }}
+          <span class="twcss-text-grey-300">
+            {{ section.settings.heading_light_new }}
+          </span>
+        </h2>
+      </div>
+    </div>
+   </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Style Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_top",
+      "label": "Top Heading",
+      "default": "Step Into"
+    },
+    {
+      "type": "text",
+      "id": "heading_light",
+      "label": "Light Text",
+      "default": "Style –"
+    },
+    {
+      "type": "text",
+      "id": "heading_bottom",
+      "label": "Bottom Heading",
+      "default": "Redefining Your"
+    },
+    {
+      "type": "text",
+      "id": "heading_light_2",
+      "label": "Light Text 2",
+      "default": "Wardrobe"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image",
+      "label": "Card Image"
+    },
+    {
+      "type": "textarea",
+      "id": "card_text",
+      "label": "Card Text",
+      "default": "Discover the perfect blend of comfort, quality, and timeless fashion."
+    },
+    {
+      "type": "image_picker",
+      "id": "reviewer_image",
+      "label": "Reviewer Image"
+    },
+    {
+      "type": "text",
+      "id": "button_texts",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_links",
+      "label": "Button Link"
+    },
+
+     {
+      "type": "text",
+      "id": "heading_tops",
+      "label": "Top Heading",
+      "default": "Step Into"
+    },
+    {
+      "type": "text",
+      "id": "heading_lights",
+      "label": "Light Text",
+      "default": "Style –"
+    },
+    {
+      "type": "text",
+      "id": "heading_bottoms",
+      "label": "Bottom Heading",
+      "default": "Redefining Your"
+    },
+    {
+      "type": "text",
+      "id": "heading_light_new",
+      "label": "Bottom Light Text",
+      "default": "Wardrobe"
+    },
+    {
+      "type": "text",
+      "id": "ratings",
+      "label": "Rating",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "reviewer_names",
+      "label": "Reviewer Name",
+      "default": "Michael Ballack"
+    },
+    {
+      "type": "text",
+      "id": "reviewer_roles",
+      "label": "Reviewer Role",
+      "default": "Chief Executive Officer"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatars",
+      "label": "Reviewer Avatar"
+    },
+    {
+      "type": "textarea",
+      "id": "card_texts",
+      "label": "Card Text",
+      "default": "Discover the perfect blend of comfort, quality, and timeless fashion for every occasion."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Style Section"
+    }
+  ]
+}
+{% endschema %}

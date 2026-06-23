@@ -1,0 +1,59 @@
+{% comment %}
+  Renders cart notification
+
+  Accepts:
+  - color_scheme: {String} sets the color scheme of the notification (optional)
+  - desktop_menu_type: {String} passes the desktop menu type which allows us to use the right css class (optional)
+
+  Usage:
+  {% render 'cart-notification' %}
+{% endcomment %}
+
+<cart-notification>
+  <div class="twcss-relative md:twcss-px-20 twcss-px-6 twcss-mx-auto twcss-max-w-[120rem] cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
+    <div
+      id="cart-notification"
+      class="md:twcss-border lg:twcss-right-[4rem] md:twcss-right-[2.2rem] twcss-right-[0] twcss-bg-white twcss-z-1 md:twcss-max-w-[36.8rem] twcss-block lg:twcss-right-16 twcss-px-[3.5rem] twcss-py-[2.5rem] twcss-absolute twcss-w-full cart-notification focus-inset{% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}"
+      aria-modal="true"
+      aria-label="{{ 'general.cart.item_added' | t }}"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div class="twcss-flex twcss-items-start cart-notification__header">
+        <h2 class="twcss-text-[1.3rem] twcss-leading-[calc(1+0.5/1.0)] twcss-tracking-[0.04rem] twcss-font-normal twcss-flex twcss-items-center twcss-grow twcss-mt-0 twcss-mb-0 cart-notification__heading caption-large text-body">
+          {% comment %}{{- 'icon-checkmark.svg' | inline_asset_content -}}{% endcomment %}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="twcss-mr-4 twcss-w-[1.3rem] twcss-block icon icon-checkmark" viewBox="0 0 12 9"><path fill="currentColor" fill-rule="evenodd" d="M11.35.643a.5.5 0 0 1 .006.707l-6.77 6.886a.5.5 0 0 1-.719-.006L.638 4.845a.5.5 0 1 1 .724-.69l2.872 3.011 6.41-6.517a.5.5 0 0 1 .707-.006z" clip-rule="evenodd"/></svg>
+          {{ 'general.cart.item_added' | t }}
+        </h2>
+        <button
+          type="button"
+          class="cart-notification__close modal__close-button link link--text focus-inset"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+        </button>
+      </div>
+      <div id="cart-notification-product" class="twcss-flex twcss-items-start twcss-pt-8 twcss-pb-12 cart-notification-product"></div>
+      <div class="twcss-text-center cart-notification__links">
+        <a href="{{ routes.cart_url }}"
+          id="cart-notification-button"
+          class="twcss-min-w-[12rem] twcss-min-h-[4.5rem] twcss-flex twcss-items-center twcss-justify-center twcss-border-0 twcss-px-[3rem] twcss-py-0 twcss-cursor-pointer twcss-font-[inherit] twcss-text-[1.5rem] twcss-no-underline twcss-appearance-none twcss-text-2xl twcss-tracking-[0.1rem] twcss-mt-4 twcss-flex twcss-w-full button button--secondary button--full-width">
+          {{- 'general.cart.view_empty_cart' | t -}}
+        </a>
+        <form action="{{ routes.cart_url }}" class="twcss-bg-black twcss-text-white twcss-mt-4" method="post" id="cart-notification-form">
+          <button class="twcss-min-w-[12rem] twcss-min-h-[4.5rem] twcss-flex twcss-w-full twcss-text-[1.5rem] twcss-tracking-[0.1rem] twcss-justify-center twcss-items-center twcss-border-0 twcss-px-[3rem] twcss-py-0 twcss-cursor-pointer twcss-font-[inherit] twcss-no-underline twcss-appearance-none button button--primary button--full-width" name="checkout">
+            {{ 'sections.cart.checkout' | t }}
+          </button>
+        </form>
+        <button type="button" class="twcss-mt-4 link button-label">{{ 'general.continue_shopping' | t }}</button>
+      </div>
+    </div>
+  </div>
+</cart-notification>
+{% style %}
+  .cart-notification {
+    display: none;
+  }
+{% endstyle %}

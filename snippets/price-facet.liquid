@@ -1,0 +1,45 @@
+<span class="twcss-self-center twcss-mr-[0.6rem] field-currency">{{ cart.currency.symbol }}</span>
+
+<div class="twcss-flex twcss-items-center twcss-relative twcss-w-full twcss-transition-[box-shadow] twcss-duration-[100ms] twcss-ease-in-out field">
+  <input
+    class="m-[1px] transition-[box-shadow] duration-[100ms] ease-in-out appearance-none bg-[rgb(255,255,255)] text-[rgb(18,18,18)] not-italic font-normal text-[1.6rem] w-full box-border rounded-none h-[4.5rem] min-h-[calc(var(1px)*2)] min-w-[calc(7rem+var(1px)*2)] relative border-0 tracking-[0.04rem] p-0 field__input"
+    name="{{ filter.min_value.param_name }}"
+    id="{{ id_prefix }}{{ filter.label | escape }}-GTE"
+    {%- if filter.min_value.value -%}
+      value="{{ filter.min_value.value | money_without_currency }}"
+    {%- endif -%}
+    type="text"
+    inputmode="decimal"
+    placeholder="0"
+    data-pattern="\d| |,|\."
+    data-min="0"
+    data-max="{{ filter.range_max | money_without_currency }}"
+  >
+  <label class="twcss-absolute twcss-left-6 twcss-top-[calc(1rem+var(1px))] twcss-mb-0 twcss-pointer-events-none twcss-text-[1.6rem] twcss-text-[rgba(18,18,18,0.75)] twcss-tracking-[0.1rem] twcss-leading-[1.5] twcss-transition-[top,font-size] twcss-duration-[100ms] twcss-ease-in-out field__label" for="{{ id_prefix }}{{ filter.label | escape }}-GTE">
+    {{- 'products.facets.from' | t -}}
+  </label>
+</div>
+
+{%- if filter_type != 'vertical' -%}
+  <span class="twcss-self-center twcss-mr-[0.6rem] field-currency">{{ cart.currency.symbol }}</span>
+{%- endif -%}
+
+<div class="twcss-flex twcss-items-center twcss-relative twcss-w-full twcss-transition-[box-shadow] twcss-duration-[100ms] twcss-ease-in-out field">
+  <input
+    class="m-[1px] transition-[box-shadow] duration-[100ms] ease-in-out appearance-none bg-[rgb(255,255,255)] text-[rgb(18,18,18)] not-italic font-normal text-[1.6rem] w-full box-border rounded-none h-[4.5rem] min-h-[calc(var(1px)*2)] min-w-[calc(7rem+var(1px)*2)] relative border-0 tracking-[0.04rem] p-0 field__input"
+    name="{{ filter.max_value.param_name }}"
+    id="{{ id_prefix }}{{ filter.label | escape }}-LTE"
+    {%- if filter.max_value.value -%}
+      value="{{ filter.max_value.value | money_without_currency }}"
+    {%- endif -%}
+    type="text"
+    inputmode="decimal"
+    placeholder="{{ filter.range_max | money_without_currency }}"
+    data-pattern="\d| |,|\."
+    data-min="0"
+    data-max="{{ filter.range_max | money_without_currency }}"
+  >
+  <label class="twcss-absolute twcss-left-6 twcss-top-[calc(1rem+var(1px))] twcss-mb-0 twcss-pointer-events-none twcss-text-[1.6rem] twcss-text-[rgba(18,18,18,0.75)] twcss-tracking-[0.1rem] twcss-leading-[1.5] twcss-transition-[top,font-size] twcss-duration-[100ms] twcss-ease-in-out field__label" for="{{ id_prefix }}{{ filter.label | escape }}-LTE">
+    {{- 'products.facets.to' | t -}}
+  </label>
+</div>

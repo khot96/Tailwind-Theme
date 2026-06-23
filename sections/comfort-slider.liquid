@@ -1,0 +1,301 @@
+<section
+  id="comfort-slider-{{ section.id }}"
+  class=" twcss-relative twcss-overflow-hidden twcss-bg-[#efefef] twcss-py-[60px] md:twcss-py-[80px]"
+  {% if section.settings.bg_image != blank %}
+    style="background-image:url('{{ section.settings.bg_image | image_url: width: 2000 }}');background-size:cover;background-position:center;"
+  {% endif %}
+>
+  <div class="twcss-relative twcss-max-w-[120rem] twcss-mx-auto twcss-px-[5rem]">
+    {% if section.blocks.size > 0 %}
+      <div class="comfort-slider">
+        {% for block in section.blocks %}
+          <div
+            class="comfort-slide {% if forloop.first %}active{% endif %}"
+            data-slide="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >
+        <div class="twcss-flex twcss-flex-col twcss-gap-[50px]">
+          <div class="twcss-flex maxsm:twcss-flex-col maxsm:twcss-items-center md:twcss-flex-row twcss-justify-between twcss-items-start twcss-mb-[40px] md:twcss-mb-[60px]">
+          <div class="twcss-max-w-[420px]">
+            <h2 class="
+              maxsm:twcss-text-center
+              twcss-uppercase
+              twcss-font-bold
+              twcss-text-[42px]
+              md:twcss-text-[50px]
+              twcss-leading-[0.9]
+              twcss-tracking-[-1px]
+              twcss-text-black
+            ">
+              {{ block.settings.heading }}
+            </h2>
+          </div>
+          <div class="
+            twcss-max-w-[290px]
+            twcss-mt-[20px]
+            lg:twcss-mt-[37px]
+            lg:twcss-text-left
+            twcss-text-center
+            twcss-text-[14px]
+            twcss-leading-[1.7]
+            twcss-text-[#666666]
+          ">
+            {{ block.settings.description }}
+          </div>
+        </div>
+          <div class="twcss-flex twcss-items-center twcss-justify-center">
+            {% if section.blocks.size > 1 %}
+              <button
+                type="button"
+                class="
+                comfort-prev
+                twcss-w-[48px]
+                twcss-h-[48px]
+                twcss-rounded-full
+                twcss-border
+                twcss-border-black
+                twcss-bg-transparent
+                twcss-flex
+                twcss-items-center
+                twcss-justify-center
+                twcss-flex-shrink-0
+                twcss-transition
+                hover:twcss-bg-black
+                hover:twcss-text-white
+              ">
+                ←
+              </button>
+            {% endif %}
+            <div
+              class="
+              twcss-relative
+              twcss-mx-[25px]
+              md:twcss-mx-[60px]
+              lg:twcss-mx-[120px]
+              twcss-flex
+              twcss-flex-col
+              twcss-items-center
+            ">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1200 }}"
+                  alt="{{ block.settings.heading | escape }}"
+                  loading="lazy"
+                  class="
+                  comfort-image
+                  twcss-relative
+                  twcss-z-[2]
+                  twcss-w-[220px]
+                  md:twcss-w-[300px]
+                  lg:twcss-w-[380px]
+                "
+                >
+              {% endif %}
+              <div
+                class="
+                twcss-w-[180px]
+                md:twcss-w-[220px]
+                lg:twcss-w-[260px]
+                twcss-h-[28px]
+                twcss-rounded-full
+                twcss-bg-black/10
+                twcss-blur-[18px]
+                twcss-mt-[-10px]
+              ">
+              </div>
+            </div>
+            {% if section.blocks.size > 1 %}
+              <button
+                type="button"
+                class="
+                comfort-next
+                twcss-w-[48px]
+                twcss-h-[48px]
+                twcss-rounded-full
+                twcss-bg-black
+                twcss-text-white
+                twcss-flex
+                twcss-items-center
+                twcss-justify-center
+                twcss-flex-shrink-0
+                twcss-transition
+                hover:twcss-opacity-80
+              ">
+                →
+              </button>
+            {% endif %}
+          </div>
+           </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  {% schema %}
+{
+  "name": "Comfort Slider",
+  "tag": "section",
+  "class": "comfort-slider-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay Speed (Seconds)",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "COMFORT YOU CAN FEEL"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sapien quis velit gravida posuere.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Shoe Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comfort Slider",
+      "settings": {
+        "enable_autoplay": true,
+        "autoplay_speed": 4
+      },
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "COMFORT YOU CAN FEEL",
+            "description": "<p>Designed to support your feet with lasting comfort and premium cushioning.</p>"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "BUILT FOR EVERY STEP",
+            "description": "<p>Lightweight construction and flexible soles for effortless movement.</p>"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "MOVE WITH CONFIDENCE",
+            "description": "<p>Modern styling meets everyday performance for active lifestyles.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+  <style>
+
+    #comfort-slider-{{ section.id }} .comfort-slide{
+      display:none;
+      animation:comfortFade .6s ease;
+    }
+
+    #comfort-slider-{{ section.id }} .comfort-slide.active{
+      display:block;
+    }
+
+    #comfort-slider-{{ section.id }} .comfort-image{
+      animation:comfortFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes comfortFade{
+      from{
+        opacity:0;
+        transform:translateY(15px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes comfortFloat{
+      0%{
+        transform:translateY(0);
+      }
+
+      50%{
+        transform:translateY(-12px);
+      }
+
+      100%{
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:767px){
+
+      #comfort-slider-{{ section.id }}{
+        padding-top:40px;
+        padding-bottom:40px;
+      }
+
+      #comfort-slider-{{ section.id }} .comfort-image{
+        max-width:260px;
+      }
+
+    }
+
+  </style>
+<script>
+(() => {
+  const section = document.getElementById('comfort-slider-{{ section.id }}');
+  if (!section) return;
+  const slides = section.querySelectorAll('.comfort-slide');
+  const prev = section.querySelector('.comfort-prev');
+  const next = section.querySelector('.comfort-next');
+  let current = 0;
+  const showSlide = (index) => {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+    current = index;
+  };
+  const changeSlide = (step) => {
+    showSlide((current + step + slides.length) % slides.length);
+  };
+  prev?.addEventListener('click', () => changeSlide(-1));
+  next?.addEventListener('click', () => changeSlide(1));
+  {% if section.settings.enable_autoplay and section.blocks.size > 1 %}
+    setInterval(() => {
+      changeSlide(1);
+    }, {{ section.settings.autoplay_speed | times: 1000 }});
+  {% endif %}
+  showSlide(0);
+})();
+</script>
+

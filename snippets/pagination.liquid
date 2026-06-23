@@ -1,0 +1,78 @@
+{% comment %}
+  Renders a set of links for paginated results. Must be used within paginate tags.
+
+  Usage:
+  {% paginate results by 2 %}
+    {% render 'pagination', paginate: paginate, anchor: '#yourID' %}
+  {% endpaginate %}
+
+  Accepts:
+  - paginate: {Object}
+  - anchor: {String} (optional) This can be added so that on page reload it takes you to wherever you've placed your anchor tag.
+{% endcomment %}
+
+{{ 'component-pagination.css' | asset_url | stylesheet_tag }}
+
+{%- if paginate.parts.size > 0 -%}
+  <div class="lg:twcss-mt-20 twcss-mt-16 pagination-wrapper">
+    <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+      <ul class="twcss-flex twcss-flex-wrap twcss-justify-center pagination__list list-unstyled" role="list">
+        {%- if paginate.previous -%}
+          <li class="twcss-mr-4">
+            <a
+              href="{{ paginate.previous.url }}{{ anchor }}"
+              class="twcss-text-[rgb(18,18,18)] twcss-inline-flex twcss-justify-center twcss-items-center twcss-relative twcss-h-[4.4rem] twcss-w-full twcss-p-0 twcss-no-underline pagination__item pagination__item--next pagination__item-arrow link motion-reduce"
+              aria-label="{{ 'general.pagination.previous' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </span>
+            </a>
+          </li>
+        {%- endif -%}
+
+        {%- for part in paginate.parts -%}
+          <li class="twcss-mr-4">
+            {%- if part.is_link -%}
+              <a
+                href="{{ part.url }}{{ anchor }}"
+                class="twcss-text-[rgb(18,18,18)] twcss-inline-flex twcss-justify-center twcss-items-center twcss-relative twcss-h-[4.4rem] twcss-w-full twcss-p-0 twcss-no-underline pagination__item link"
+                aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+              >
+                {{- part.title -}}
+              </a>
+            {%- else -%}
+              {%- if part.title == paginate.current_page -%}
+                <a
+                  role="link"
+                  aria-disabled="true"
+                  class="twcss-text-[rgb(18,18,18)] twcss-inline-flex twcss-justify-center twcss-items-center twcss-relative twcss-h-[4.4rem] twcss-w-full twcss-p-0 twcss-no-underline pagination__item pagination__item--current light"
+                  aria-current="page"
+                  aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+                >
+                  {{- part.title -}}
+                </a>
+              {%- else -%}
+                <span class="twcss-text-[rgb(18,18,18)] twcss-inline-flex twcss-justify-center twcss-items-center twcss-relative twcss-h-[4.4rem] twcss-w-full twcss-p-0 twcss-no-underline pagination__item">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+
+        {%- if paginate.next -%}
+          <li class="twcss-mr-4">
+            <a
+              href="{{ paginate.next.url }}{{ anchor }}"
+              class="twcss-text-[rgb(18,18,18)] twcss-inline-flex twcss-justify-center twcss-items-center twcss-relative twcss-h-[4.4rem] twcss-w-full twcss-p-0 twcss-no-underline pagination__item pagination__item--prev pagination__item-arrow link motion-reduce"
+              aria-label="{{ 'general.pagination.next' | t }}"
+            >
+              <span class="twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-[20px] twcss-h-[20px] svg-wrapper">
+                <svg class="twcss-mr-[-0.2rem] twcss--rotate-90 twcss-h-[0.6rem] twcss-block twcss-align-middle icon icon-caret" viewBox="0 0 10 6"><path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/></svg>
+              </span>
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </nav>
+  </div>
+{%- endif -%}
