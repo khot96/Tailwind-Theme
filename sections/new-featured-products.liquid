@@ -1,0 +1,262 @@
+<section id="featured-products-{{ section.id }}" class="twcss-py-[40px]">
+  <div class="twcss-max-w-[120rem] twcss-mx-auto twcss-px-[5rem]  twcss-mx-auto">
+    {% if section.settings.heading != blank %}
+      <h2 class="twcss-pb-[20px] twcss-font-satoshi twcss-font-medium twcss-text-black maxsm:twcss-text-[20px] twcss-text-[42px] lg:twcss-text-[44px] twcss-leading-[1.05] twcss-px-[20px]">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+    <div class="twcss-grid twcss-grid-cols-1 twcss-grid-cols-4 xl:twcss-grid-cols-4 twcss-gap-8">
+      {% assign collection = section.settings.collection %}
+      {% for product in collection.products %}
+        {% assign first_variant = product.selected_or_first_available_variant %}
+        {% assign color_option = blank %}
+        {% assign size_option = blank %}
+        {% for option in product.options_with_values %}
+          {% assign option_name = option.name | downcase %}
+          {% if option_name == 'color' or option_name == 'colour' %}
+            {% assign color_option = option %}
+          {% endif %}
+          {% if option_name == 'size' %}
+            {% assign size_option = option %}
+          {% endif %}
+        {% endfor %}
+        <div
+          class="product-card twcss-bg-white twcss-rounded-[34px] twcss-overflow-hidden twcss-shadow-[0_10px_30px_rgba(0,0,0,.08)]"
+          data-product-id="{{ product.id }}">
+          <div class="twcss-relative">
+            <a href="{{ product.url }}">{{ first_variant.featured_image | default: product.featured_image | image_url: width: 900 | image_tag: class: 'product-image twcss-w-full twcss-min-h-[380px] twcss-object-cover'}}
+            </a>
+            <div class="twcss-absolute twcss-bottom-5 twcss-left-1/2 twcss--translate-x-1/2 twcss-w-[90%]">
+              <div class="twcss-bg-white twcss-rounded-full twcss-px-5 twcss-py-3 twcss-shadow-xl">
+                <div class="twcss-flex twcss-items-center twcss-justify-between">
+                  <div class="twcss-flex twcss-items-center twcss-gap-2">
+                    {% if color_option %}
+                      {% for value in color_option.values %}
+                        <button
+                          type="button"
+                          class="color-option twcss-w-6 twcss-h-6 twcss-rounded-full twcss-border-2 twcss-border-white twcss-shadow"
+                          data-option-index="{{ color_option.position }}"
+                          data-value="{{ value }}"
+                          title="{{ value }}"
+                          style="background:{{ value | downcase }};">
+                        </button>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <div class="twcss-flex twcss-items-center twcss-gap-2">
+                    {% if size_option %}
+                      {% for value in size_option.values %}
+                        <button
+                          type="button"
+                          class="size-option twcss-w-10 twcss-h-10 twcss-rounded-full twcss-border twcss-border-[#D9D9D9] twcss-text-[14px] twcss-font-medium hover:twcss-bg-black hover:twcss-text-white twcss-transition"
+                          data-option-index="{{ size_option.position }}"
+                          data-value="{{ value }}">
+                          {{ value }}
+                        </button>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="twcss-px-6 twcss-pt-8 twcss-pb-6">
+            <h3 class="twcss-text-[32px] twcss-font-medium twcss-leading-tight">
+              <a href="{{ product.url }}" class="twcss-font-inter twcss-text-[#000] twcss-text-[20px]">
+                {{ product.title }}
+              </a>
+            </h3>
+            <form method="post" action="/cart/add" class="twcss-mt-8">
+              <input class="variant-id" type="hidden"name="id" value="{{ first_variant.id }}">
+              <div class="twcss-bg-[#C9F15A] twcss-rounded-full twcss-px-6 twcss-py-3 twcss-flex twcss-items-center twcss-justify-between">
+                <div class="bottom-price twcss-text-[17px] twcss-text-[#000]">
+                  {{ first_variant.price | money }}
+                </div>
+                <button type="submit"
+                  class="twcss-w-14 twcss-h-14 twcss-rounded-full twcss-bg-black twcss-flex twcss-items-center twcss-justify-center hover:twcss-scale-105 twcss-transition">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"/> <polyline points="8 7 17 7 17 16"/>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+         <script type="application/json" class="variants-json">
+            [
+            {% for variant in product.variants %}
+            {
+              "id": {{ variant.id }},
+              "available": {{ variant.available | json }},
+              "formatted_price": {{ variant.price | money | json }},
+              "options": {{ variant.options | json }},
+              "image": {% if variant.featured_image %}
+                {{ variant.featured_image | image_url: width: 900 | json }}
+              {% else %}
+                {{ product.featured_image | image_url: width: 900 | json }}
+              {% endif %}
+            }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+            ]
+          </script>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".product-card").forEach(function (card) {
+    const variants = JSON.parse(card.querySelector(".variants-json").textContent);
+    const image = card.querySelector(".product-image");
+    const bottomPrice = card.querySelector(".bottom-price");
+    const variantInput = card.querySelector(".variant-id");
+    let selectedOptions = [];
+    let currentVariant = variants.find(v => v.available) || variants[0];
+    if (currentVariant) {
+      selectedOptions = [...currentVariant.options];
+      updateVariant(currentVariant);
+    }
+    card.querySelectorAll(".color-option").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const optionIndex = Number(button.dataset.optionIndex) - 1;
+        selectedOptions[optionIndex] = button.dataset.value;
+        findVariant();
+      });
+    });
+    card.querySelectorAll(".size-option").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const optionIndex = Number(button.dataset.optionIndex) - 1;
+        selectedOptions[optionIndex] = button.dataset.value;
+        findVariant();
+      });
+    });
+    function findVariant() {
+      const variant = variants.find(function (v) {
+        return v.options.every(function (value, index) {
+          return value === selectedOptions[index];
+        });
+      });
+      if (!variant) return;
+      currentVariant = variant;
+      updateVariant(currentVariant);
+    }
+    function updateVariant(variant) {
+      variantInput.value = variant.id;
+      if (bottomPrice && variant.formatted_price) {
+        bottomPrice.innerHTML = variant.formatted_price;
+      }
+      if (image && variant.image) {
+        image.src = variant.image;
+        image.removeAttribute("srcset");
+        image.setAttribute("src", variant.image);
+      }
+      card.querySelectorAll(".color-option").forEach(function (btn) {
+        btn.classList.remove("twcss-ring-2","twcss-ring-black","twcss-scale-110");
+        const optionIndex = Number(btn.dataset.optionIndex) - 1;
+        if (selectedOptions[optionIndex] === btn.dataset.value) {
+          btn.classList.add("twcss-ring-2","twcss-ring-black","twcss-scale-110");
+        }
+      });
+      card.querySelectorAll(".size-option").forEach(function (btn) {
+        btn.classList.remove("twcss-bg-black","twcss-text-white","twcss-border-black");
+        const optionIndex = Number(btn.dataset.optionIndex) - 1;
+        if (selectedOptions[optionIndex] === btn.dataset.value) {
+          btn.classList.add("twcss-bg-black","twcss-text-white","twcss-border-black");
+        }
+      });
+    }
+  });
+});
+</script>
+{% schema %}
+{
+  "name": "Featured Product Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Explore Our Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "price_bg",
+      "label": "Price Bar Background",
+      "default": "#C9F15A"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Arrow Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Arrow Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card Radius",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image Height",
+      "min": 350,
+      "max": 650,
+      "step": 10,
+      "default": 520
+    },
+    {
+      "type": "range",
+      "id": "section_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product Cards"
+    }
+  ]
+}
+{% endschema %}

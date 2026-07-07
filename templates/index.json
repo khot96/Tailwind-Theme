@@ -83,6 +83,41 @@
         "button_link": ""
       }
     },
+    "testimonial_C9D7F8": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonial_yPaKLB": {
+          "type": "testimonial",
+          "settings": {
+            "customer_image": "shopify://shop_images/ChatGPT_Image_May_29_2026_12_12_19_PM.png",
+            "customer_name": "Sophia R.",
+            "customer_role": "Loyal Customer",
+            "main_heading": "Absolutely love the quality and style of the products!",
+            "light_heading": "Every piece feels like it was made just for me.",
+            "button_text": "Join Our Happy Customers",
+            "button_link": ""
+          }
+        },
+        "testimonial_rFmQFd": {
+          "type": "testimonial",
+          "settings": {
+            "customer_image": "shopify://shop_images/ChatGPT_Image_May_29_2026_12_12_19_PM.png",
+            "customer_name": "Sophia R.",
+            "customer_role": "Loyal Customer",
+            "main_heading": "Absolutely love the quality and style of the products!",
+            "light_heading": "Every piece feels like it was made just for me.",
+            "button_text": "Join Our Happy Customers",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_yPaKLB",
+        "testimonial_rFmQFd"
+      ],
+      "name": "Testimonial Slider",
+      "settings": {}
+    },
     "image_banner_Ucfb6w": {
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
@@ -161,62 +196,52 @@
         "girl_image": "shopify://shop_images/ChatGPT_Image_May_9_2026_05_13_08_PM.png"
       }
     },
-    "explore_products_GwnVTW": {
+    "explore_products_dUzwq4": {
       "type": "explore-products",
-      "name": "Explore Products",
-      "settings": {
-        "sub_heading": "Explore Our Products",
-        "title_1": "Men's Collection",
-        "desc_1": "Effortless style for every occasion.",
-        "title_2": "Women's Collection",
-        "desc_2": "Chic, sophisticated, and versatile pieces.",
-        "floating_image": "shopify://shop_images/ChatGPT_Image_May_27_2026_05_30_51_PM.png",
-        "title_3": "Accessories",
-        "desc_3": "The perfect finishing touch for any outfit.",
-        "title_4": "New Arrivals",
-        "desc_4": "Stay ahead with the latest trends and designs.",
-        "back_image": "shopify://shop_images/ChatGPT_Image_May_28_2026_11_36_11_AM_bca21f20-336c-4b67-a525-1f9ddaf53146.png",
-        "side_title": "Find Your Perfect Fit",
-        "side_desc": "Discover a curated selection of timeless designs,bold trends, and everyday essentials crafted to elevate your style.",
-        "button_text": "Shop Now",
-        "button_link": ""
-      }
-    },
-    "testimonial_C9D7F8": {
-      "type": "testimonial",
       "blocks": {
-        "testimonial_yPaKLB": {
-          "type": "testimonial",
+        "collection_aVDz3y": {
+          "type": "collection",
           "settings": {
-            "customer_image": "shopify://shop_images/ChatGPT_Image_May_29_2026_12_12_19_PM.png",
-            "customer_name": "Sophia R.",
-            "customer_role": "Loyal Customer",
-            "main_heading": "Absolutely love the quality and style of the products!",
-            "light_heading": "Every piece feels like it was made just for me.",
-            "button_text": "Join Our Happy Customers",
-            "button_link": ""
+            "collection": "mens-collection",
+            "custom_image": "shopify://shop_images/ChatGPT_Image_Jun_30_2026_11_06_32_AM.png"
           }
         },
-        "testimonial_rFmQFd": {
-          "type": "testimonial",
+        "collection_JCmbhY": {
+          "type": "collection",
           "settings": {
-            "customer_name": "Sophia R.",
-            "customer_role": "Loyal Customer",
-            "main_heading": "Absolutely love the quality and style of the products!",
-            "light_heading": "Every piece feels like it was made just for me.",
-            "button_text": "Join Our Happy Customers",
-            "button_link": ""
+            "collection": "womens-collection",
+            "custom_image": "shopify://shop_images/ChatGPT_Image_May_27_2026_05_30_51_PM.png"
+          }
+        },
+        "collection_CTjjUw": {
+          "type": "collection",
+          "settings": {
+            "collection": "accessories",
+            "custom_image": "shopify://shop_images/ChatGPT_Image_Jun_30_2026_11_10_02_AM.png"
+          }
+        },
+        "collection_AGTVYF": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-arrivals",
+            "custom_image": "shopify://shop_images/ChatGPT_Image_Jun_30_2026_11_36_16_AM.png"
           }
         }
       },
       "block_order": [
-        "testimonial_yPaKLB",
-        "testimonial_rFmQFd"
+        "collection_aVDz3y",
+        "collection_JCmbhY",
+        "collection_CTjjUw",
+        "collection_AGTVYF"
       ],
-      "name": "Testimonial Slider",
+      "name": "Explore Collections",
       "settings": {
-        "small_heading": "Explore Our Products",
-        "small_text": "See why our customers love us and how our products have become a part of their everyday lives."
+        "sub_heading": "Explore Our Products",
+        "back_image": "shopify://shop_images/ChatGPT_Image_May_28_2026_11_36_11_AM_bca21f20-336c-4b67-a525-1f9ddaf53146.png",
+        "side_title": "Find Your Perfect Fit",
+        "side_desc": "Discover a curated selection of timeless designs.",
+        "button_text": "Shop Now",
+        "button_link": ""
       }
     },
     "trend_subscribe_banner_AEjLaN": {
@@ -280,17 +305,35 @@
         "enable_autoplay": true,
         "autoplay_speed": 4
       }
+    },
+    "new_featured_products_FikaMC": {
+      "type": "new-featured-products",
+      "name": "Featured Products Grid",
+      "settings": {
+        "heading": "Explore Our Products",
+        "collection": "mens-collection",
+        "products_to_show": 4,
+        "price_bg": "#c9f15a",
+        "button_bg": "#000000",
+        "button_color": "#ffffff",
+        "card_bg": "#ffffff",
+        "card_radius": 34,
+        "image_height": 520,
+        "section_top": 80,
+        "section_bottom": 80
+      }
     }
   },
   "order": [
     "image_banner",
     "hero_section_XYweAx",
+    "testimonial_C9D7F8",
     "image_banner_Ucfb6w",
     "fashion_hero_pp4kRp",
-    "explore_products_GwnVTW",
-    "testimonial_C9D7F8",
+    "explore_products_dUzwq4",
     "trend_subscribe_banner_AEjLaN",
     "blog_showcase_VHfwcL",
-    "comfort_slider_W6iDFC"
+    "comfort_slider_W6iDFC",
+    "new_featured_products_FikaMC"
   ]
 }

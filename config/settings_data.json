@@ -11,9 +11,9 @@
   "current": {
     "logo": "shopify://shop_images/ChatGPT_Image_Apr_30_2026_05_14_10_PM.png",
     "logo_width": 90,
-    "type_header_font": "azeret_mono_n4",
+    "type_header_font": "sans_serif_n4",
     "heading_scale": 100,
-    "type_body_font": "assistant_n4",
+    "type_body_font": "serif",
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,

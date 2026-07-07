@@ -1,111 +1,147 @@
-<section class="twcss-bg-[#f3f3f3] twcss-rounded-[35px] md:twcss-rounded-[45px]  twcss-py-[40px] maxsm:twcss-py-[20px] md:twcss-py-[40px] overflow-hidden">
-  <div class="twcss-mx-auto">
-    <div class="twcss-max-w-[120rem] twcss-mx-auto twcss-px-[5rem] twcss-px-[20px] md:twcss-px-[40px] lg:twcss-px-[55px] twcss-py-[30px] md:twcss-py-[55px]">
-      <div class="testimonial-slider twcss-relative twcss-overflow-hidden">
-        <div class="testimonial-wrapper twcss-flex twcss-transition-transform twcss-duration-500 twcss-w-full">
+<section
+  id="testimonial-{{ section.id }}"
+  class="twcss-bg-[#f3f3f3] twcss-rounded-[35px] md:twcss-rounded-[45px] twcss-py-[40px] maxsm:twcss-py-[20px] twcss-overflow-hidden"
+>
+  <div class="twcss-max-w-[120rem] twcss-mx-auto twcss-px-[20px] md:twcss-px-[40px] lg:twcss-px-[55px]">
+
+    <div class="testimonial-slider twcss-relative">
+
+      <!-- Fixed Navigation -->
+      <div class="twcss-absolute twcss-top-0 twcss-right-0 twcss-z-20 twcss-flex twcss-gap-3">
+
+        <button
+          type="button"
+          class="testimonial-prev twcss-w-[44px] twcss-h-[44px] maxsm:twcss-w-[34px] maxsm:twcss-h-[34px] twcss-rounded-full twcss-bg-[#d9d9d9] twcss-flex twcss-items-center twcss-justify-center"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 12H8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M13 7L8 12L13 17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="testimonial-next twcss-w-[44px] twcss-h-[44px] maxsm:twcss-w-[34px] maxsm:twcss-h-[34px] twcss-rounded-full twcss-bg-black twcss-flex twcss-items-center twcss-justify-center"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M6 12H16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M11 7L16 12L11 17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Wrapper -->
+      <div class="testimonial-wrapper twcss-overflow-hidden twcss-pt-[70px]">
+
+        <div class="testimonial-track twcss-flex twcss-transition-transform twcss-duration-500 twcss-ease-in-out">
+
           {% for block in section.blocks %}
-           <div class="testimonial-slide twcss-min-w-full twcss-w-full twcss-flex-shrink-0">
-              <div class="twcss-grid lg:twcss-grid-cols-[360px_1fr] twcss-gap-[35px] lg:twcss-gap-[55px] twcss-items-center">
+
+            <div
+              class="testimonial-slide twcss-min-w-full twcss-flex-shrink-0"
+              {{ block.shopify_attributes }}
+            >
+
+              <div class="twcss-grid lg:twcss-grid-cols-[360px_1fr] twcss-gap-[50px] twcss-items-center twcss-min-h-[560px]">
+
+                <!-- LEFT -->
                 <div>
-                  <div class="twcss-relative twcss-rounded-[28px] twcss-overflow-hidden">
+
+                  <div class="twcss-rounded-[32px] twcss-overflow-hidden twcss-relative">
+
                     {% if block.settings.customer_image != blank %}
+
                       <img
-                        src="{{ block.settings.customer_image | image_url: width: 900 }}"
-                        alt=""
-                        class="twcss-w-full maxsm:twcss-h-[300px] twcss-h-[420px] md:twcss-h-[520px] twcss-object-cover"
+                        src="{{ block.settings.customer_image | image_url: width:900 }}"
+                        alt="{{ block.settings.customer_name }}"
+                        class="twcss-w-full twcss-h-[520px] maxsm:twcss-h-[340px] twcss-object-cover"
                       >
+
                     {% else %}
-                      {{ 'image' | placeholder_svg_tag: 'twcss-w-full twcss-h-[420px] md:twcss-h-[520px]' }}
+
+                      {{ 'image' | placeholder_svg_tag: 'twcss-w-full twcss-h-[520px]' }}
+
                     {% endif %}
-                    <div class="twcss-absolute twcss-left-[18px] twcss-right-[18px] twcss-bottom-[18px] twcss-bg-white twcss-rounded-[18px] twcss-px-[16px] twcss-py-[14px]">
-                      <div class="twcss-flex twcss-items-center twcss-gap-[6px]">
-                        <span class="twcss-font-inter twcss-text-[16px] twcss-font-medium twcss-text-black">
+
+                    <div class="twcss-absolute twcss-left-5 twcss-right-5 twcss-bottom-5 twcss-bg-white twcss-rounded-full twcss-px-5 twcss-py-4">
+
+                      <div class="twcss-flex twcss-items-center twcss-gap-2">
+
+                        <span class="twcss-font-medium twcss-text-[18px]">
                           {{ block.settings.customer_name }}
                         </span>
-                        <span class="twcss-font-inter twcss-text-[13px] twcss-italic twcss-text-[#8f8f8f]">
+
+                        <span class="twcss-text-[#999] twcss-italic twcss-text-[14px]">
                           {{ block.settings.customer_role }}
                         </span>
+
                       </div>
+
                     </div>
-                  </div>
-                  <a
-                    href="{{ block.settings.button_link }}"
-                    class="twcss-mt-[18px] twcss-bg-[#b7ef68] twcss-rounded-full twcss-px-[22px] twcss-py-[10px] twcss-flex twcss-items-center twcss-justify-between twcss-gap-[16px] twcss-no-underline hover:twcss-opacity-90 twcss-transition-all"
-                  >
-                    <span class="twcss-font-inter twcss-font-light twcss-text-[16px] twcss-font-medium twcss-text-black">
-                      {{ block.settings.button_text }}
-                    </span>
-                    <span class="twcss-w-[36px] twcss-h-[36px] twcss-rounded-full twcss-bg-black twcss-flex twcss-items-center twcss-justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none">
-                        <path d="M7 17L17 7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M7 7H17V17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                      </svg>
-                    </span>
-                  </a>
-                </div>
-                <div>
-                  <div class="twcss-max-w-[520px]">
-                    <h3 class="twcss-font-inter twcss-font-light maxsm:twcss-text-[20px] twcss-text-[28px] md:twcss-text-[38px] twcss-font-medium twcss-leading-[1.2] twcss-text-black">
-                      {{ section.settings.small_heading }}
-                    </h3>
-                    <p class="twcss-font-inter twcss-text-[15px] md:twcss-text-[17px] twcss-leading-[1.6] twcss-text-[#7a7a7a] twcss-mt-[12px]">
-                      {{ section.settings.small_text }}
-                    </p>
 
                   </div>
-                  <div class="twcss-flex twcss-items-center twcss-gap-[12px] twcss-mt-[35px] md:twcss-mt-[120px]">
-                    <button
-                      class="testimonial-prev maxsm:twcss-w-[30px] maxsm:twcss-h-[30px] twcss-w-[44px] twcss-h-[44px] twcss-rounded-full twcss-bg-[#d8d8d8] twcss-flex twcss-items-center twcss-justify-center"
-                    >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
-                      <path d="M18 12H8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M13 7L8 12L13 17" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    </button>
-                    <button
-                      class="testimonial-next maxsm:twcss-w-[30px] maxsm:twcss-h-[30px] twcss-w-[44px] twcss-h-[44px] twcss-rounded-full twcss-bg-black twcss-flex twcss-items-center twcss-justify-center"
-                    >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 12H16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M11 7L16 12L11 17" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
-                  </div>
-                  <div class="twcss-mt-[20px] md:twcss-mt-[20px]">
-                    <h2 class="twcss-font-satoshi twcss-text-[36px] maxsm:twcss-text-[20px] lg:twcss-text-[56px] twcss-leading-[1.12] twcss-font-medium twcss-text-black">
+
+                  <a
+                    href="{{ block.settings.button_link }}"
+                    class="twcss-mt-5 twcss-bg-[#B8F05E] twcss-rounded-full twcss-px-6 twcss-py-4 twcss-flex twcss-items-center twcss-justify-between twcss-no-underline hover:twcss-opacity-90"
+                  >
+
+                    <span class="twcss-font-medium twcss-text-black">
+                      {{ block.settings.button_text }}
+                    </span>
+
+                    <span class="twcss-w-10 twcss-h-10 twcss-rounded-full twcss-bg-black twcss-flex twcss-items-center twcss-justify-center">
+
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                        <path d="M7 17L17 7" stroke="#fff" stroke-width="2"/>
+                        <path d="M7 7H17V17" stroke="#fff" stroke-width="2"/>
+                      </svg>
+
+                    </span>
+
+                  </a>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="twcss-flex twcss-items-end">
+
+                  <div class="twcss-max-w-[760px]">
+
+                    <h2 class="twcss-font-satoshi twcss-text-[56px] maxsm:twcss-text-[28px] twcss-leading-[1.1] twcss-font-medium twcss-text-black">
                       {{ block.settings.main_heading }}
                     </h2>
-                    <h2 class="twcss-font-satoshi twcss-text-[36px] maxsm:twcss-text-[20px] lg:twcss-text-[56px] twcss-leading-[1.12] twcss-font-medium twcss-text-[#a7a7a7] twcss-mt-[6px]">
+
+                    <h3 class="twcss-font-satoshi twcss-text-[56px] maxsm:twcss-text-[28px] twcss-leading-[1.1] twcss-font-medium twcss-text-[#A7A7A7] twcss-mt-3">
                       {{ block.settings.light_heading }}
-                    </h2>
+                    </h3>
+
                   </div>
+
                 </div>
+
               </div>
+
             </div>
+
           {% endfor %}
+
         </div>
+
       </div>
+
     </div>
+
   </div>
 </section>
 
 {% schema %}
 {
   "name": "Testimonial Slider",
-  "settings": [
-    {
-      "type": "text",
-      "id": "small_heading",
-      "label": "Small Heading",
-      "default": "Explore Our Products"
-    },
-    {
-      "type": "textarea",
-      "id": "small_text",
-      "label": "Description",
-      "default": "See why our customers love us and how our products have become a part of their everyday lives."
-    }
-  ],
+  "tag": "section",
+  "class": "testimonial-section",
+  "settings": [],
   "blocks": [
     {
       "type": "testimonial",
@@ -163,6 +199,9 @@
         },
         {
           "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
         }
       ]
     }
@@ -170,33 +209,113 @@
 }
 {% endschema %}
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const slider = document.querySelector('.testimonial-wrapper');
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const nextBtns = document.querySelectorAll('.testimonial-next');
-    const prevBtns = document.querySelectorAll('.testimonial-prev');
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    function updateSlider() {
-      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.querySelectorAll(".testimonial-slider").forEach((slider) => {
+
+    const track = slider.querySelector(".testimonial-track");
+    const slides = slider.querySelectorAll(".testimonial-slide");
+    const nextBtn = slider.querySelector(".testimonial-next");
+    const prevBtn = slider.querySelector(".testimonial-prev");
+
+    if (!track || slides.length <= 1) return;
+
+    let current = 0;
+    let autoPlay;
+
+    function updateSlider(animated = true) {
+      track.style.transition = animated
+        ? "transform .6s ease"
+        : "none";
+
+      track.style.transform = `translateX(-${current * 100}%)`;
     }
-    nextBtns.forEach(btn => {
-      btn.addEventListener('click', function () {
-        currentIndex++;
-        if (currentIndex >= totalSlides) {
-          currentIndex = 0;
-        }
-        updateSlider();
-      });
+
+    function nextSlide() {
+      current++;
+
+      if (current >= slides.length) {
+        current = 0;
+      }
+
+      updateSlider();
+    }
+
+    function prevSlide() {
+      current--;
+
+      if (current < 0) {
+        current = slides.length - 1;
+      }
+
+      updateSlider();
+    }
+
+    nextBtn?.addEventListener("click", () => {
+      nextSlide();
+      restartAutoPlay();
     });
-    prevBtns.forEach(btn => {
-      btn.addEventListener('click', function () {
-        currentIndex--;
-        if (currentIndex < 0) {
-          currentIndex = totalSlides - 1;
-        }
-        updateSlider();
-      });
+
+    prevBtn?.addEventListener("click", () => {
+      prevSlide();
+      restartAutoPlay();
     });
+
+    function startAutoPlay() {
+      autoPlay = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlay);
+    }
+
+    function restartAutoPlay() {
+      stopAutoPlay();
+      startAutoPlay();
+    }
+
+    slider.addEventListener("mouseenter", stopAutoPlay);
+    slider.addEventListener("mouseleave", startAutoPlay);
+
+    // Touch Swipe
+    let startX = 0;
+    let endX = 0;
+
+    slider.addEventListener(
+      "touchstart",
+      (e) => {
+        startX = e.touches[0].clientX;
+      },
+      { passive: true }
+    );
+
+    slider.addEventListener(
+      "touchmove",
+      (e) => {
+        endX = e.touches[0].clientX;
+      },
+      { passive: true }
+    );
+
+    slider.addEventListener("touchend", () => {
+
+      const distance = startX - endX;
+
+      if (Math.abs(distance) > 60) {
+        if (distance > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+
+      restartAutoPlay();
+    });
+
+    updateSlider(false);
+    startAutoPlay();
+
   });
-</script> 
+
+});
+</script>
