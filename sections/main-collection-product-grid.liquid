@@ -35,7 +35,29 @@
     }
   }
 {%- endstyle -%}
+{% liquid
+  case section.settings.columns_desktop
+    when 1
+      assign desktop_grid = 'lg:twcss-grid-cols-1'
+    when 2
+      assign desktop_grid = 'lg:twcss-grid-cols-2'
+    when 3
+      assign desktop_grid = 'lg:twcss-grid-cols-3'
+    when 4
+      assign desktop_grid = 'lg:twcss-grid-cols-4'
+    when 5
+      assign desktop_grid = 'lg:twcss-grid-cols-5'
+    when 6
+      assign desktop_grid = 'lg:twcss-grid-cols-6'
+  endcase
 
+  case section.settings.columns_mobile
+    when '1'
+      assign mobile_grid = 'twcss-grid-cols-1'
+    when '2'
+      assign mobile_grid = 'twcss-grid-cols-2'
+  endcase
+%}
 <div class="md:twcss-py-9 pt-[27px] pb-[27px] section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
@@ -143,28 +165,47 @@
             class="twcss-max-w-[120rem] twcss-mx-auto twcss-px-[1.5rem] twcss-py-0 collection {% if section.settings.filter_type != 'vertical' %} md:twcss-px-[5rem] md:twcss-py-0 page-width{% endif %}"
           >
             <div class="loading-overlay gradient"></div>
-            <ul
-              id="product-grid"
-              data-id="{{ section.id }}"
-              class="twcss-flex twcss-flex-wrap twcss-mb-8 twcss-p-0 twcss-list-none twcss-gap-x-1 twcss-gap-y-1 md:twcss-gap-x-2 md:twcss-gap-y-2
-                grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
-                grid--{{ section.settings.columns_desktop }}-col-desktop
-                {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
-              "
-            >
+           <ul
+          id="product-grid"
+          data-id="{{ section.id }}"
+          class="
+            twcss-grid
+            {{ mobile_grid }}
+            md:twcss-grid-cols-2
+            {{ desktop_grid }}
+            twcss-gap-2
+            twcss-mb-8
+            twcss-p-0
+            twcss-list-none
+            {% if section.settings.quick_add == 'bulk' %}collection-quick-add-bulk{% endif %}">
+
               {% assign skip_card_product_styles = false %}
               {%- for product in collection.products -%}
+                  {% assign first_variant = product.selected_or_first_available_variant %}
+                    {% assign color_option = blank %}
+                    {% assign size_option = blank %}
+                    {% for option in product.options_with_values %}
+                      {% assign option_name = option.name | downcase %}
+                      {% if option_name == 'color' or option_name == 'colour' %}
+                        {% assign color_option = option %}
+                      {% endif %}
+                      {% if option_name == 'size' %}
+                        {% assign size_option = option %}
+                      {% endif %}
+                    {% endfor %}
+
                 {% assign lazy_load = false %}
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
-                <li
-                  class="lg:twcss-w-[calc(25%-6px)] lg:twcss-max-w-[calc(25%-6px)] md:twcss-w-[calc(25%-6px)] md:twcss-max-w-[calc(50%-4px)] grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                  {% if settings.animations_reveal_on_scroll %}
-                    data-cascade
-                    style="--animation-order: {{ forloop.index }};"
-                  {% endif %}
-                >
+              <li
+  class="product-card twcss-bg-white twcss-rounded-[34px] twcss-overflow-hidden twcss-shadow-[0_10px_30px_rgba(0,0,0,.08)]
+  {% if settings.animations_reveal_on_scroll %}scroll-trigger animate--slide-in{% endif %}"
+  {% if settings.animations_reveal_on_scroll %}
+    data-cascade
+    style="--animation-order: {{ forloop.index }};"
+  {% endif %}
+>
                   {% render 'card-product',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,
@@ -175,10 +216,29 @@
                     lazy_load: lazy_load,
                     skip_styles: skip_card_product_styles,
                     quick_add: section.settings.quick_add,
-                    section_id: section.id
+                    section_id: section.id,
+                    color_option: color_option,
+                    size_option: size_option
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
+              <script type="application/json" class="variants-json">
+                    [
+                    {% for variant in product.variants %}
+                    {
+                      "id": {{ variant.id }},
+                      "available": {{ variant.available | json }},
+                      "formatted_price": {{ variant.price | money | json }},
+                      "options": {{ variant.options | json }},
+                      "image": {% if variant.featured_image %}
+                        {{ variant.featured_image | image_url: width: 900 | json }}
+                      {% else %}
+                        {{ product.featured_image | image_url: width: 900 | json }}
+                      {% endif %}
+                    }{% unless forloop.last %},{% endunless %}
+                    {% endfor %}
+                    ]
+                </script>
               {%- endfor -%}
             </ul>
 
@@ -217,6 +277,12 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_variant_selector_mobile",
+      "label": "Show Color & Size Selector on Mobile",
+      "default": true
     },
     {
       "type": "color_scheme",

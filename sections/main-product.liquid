@@ -98,13 +98,27 @@
                 </p>
               {%- when 'title' -%}
                 <div class="twcss-break-words twcss-mb-6 twcss-mt-0 product__title" {{ block.shopify_attributes }}>
-                  <h1 class="md:twcss-text-[4rem] twcss-text-[3rem]">{{ product.title | escape }}</h1>
+                  {% assign words = product.title | split: ' ' %}
+                  {% assign last_word = words | last %}
+                  <h1 class="twcss-font-black twcss-uppercase twcss-leading-[1.1] twcss-tracking-[-0.06em] twcss-text-[3.5rem] md:twcss-text-[5.5rem] lg:twcss-text-[6.5rem] twcss-text-[#111]">
+                    <span class="twcss-block">
+                      {% for word in words %}
+                        {% unless forloop.last %}
+                          {{ word }}
+                        {% endunless %}
+                      {% endfor %}
+                    </span>
+                    <span class="twcss-block twcss-max-w twcss-text-center">
+                      {{ last_word }}
+                    </span>
+                  </h1>
                   <a href="{{ product.url }}" class="twcss-hidden twcss-break-words twcss-mb-6 twcss-mt-0 product__title">
                     <h2 class="h1 md:twcss-text-[4rem] twcss-text-[3rem]">
                       {{ product.title | escape }}
                     </h2>
                   </a>
                 </div>
+              <div class="twcss-pl-[8rem] twcss-mt-12">
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" class="twcss-my-6 twcss-mx-0" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
@@ -661,6 +675,7 @@
                 {% render 'icon-with-text', block: block %}
             {%- endcase -%}
           {%- endfor -%}
+          </div>
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
             {{ 'products.product.view_full_details' | t }}
             {{- 'icon-arrow.svg' | inline_asset_content -}}

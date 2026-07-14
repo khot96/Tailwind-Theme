@@ -439,7 +439,7 @@
   {%- endif -%}
   {% comment %}  Drawer and mobile filter {% endcomment %}
   <menu-drawer
-    class="twcss-flex twcss-ml-0 mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide large-up-hide md:twcss-hidden{% endif %}"
+    class="twcss-flex twcss-ml-0 {% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide lg:twcss-hidden md:twcss-hidden{% endif %}"
     data-breakpoint="mobile"
   >
     <details class="mobile-facets__disclosure disclosure-has-popup twcss-flex twcss-relative">

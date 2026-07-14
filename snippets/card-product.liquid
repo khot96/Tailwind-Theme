@@ -40,7 +40,7 @@
       assign ratio = 1
     endif
   -%}
-  <div class="twcss-text-inherit twcss-h-full twcss-relative twcss-no-underline card-wrapper product-card-wrapper underline-links-hover">
+  <div class=" twcss-relative twcss-text-inherit twcss-h-full twcss-relative twcss-no-underline card-wrapper product-card-wrapper underline-links-hover">
     <div
       class="twcss-flex twcss-flex-col twcss-h-full twcss-no-underline twcss-text-left
         card card--{{ settings.card_style }}
@@ -54,7 +54,7 @@
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
       <div
-        class="twcss-pb-[100%] twcss-relative twcss-box-border twcss-w-full card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} twcss-flex twcss-items-stretch ratio{% endif %}"
+        class="twcss-w-full md:twcss-min-h-[325px] twcss-pb-[100%] twcss-relative twcss-box-border twcss-w-full card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} twcss-flex twcss-items-stretch ratio{% endif %}"
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if card_product.featured_media -%}
@@ -105,8 +105,44 @@
                 >
               {%- endif -%}
             </div>
+
           </div>
         {%- endif -%}
+         <div class="twcss-z-[99] twcss-absolute twcss-bottom-5 twcss-left-1/2 twcss--translate-x-1/2 twcss-w-[90%] {% unless section.settings.show_variant_selector_mobile %}maxsm:twcss-hidden
+         {% endunless %}">
+          <div class="twcss-bg-white twcss-rounded-full twcss-px-5 twcss-py-3 twcss-shadow-xl">
+            <div class="twcss-flex twcss-items-center twcss-justify-between">
+              <div class="twcss-flex twcss-items-center twcss-gap-2">
+                {% if color_option %}
+                  {% for value in color_option.values %}
+                    <button
+                      type="button"
+                      class="color-option twcss-w-6 twcss-h-6 twcss-rounded-full twcss-border-2 twcss-border-white twcss-shadow"
+                      data-option-index="{{ color_option.position }}"
+                      data-value="{{ value }}"
+                      title="{{ value }}"
+                      style="background:{{ value | downcase }};">
+                    </button>
+                  {% endfor %}
+                {% endif %}
+              </div>
+
+              <div class="twcss-flex twcss-items-center twcss-gap-2">
+                {% if size_option %}
+                  {% for value in size_option.values %}
+                    <button
+                      type="button"
+                      class="size-option twcss-w-10 twcss-h-10 twcss-rounded-full twcss-border twcss-border-[#D9D9D9] twcss-text-[14px] twcss-font-medium hover:twcss-bg-black hover:twcss-text-white twcss-transition"
+                      data-option-index="{{ size_option.position }}"
+                      data-value="{{ value }}">
+                      {{ value }}
+                    </button>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="card__content twcss-grid twcss-p-0 twcss-w-full twcss-flex-grow twcss-grid-rows-[minmax(0,1fr)_max-content_minmax(0,1fr)]">
           <div class="card__information twcss-px-0 md:twcss-py-[1.7rem]">
             <h3
@@ -125,6 +161,7 @@
               </a>
             </h3>
           </div>
+
           <div class="twcss-z-[1] twcss-self-end twcss-row-start-3 twcss-justify-self-start card__badge {{ settings.badge_position }}">
             {%- if card_product.available == false -%}
               <span
@@ -155,13 +192,14 @@
             <a
               href="{{ card_product.url }}"
               id="CardLink-{{ section_id }}-{{ card_product.id }}"
-              class="twcss-no-underline twcss-text-current twcss-block full-unstyled-link"
+              class="twcss-text-black twcss-font-inter twcss-text-[#000] sm:twcss-text-[15px] twcss-text-[20px] twcss-no-underline twcss-block full-unstyled-link"
               aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}"
             >
               {{ card_product.title | escape }}
             </a>
           </h3>
-          <div class="card-information twcss-w-full twcss-text-left">
+
+          <div class="abc card-information twcss-w-full twcss-text-left">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
@@ -568,6 +606,7 @@
         </div>
       </div>
     </div>
+
   </div>
 {%- else -%}
   {%- liquid
