@@ -28,7 +28,7 @@
   endif
 -%}
 
-<div class="twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<div class="abc twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
     <facet-filters-form class="twcss-block twcss-col-span-2 facets small-hide">
       <form
@@ -76,12 +76,12 @@
                   {%- for value in filter.active_values -%}
                     <facet-remove>
                       <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
-                        <span class="active-facets__button-inner button button--tertiary">
+                        <span class="twcss-shadow-2xs active-facets__button-inner button button--tertiary">
                           {{ filter.label | escape }}: {{ value.label | escape }}
                           <span class="svg-wrapper">
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
                           </span>
-                          <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                          <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                         </span>
                       </a>
                     </facet-remove>
