@@ -58,12 +58,12 @@
       assign mobile_grid = 'twcss-grid-cols-2'
   endcase
 %}
-<div class="md:twcss-py-9 pt-[27px] pb-[27px] section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+<div class="md:twcss-px-[5rem] twcss-max-w-[120rem] twcss-mx-auto twcss-px-[1.5rem] md:twcss-py-9 pt-[27px] pb-[27px] section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
       <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
-        <form class="facets-vertical-form" id="FacetSortForm">
+        <form class="twcss-flex twcss-justify-end twcss-pb-[20px]" id="FacetSortForm">
           <div class="facet-filters sorting caption">
             <div class="facet-filters__field">
               <h2 class="facet-filters__label caption-large text-body">
@@ -73,7 +73,7 @@
                 {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
                 <select
                   name="sort_by"
-                  class="facet-filters__sort select__select caption-large"
+                  class="focus-visible:twcss-outline focus-visible:twcss-outline-2 focus-visible:twcss-outline-[rgba(var(--color-foreground),0.5)] focus-visible:twcss-outline-offset-4 twcss-bg-transparent"
                   id="SortBy"
                   aria-describedby="a11y-refresh-page-message"
                 >
@@ -88,7 +88,7 @@
                     </option>
                   {%- endfor -%}
                 </select>
-                <span class="svg-wrapper">
+                <span class="svg-wrapper twcss-hidden">
                   {{- 'icon-caret.svg' | inline_asset_content -}}
                 </span>
               </div>
@@ -125,7 +125,7 @@
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby="verticalTitle"
-          class="md:twcss-py-0 md:twcss-px-20 facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} twcss-max-w-[120rem] twcss-mx-auto twcss-px-6 page-width{% endif %}"
+          class="md:twcss-py-0 {% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} twcss-max-w-[120rem] twcss-mx-auto twcss-px-6 page-width{% endif %}"
           id="main-collection-filters"
           data-id="{{ section.id }}"
         >
@@ -162,23 +162,14 @@
           </div>
         {%- else -%}
           <div
-            class="twcss-max-w-[120rem] twcss-mx-auto twcss-px-[1.5rem] twcss-py-0 collection {% if section.settings.filter_type != 'vertical' %} md:twcss-px-[5rem] md:twcss-py-0 page-width{% endif %}"
+            class="twcss-max-w-[120rem] twcss-mx-auto twcss-pl-px-[1.5rem] twcss-py-0 collection {% if section.settings.filter_type != 'vertical' %} md:twcss-px-[5rem] md:twcss-py-0 page-width{% endif %}"
           >
             <div class="loading-overlay gradient"></div>
            <ul
           id="product-grid"
           data-id="{{ section.id }}"
-          class="
-            twcss-grid
-            {{ mobile_grid }}
-            md:twcss-grid-cols-2
-            {{ desktop_grid }}
-            twcss-gap-2
-            twcss-mb-8
-            twcss-p-0
-            twcss-list-none
+          class="twcss-grid {{ mobile_grid }} md:twcss-grid-cols-2 {{ desktop_grid }} twcss-gap-2 twcss-mb-8 twcss-pl-[20px] twcss-list-none
             {% if section.settings.quick_add == 'bulk' %}collection-quick-add-bulk{% endif %}">
-
               {% assign skip_card_product_styles = false %}
               {%- for product in collection.products -%}
                   {% assign first_variant = product.selected_or_first_available_variant %}
@@ -199,13 +190,13 @@
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
               <li
-  class="product-card twcss-bg-white twcss-rounded-[34px] twcss-overflow-hidden twcss-shadow-[0_10px_30px_rgba(0,0,0,.08)]
-  {% if settings.animations_reveal_on_scroll %}scroll-trigger animate--slide-in{% endif %}"
-  {% if settings.animations_reveal_on_scroll %}
-    data-cascade
-    style="--animation-order: {{ forloop.index }};"
-  {% endif %}
->
+                  class="product-card twcss-bg-white twcss-rounded-[34px] twcss-overflow-hidden twcss-shadow-[0_10px_30px_rgba(0,0,0,.08)]
+                  {% if settings.animations_reveal_on_scroll %}scroll-trigger animate--slide-in{% endif %}"
+                  {% if settings.animations_reveal_on_scroll %}
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};"
+                  {% endif %}
+                >
                   {% render 'card-product',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,
@@ -220,9 +211,7 @@
                     color_option: color_option,
                     size_option: size_option
                   %}
-                </li>
-                {%- assign skip_card_product_styles = true -%}
-              <script type="application/json" class="variants-json">
+                <script type="application/json" class="variants-json">
                     [
                     {% for variant in product.variants %}
                     {
@@ -239,6 +228,10 @@
                     {% endfor %}
                     ]
                 </script>
+                </li>
+                {%- assign skip_card_product_styles = true -%}
+
+
               {%- endfor -%}
             </ul>
 

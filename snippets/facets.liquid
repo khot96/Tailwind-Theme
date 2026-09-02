@@ -76,12 +76,12 @@
                   {%- for value in filter.active_values -%}
                     <facet-remove>
                       <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
-                        <span class="active-facets__button-inner button button--tertiary">
+                        <span class="twcss-hidden active-facets__button-inner button button--tertiary">
                           {{ filter.label | escape }}: {{ value.label | escape }}
                           <span class="svg-wrapper">
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
                           </span>
-                          <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                          <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                         </span>
                       </a>
                     </facet-remove>
@@ -92,12 +92,12 @@
                     {%- if min != null or max != null -%}
                       <facet-remove>
                         <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
-                          <span class="active-facets__button-inner button button--tertiary">
+                          <span class="twcss-py-1 twcss-px-5 twcss-shadow-[0_0_0_0.1rem_rgba(var(--color-foreground),0.2)] twcss-flex twcss-items-center twcss-min-h-0 twcss-min-w-0  twcss-rounded-[2.6rem] twcss-px-5 twcss-py-1 twcss-text-[1.3rem] twcss-text-[rgb(var(--color-foreground))] twcss-shadow-[0_0_0_0.1rem_rgb var(--color-foreground))]">
                             {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                             <span class="svg-wrapper">
                               {{- 'icon-close-small.svg' | inline_asset_content -}}
                             </span>
-                            <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                            <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                           </span>
                         </a>
                       </facet-remove>
@@ -138,7 +138,7 @@
                       aria-label="{{ filter.label | escape }} ({{ 'products.facets.filters_selected.one' | t: count: filter.active_values.size }})"
                     >
                       <div>
-                        <span class="facets__summary-label">
+                        <span class="">
                           {{- filter.label | escape }}
                           {%- if filter_type == 'vertical' -%}
                             <span class="facets__selected{% if filter.active_values.size == 0 %} hidden{% endif %}">
@@ -177,7 +177,7 @@
                         </div>
                       {%- endif -%}
                       <fieldset class="facets-wrap parent-wrap {% if filter_type == 'vertical' %} facets-wrap-vertical{% endif %}">
-                        <legend class="visually-hidden">{{ filter.label | escape }}</legend>
+                        <legend class="twcss-hidden">{{ filter.label | escape }}</legend>
                         {%- liquid
                           assign sorted_values = filter.values
                           # Keep the selected values grouped together when operator is AND
@@ -340,7 +340,7 @@
                 {%- for value in filter.active_values -%}
                   <facet-remove>
                     <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
-                      <span class="active-facets__button-inner button button--tertiary">
+                      <span class="hgd active-facets__button-inner button button--tertiary">
                         {{ filter.label | escape }}: {{ value.label | escape }}
                         <span class="svg-wrapper">
                           {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -356,7 +356,7 @@
                   {%- if min != null or max != null -%}
                     <facet-remove>
                       <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
-                        <span class="active-facets__button-inner button button--tertiary">
+                        <span class="bcv active-facets__button-inner button button--tertiary">
                           {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                           <span class="svg-wrapper">
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -781,12 +781,12 @@
     </details>
   </menu-drawer>
 
-  <div class="active-facets active-facets-mobile medium-hide large-up-hide">
+  <div class="twcss-hidden">
     {%- for filter in results.filters -%}
       {%- for value in filter.active_values -%}
-        <facet-remove>
+        <facet-remove class="twcss-hidden">
           <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
-            <span class="active-facets__button-inner button button--tertiary">
+            <span class="abc active-facets__button-inner button button--tertiary">
               {{ filter.label | escape }}: {{ value.label | escape }}
               <span class="svg-wrapper">
                 {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -803,7 +803,7 @@
         {%- if min != null or max != null -%}
           <facet-remove>
             <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
-              <span class="active-facets__button-inner button button--tertiary">
+              <span class="twcss-hidden">
                 {{ min | default: 0 | money }} - {{ max | default: filter.range_max | money }}
                 <span class="svg-wrapper">
                   {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -834,7 +834,7 @@
               {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
               <select
                 name="sort_by"
-                class="facet-filters__sort select__select caption-large"
+                class="twcss-background-none facet-filters__sort select__select caption-large"
                 id="SortBy"
                 aria-describedby="a11y-refresh-page-message"
               >
