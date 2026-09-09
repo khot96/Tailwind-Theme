@@ -28,7 +28,11 @@
   endif
 -%}
 
+<<<<<<< HEAD
 <div class="twcss-py-[20px] twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %}   md:twcss-flex md:twcss-flex-row md:twcss-flex-wrap md:twcss-items-center md:twcss-gap-x-0 facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+=======
+<div class="abc twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+>>>>>>> d45f4e7e2a37d4d162c4c23b6dc3ab8521a3ae10
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
     <facet-filters-form class="twcss-block twcss-col-span-2 facets maxsm:twcss-hidden">
       <form
@@ -76,7 +80,11 @@
                   {%- for value in filter.active_values -%}
                     <facet-remove>
                       <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
+<<<<<<< HEAD
                         <span class="twcss-hidden active-facets__button-inner button button--tertiary">
+=======
+                        <span class="twcss-shadow-2xs active-facets__button-inner button button--tertiary">
+>>>>>>> d45f4e7e2a37d4d162c4c23b6dc3ab8521a3ae10
                           {{ filter.label | escape }}: {{ value.label | escape }}
                           <span class="svg-wrapper">
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
@@ -141,7 +149,7 @@
                         <span class="">
                           {{- filter.label | escape }}
                           {%- if filter_type == 'vertical' -%}
-                            <span class="facets__selected{% if filter.active_values.size == 0 %} hidden{% endif %}">
+                            <span class="twcss-hidden facets__selected{% if filter.active_values.size == 0 %} hidden{% endif %}">
                               ({{ filter.active_values.size }})</span>
                           {%- endif -%}
                         </span>
@@ -877,7 +885,11 @@
     </facet-filters-form>
   {%- endif -%}
   <div
+<<<<<<< HEAD
     class="twcss-self-center twcss-relative twcss-text-right product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide lg:twcss-hidden{% endif %}"
+=======
+    class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} twcss-hidden twcss-add {% endif %}"
+>>>>>>> d45f4e7e2a37d4d162c4c23b6dc3ab8521a3ae10
     role="status"
   >
     <h2 class="product-count__text text-body twcss-text-[1.4rem]
