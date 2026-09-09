@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const variants = JSON.parse(card.querySelector(".variants-json").textContent);
     console.log('variants', variants);
     const image = card.querySelector(".product-image");
+    console.log('image', image)
     const bottomPrice = card.querySelector(".bottom-price");
     const variantInput = card.querySelector(".variant-id");
     let selectedOptions = [];
@@ -34,10 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       if (!variant) return;
       currentVariant = variant;
-      updateVariant(currentVariant);
-    }
-    function updateVariant(variant) {
-      variantInput.value = variant.id;
+          updateVariant(currentVariant);
+        }
+        function updateVariant(variant) {
+         if (!variant) return;
+      if (variantInput) {
+        variantInput.value = variant.id;
+      }
       if (bottomPrice && variant.formatted_price) {
         bottomPrice.innerHTML = variant.formatted_price;
       }
@@ -47,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         image.setAttribute("src", variant.image);
       }
       card.querySelectorAll(".color-option").forEach(function (btn) {
+        console.log('btn', btn)
         btn.classList.remove("twcss-ring-2","twcss-ring-black","twcss-scale-110");
         const optionIndex = Number(btn.dataset.optionIndex) - 1;
         if (selectedOptions[optionIndex] === btn.dataset.value) {

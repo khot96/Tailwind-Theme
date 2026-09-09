@@ -51,9 +51,9 @@
   aria-label="{{ 'products.product.media.gallery_viewer' | t }}"
   data-desktop-layout="{{ section.settings.gallery_layout }}"
 >
-  <div id="GalleryStatus-{{ section.id }}" class="twcss-sr-only visually-hidden" role="status"></div>
+  <div id="GalleryStatus-{{ section.id }}" class="twcss-sr-only twcss-hidden" role="status"></div>
   <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
-    <a class="twcss-sr-only skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-{{ section.id }}">
+    <a class="twcss-sr-only skip-to-content-link button twcss-hidden quick-add-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
     </a>
     <ul
@@ -139,7 +139,7 @@
       <div class="slider-counter caption">
         <span class="slider-counter--current">1</span>
         <span aria-hidden="true"> / </span>
-        <span class="twcss-sr-only visually-hidden">{{ 'general.slider.of' | t }}</span>
+        <span class="twcss-sr-only twcss-hidden">{{ 'general.slider.of' | t }}</span>
         <span class="slider-counter--total">{{ media_count }}</span>
       </div>
       <button

@@ -54,7 +54,7 @@
         <div class="js-contents">
           {%- if cart != empty -%}
             <table class="cart-items md:twcss-table md:twcss-w-full md:twcss-border-separate md:twcss-border-spacing-0 md:twcss-shadow-none">
-              <caption class="twcss-sr-only visually-hidden">
+              <caption class="twcss-sr-only twcss-hidden">
                 {{ 'sections.cart.title' | t }}
               </caption>
               <thead>
@@ -108,13 +108,13 @@
 
                       {%- if item.original_price != item.final_price -%}
                         <div class="cart-item__discounted-prices">
-                          <span class="twcss-sr-only visually-hidden">
+                          <span class="twcss-sr-only twcss-hidden">
                             {{ 'products.product.price.regular_price' | t }}
                           </span>
                           <s class="cart-item__old-price product-option">
                             {{- item.original_price | money -}}
                           </s>
-                          <span class="twcss-sr-only visually-hidden">
+                          <span class="twcss-sr-only twcss-hidden">
                             {{ 'products.product.price.sale_price' | t }}
                           </span>
                           <strong class="cart-item__final-price product-option">
@@ -179,7 +179,7 @@
                       <div class="cart-item__price-wrapper">
                         {%- if item.original_line_price != item.final_line_price -%}
                           <dl class="cart-item__discounted-prices">
-                            <dt class="twcss-sr-only visually-hidden">
+                            <dt class="twcss-sr-only twcss-hidden">
                               {{ 'products.product.price.regular_price' | t }}
                             </dt>
                             <dd>
@@ -187,7 +187,7 @@
                                 {{ item.original_line_price | money }}
                               </s>
                             </dd>
-                            <dt class="twcss-sr-only visually-hidden">
+                            <dt class="twcss-sr-only twcss-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
                             <dd class="price price--end">
@@ -202,10 +202,10 @@
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
                           <div class="unit-price caption">
-                            <span class="twcss-sr-only visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                            <span class="twcss-sr-only twcss-hidden">{{ 'products.product.price.unit_price' | t }}</span>
                             {{ item.unit_price | money }}
                             <span aria-hidden="true">/</span>
-                            <span class="twcss-sr-only visually-hidden"
+                            <span class="twcss-sr-only twcss-hidden"
                               >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
                             >
                             {%- if item.unit_price_measurement.reference_value != 1 -%}
@@ -230,7 +230,7 @@
                     <td class="twcss-relative twcss-block md:twcss-align-top md:twcss-pt-16 md:twcss-pl-20 lg:twcss-pl-24 twcss-p-0 twcss-border-none cart-item__quantity{% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}">
                       <quantity-popover class="twcss-relative twcss-flex twcss-block">
                         <div class="twcss-flex cart-item__quantity-wrapper quantity-popover-wrapper">
-                          <label class="twcss-sr-only visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+                          <label class="twcss-sr-only twcss-hidden" for="Quantity-{{ item.index | plus: 1 }}">
                             {{ 'products.product.quantity.label' | t }}
                           </label>
                           <div class="twcss-flex twcss-items-center lg:twcss-w-auto lg:twcss-max-w-80 twcss-py-2 twcss-pr-2 twcss-pl-0 quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
@@ -245,7 +245,7 @@
                             {%- endif -%}
                             <quantity-input class="twcss-bg-white twcss-relative twcss-flex twcss-rounded-none twcss-min-h-[74px] twcss-w-[14.125rem] quantity cart-quantity">
                               <button class="twcss-[4.5rem] twcss-shrink-0 twcss-text-[1.8rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-p-0 quantity__button" name="minus" type="button">
-                                <span class="twcss-sr-only visually-hidden">
+                                <span class="twcss-sr-only twcss-hidden">
                                   {{- 'products.product.quantity.decrease' | t: product: item.product.title | escape -}}
                                 </span>
                                 <span class="svg-wrapper twcss-w-4 twcss-pointer-events-none">
@@ -272,7 +272,7 @@
                                 data-index="{{ item.index | plus: 1 }}"
                               >
                               <button class="twcss-[4.5rem] twcss-shrink-0 twcss-text-[1.8rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-p-0 quantity__button" name="plus" type="button">
-                                <span class="twcss-sr-only visually-hidden">
+                                <span class="twcss-sr-only twcss-hidden">
                                   {{- 'products.product.quantity.increase' | t: product: item.product.title | escape -}}
                                 </span>
                                 <span class="twcss-w-4 twcss-pointer-events-none svg-wrapper">
@@ -396,7 +396,7 @@
                       <div class="cart-item__price-wrapper">
                         {%- if item.original_line_price != item.final_line_price -%}
                           <dl class="cart-item__discounted-prices">
-                            <dt class="twcss-sr-only visually-hidden">
+                            <dt class="twcss-sr-only twcss-hidden">
                               {{ 'products.product.price.regular_price' | t }}
                             </dt>
                             <dd>
@@ -404,7 +404,7 @@
                                 {{ item.original_line_price | money }}
                               </s>
                             </dd>
-                            <dt class="twcss-sr-only visually-hidden">
+                            <dt class="twcss-sr-only twcss-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
                             <dd class="md:twcss-mt-12 twcss-block twcss-p-0 price price--end">
@@ -419,10 +419,10 @@
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
                           <div class="unit-price caption">
-                            <span class="twcss-sr-only visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                            <span class="twcss-sr-only twcss-hidden">{{ 'products.product.price.unit_price' | t }}</span>
                             {{ item.unit_price | money }}
                             <span aria-hidden="true">/</span>
-                            <span class="twcss-sr-only visually-hidden"
+                            <span class="twcss-sr-only twcss-hidden"
                               >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
                             >
                             {%- if item.unit_price_measurement.reference_value != 1 -%}
@@ -441,9 +441,9 @@
         </div>
       </div>
 
-      <p class="twcss-sr-only visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
+      <p class="twcss-sr-only twcss-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
       <p
-        class="twcss-sr-only visually-hidden"
+        class="twcss-sr-only twcss-hidden"
         id="shopping-cart-line-item-status"
         aria-live="polite"
         aria-hidden="true"

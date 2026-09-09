@@ -63,7 +63,7 @@
             <div class="twcss-absolute twcss-top-0 twcss-bottom-0 twcss-w-full twcss-bg-transparent media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
-                srcset="product-image
+                srcset="
                   {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
                   {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
                   {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
@@ -75,7 +75,7 @@
                 src="{{ card_product.featured_media | image_url: width: 533 }}"
                 sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                 alt="{{ card_product.featured_media.alt | escape }}"
-                class="twcss-block twcss-max-w-full twcss-absolute twcss-top-0 twcss-left-0 twcss-h-full twcss-w-full twcss-object-cover twcss-object-center motion-reduce"
+                class="product-image twcss-block twcss-max-w-full twcss-absolute twcss-top-0 twcss-left-0 twcss-h-full twcss-w-full twcss-object-cover twcss-object-center motion-reduce"
                 {% unless lazy_load == false %}
                   loading="lazy"
                 {% endunless %}
@@ -98,7 +98,7 @@
                   src="{{ card_product.media[1] | image_url: width: 533 }}"
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                   alt=""
-                  class="twcss-block twcss-max-w-full twcss-absolute twcss-top-0 twcss-left-0 twcss-h-full twcss-w-full twcss-object-cover twcss-object-center motion-reduce"
+                  class="product-image twcss-block twcss-max-w-full twcss-absolute twcss-top-0 twcss-left-0 twcss-h-full twcss-w-full twcss-object-cover twcss-object-center motion-reduce"
                   loading="lazy"
                   width="{{ card_product.media[1].width }}"
                   height="{{ card_product.media[1].height }}"
@@ -201,7 +201,7 @@
 
           <div class="abc card-information twcss-w-full twcss-text-left">
             {%- if show_vendor -%}
-              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+              <span class="twcss-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
             {%- endif -%}
 
@@ -236,7 +236,7 @@
               </p>
               <p class="rating-count caption">
                 <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
-                <span class="visually-hidden">
+                <span class="twcss-hidden">
                   {{- card_product.metafields.reviews.rating_count }}
                   {{ 'accessibility.total_reviews' | t -}}
                 </span>
@@ -643,7 +643,7 @@
           </h3>
           <div class="card-information">
             {%- if show_vendor -%}
-              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+              <span class="twcss-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
             {%- endif -%}
             {% render 'price', placeholder: placeholder, show_compare_at_price: true %}

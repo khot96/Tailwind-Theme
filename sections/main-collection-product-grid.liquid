@@ -62,7 +62,7 @@
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
-      <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
+      <facet-filters-form class="facets facets-vertical-sort page-width maxsm:twcss-hidden">
         <form class="twcss-flex twcss-justify-end twcss-pb-[20px]" id="FacetSortForm">
           <div class="facet-filters sorting caption">
             <div class="facet-filters__field">
@@ -162,7 +162,7 @@
           </div>
         {%- else -%}
           <div
-            class="twcss-max-w-[120rem] twcss-mx-auto twcss-pl-px-[1.5rem] twcss-py-0 collection {% if section.settings.filter_type != 'vertical' %} md:twcss-px-[5rem] md:twcss-py-0 page-width{% endif %}"
+            class="twcss-max-w-[120rem] twcss-mx-auto twcss-pl-px-[1.5rem] twcss-py-0 collection {% if section.settings.filter_type != 'vertical' %} md:twcss-py-0 page-width{% endif %}"
           >
             <div class="loading-overlay gradient"></div>
            <ul

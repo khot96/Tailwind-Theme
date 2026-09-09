@@ -204,7 +204,7 @@
                   role="status"
                   {{ block.shopify_attributes }}
                 >
-                  <span class="twcss-sr-only visually-hidden">{{ 'products.product.sku' | t }}:</span>
+                  <span class="twcss-sr-only twcss-hidden">{{ 'products.product.sku' | t }}:</span>
                   {{- product.selected_or_first_available_variant.sku -}}
                 </p>
               {%- when 'custom_liquid' -%}
@@ -253,7 +253,7 @@
                   <div class="price-per-item__container">
                     <quantity-input class="twcss-border-black twcss-border twcss-border-solid twcss-text-[rgba(var(--18,18,18))] twcss-relative twcss-w-[calc(14rem+2px)] twcss-flex twcss-min-h-[calc(2px+4.5rem)] quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
                       <button class="twcss-w-[calc(4.5rem/1)] twcss-shrink-0 twcss-text-[1.8rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-text-[rgb(18,18,18)] twcss-p-0 quantity__button" name="minus" type="button">
-                        <span class="twcss-sr-only visually-hidden">
+                        <span class="twcss-sr-only twcss-hidden">
                           {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
                         </span>
                         <span class="svg-wrapper twcss-w-4 twcss-pointer-events-none twcss-right-6">
@@ -277,7 +277,7 @@
                         form="{{ product_form_id }}"
                       >
                       <button class="twcss-w-[calc(4.5rem/1)] twcss-shrink-0 twcss-text-[1.8rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-text-[rgb(18,18,18)] twcss-p-0 quantity__button" name="plus" type="button">
-                        <span class="twcss-sr-only visually-hidden">
+                        <span class="twcss-sr-only twcss-hidden">
                           {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
                         </span>
                         <span class="twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-5 twcss-h-5 svg-wrapper">
@@ -303,7 +303,7 @@
                           <div class="price-per-item">
                             {%- if variant_price_compare -%}
                               <dl class="price-per-item--current">
-                                <dt class="twcss-sr-only visually-hidden">
+                                <dt class="twcss-sr-only twcss-hidden">
                                   {{ 'products.product.price.regular_price' | t }}
                                 </dt>
                                 <dd>
@@ -343,7 +343,7 @@
                           <div class="price-per-item">
                             {%- if variant_price_compare -%}
                               <dl class="price-per-item--current">
-                                <dt class="twcss-sr-only visually-hidden">
+                                <dt class="twcss-sr-only twcss-hidden">
                                   {{ 'products.product.price.regular_price' | t }}
                                 </dt>
                                 <dd>
@@ -351,7 +351,7 @@
                                     {{ variant_price_compare | money_with_currency }}
                                   </s>
                                 </dd>
-                                <dt class="twcss-sr-only visually-hidden">
+                                <dt class="twcss-sr-only twcss-hidden">
                                   {{ 'products.product.price.sale_price' | t }}
                                 </dt>
                                 <dd>
@@ -502,7 +502,7 @@
                     </p>
                     <p class="rating-count caption">
                       <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
-                      <span class="twcss-sr-only visually-hidden">
+                      <span class="twcss-sr-only twcss-hidden">
                         {{- product.metafields.reviews.rating_count }}
                         {{ 'accessibility.total_reviews' | t -}}
                       </span>
@@ -612,7 +612,7 @@
                                 {%- if block.settings.pagination_style == 'counter' -%}
                                   <span class="slider-counter--current">1</span>
                                   <span aria-hidden="true"> / </span>
-                                  <span class="twcss-sr-only visually-hidden">{{ 'general.slider.of' | t }}</span>
+                                  <span class="twcss-sr-only twcss-hidden">{{ 'general.slider.of' | t }}</span>
                                   <span class="slider-counter--total">{{ number_of_slides }}</span>
                                 {%- else -%}
                                   <div class="slideshow__control-wrapper">

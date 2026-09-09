@@ -166,7 +166,7 @@
       <div class="footer__column footer__column--info">
         {%- if section.settings.payment_enable -%}
           <div class="footer__payment">
-            <span class="twcss-sr-only visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+            <span class="twcss-sr-only twcss-hidden">{{ 'sections.footer.payment' | t }}</span>
             <ul class="list list-payment md:twcss-justify-end twcss-flex twcss-flex-wrap twcss-justify-center twcss-my-[-0.5rem] twcss-mx-0 twcss-pt-4 twcss-pl-0 md:twcss-m-[-0.5rem] md:twcss-pt-0" role="list">
               {%- for type in shop.enabled_payment_types -%}
                 <li class="list-payment__item twcss-flex twcss-items-center twcss-p-2">

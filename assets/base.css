@@ -196,7 +196,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   display: none !important;
 }
 
-/*.visually-hidden {
+/*.twcss-hidden {
   position: absolute !important;
   overflow: hidden;
   width: 1px;
@@ -208,7 +208,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   word-wrap: normal !important;
 }*/
 
-.visually-hidden--inline {
+.twcss-hidden--inline {
   margin: 0;
   height: 1em;
 }

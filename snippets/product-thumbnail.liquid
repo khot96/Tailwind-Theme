@@ -94,7 +94,7 @@
       aria-haspopup="dialog"
       data-media-id="{{ media.id }}"
     >
-      <span class="twcss-sr-only visually-hidden">
+      <span class="twcss-sr-only twcss-hidden">
         {{ 'products.product.media.open_media' | t: index: position }}
       </span>
     </button>
@@ -109,12 +109,12 @@
     <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
       <span class="deferred-media__poster-button motion-reduce">
         {%- if media.media_type == 'model' -%}
-          <span class="twcss-sr-only visually-hidden">{{ 'products.product.media.play_model' | t }}</span>
+          <span class="twcss-sr-only twcss-hidden">{{ 'products.product.media.play_model' | t }}</span>
           <span class="svg-wrapper">
             {{- 'icon-3d-model.svg' | inline_asset_content -}}
           </span>
         {%- else -%}
-          <span class="twcss-sr-only visually-hidden">{{ 'products.product.media.play_video' | t }}</span>
+          <span class="twcss-sr-only twcss-hidden">{{ 'products.product.media.play_video' | t }}</span>
           <span class="svg-wrapper">
             {{- 'icon-play.svg' | inline_asset_content -}}
           </span>

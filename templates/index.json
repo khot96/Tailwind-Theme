@@ -120,6 +120,7 @@
     },
     "image_banner_Ucfb6w": {
       "type": "image-banner",
+      "disabled": true,
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/vitaly-gariev-lYckmNl4eCY-unsplash.jpg",
@@ -224,7 +225,7 @@
           "type": "collection",
           "settings": {
             "collection": "new-arrivals",
-            "custom_image": "shopify://shop_images/ChatGPT_Image_Jun_30_2026_11_36_16_AM.png"
+            "custom_image": "shopify://shop_images/ChatGPT_Image_Sep_4_2026_11_23_38_AM_75e116a1-10dc-4017-9f92-64f07e307ff2.png"
           }
         }
       },

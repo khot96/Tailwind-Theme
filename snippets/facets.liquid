@@ -28,9 +28,9 @@
   endif
 -%}
 
-<div class="twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<div class="twcss-py-[20px] twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %}   md:twcss-flex md:twcss-flex-row md:twcss-flex-wrap md:twcss-items-center md:twcss-gap-x-0 facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
-    <facet-filters-form class="twcss-block twcss-col-span-2 facets small-hide">
+    <facet-filters-form class="twcss-block twcss-col-span-2 facets maxsm:twcss-hidden">
       <form
         id="FacetFiltersForm"
         class="{% if filter_type == 'horizontal' %}facets__form twcss-grid twcss-gap-y-0 twcss-gap-x-[3.5rem] twcss-grid-cols-[1fr_max-content_max-content] twcss-mb-2 {% else %}facets__form-vertical{% endif %}"
@@ -155,7 +155,11 @@
                     </summary>
                     <div
                       id="Facet-{{ forloop.index }}-{{ section.id }}"
-                      class="parent-display {% if filter_type == 'horizontal' %}twcss-absolute twcss-border twcss-border-solid twcss-rounded-none twcss-top-[calc(100%+0.5rem)] twcss-left-[-1.2rem] twcss-w-[35rem] twcss-max-h-[55rem] twcss-overflow-y-auto facets__display {% else %} facets__display-vertical{% endif %}"
+                      class="parent-display {% if filter_type == 'horizontal' %}twcss-absolute twcss-border twcss-border-solid twcss-rounded-none twcss-top-[calc(100%+0.5rem)] twcss-left-[-1.2rem] twcss-w-[35rem] twcss-max-h-[55rem] facets__display  twcss-border-solid
+                      twcss-border-[rgba(var(--color-foreground),var(--popup-border-opacity))]
+                      twcss-rounded-[var(--popup-corner-radius)]
+                      twcss-bg-[rgb(var(--color-background))] twcss-absolute twcss-top-[calc(100%+0.5rem)] twcss-left-[-1.2rem] twcss-w-[35rem]
+                      twcss-overflow-y-auto{% else %} facets__display-vertical{% endif %}"
                     >
                       {%- if filter_type != 'vertical' -%}
                         <div class="facets__header">
@@ -207,7 +211,7 @@
                               <span class="facet-checkbox__text" aria-hidden="true">
                                 <span class="facet-checkbox__text-label">{{- value.label | escape }}</span> ({{- value.count -}})
                               </span>
-                              <span class="twcss-sr-only visually-hidden">
+                              <span class="twcss-sr-only twcss-hidden">
                                 {{- value.label | escape }} (
                                 {%- if value.count == 1 -%}
                                   {{- 'products.facets.product_count_simple.one' | t: count: value.count -}}
@@ -311,7 +315,11 @@
                     </summary>
                     <div
                       id="Facet-{{ forloop.index }}-{{ section.id }}"
-                      class="{% if filter_type == 'horizontal' %} twcss-absolute twcss-border twcss-border-solid twcss-rounded-none twcss-top-[calc(100%+0.5rem)] twcss-left-[-1.2rem] twcss-w-[35rem] twcss-max-h-[55rem] twcss-overflow-y-auto facets__display{% else %}facets__display-vertical{% endif %}">
+                      class="{% if filter_type == 'horizontal' %} twcss-absolute twcss-border twcss-border-solid twcss-rounded-none twcss-top-[calc(100%+0.5rem)] twcss-left-[-1.2rem] twcss-w-[35rem] twcss-max-h-[55rem] twcss-border-solid
+                      twcss-border-[rgba(var(--color-foreground),var(--popup-border-opacity))]
+                      twcss-rounded-[var(--popup-corner-radius)]
+                      twcss-bg-[rgb(var(--color-background))] twcss-absolute twcss-top-[calc(100%+0.5rem)] twcss-left-[-1.2rem] twcss-w-[35rem]
+                      twcss-overflow-y-auto twcss-overflow-y-auto facets__display{% else %}facets__display-vertical{% endif %}">
                       <div class="{% if filter_type == 'horizontal' %} twcss-sticky twcss-top-0 twcss-z-[1] twcss-border-b twcss-border-black twcss-flex twcss-justify-between twcss-px-[2rem] twcss-py-[1.5rem] twcss-text-[1.4rem] facets__header{% else %}facets__header-vertical{% endif %}">
                         {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
                         <span class="facets__selected">
@@ -345,7 +353,7 @@
                         <span class="svg-wrapper">
                           {{- 'icon-close-small.svg' | inline_asset_content -}}
                         </span>
-                        <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                        <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                       </span>
                     </a>
                   </facet-remove>
@@ -361,7 +369,7 @@
                           <span class="svg-wrapper">
                             {{- 'icon-close-small.svg' | inline_asset_content -}}
                           </span>
-                          <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                          <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                         </span>
                       </a>
                     </facet-remove>
@@ -409,7 +417,7 @@
                     {%- endfor -%}
                   </select>
                   <span class="twcss-h-[0.6rem] twcss-w-[1rem] twcss-pointer-events-none twcss-absolute 
-                  twcss-top-[calc(50%-0.2rem)] twcss-right-0 svg-wrapper">
+                  twcss-top-[calc(50%-0.2rem)] twcss-right-0 twcss-hidden svg-wrapper">
                     <svg class="twcss-w-[10px] twcss-block twcss-align-middle icon icon-caret" viewBox="0 0 10 6"><path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/></svg>
                   </span>
                 </div>
@@ -439,7 +447,7 @@
   {%- endif -%}
   {% comment %}  Drawer and mobile filter {% endcomment %}
   <menu-drawer
-    class="twcss-flex twcss-ml-0 {% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide lg:twcss-hidden md:twcss-hidden{% endif %}"
+    class="md:twcss-grow twcss-flex twcss-ml-0 {% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide lg:twcss-hidden md:twcss-hidden{% endif %}"
     data-breakpoint="mobile"
   >
     <details class="mobile-facets__disclosure disclosure-has-popup twcss-flex twcss-relative">
@@ -448,7 +456,7 @@
           <span class="twcss-w-8 twcss-inline-flex twcss-justify-center twcss-items-center twcss-h-[20px] svg-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="twcss-h-full twcss-w-full twcss-block twcss-align-middle icon icon-filter" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M4.833 6.5a1.667 1.667 0 1 1 3.334 0 1.667 1.667 0 0 1-3.334 0M4.05 7H2.5a.5.5 0 0 1 0-1h1.55a2.5 2.5 0 0 1 4.9 0h8.55a.5.5 0 0 1 0 1H8.95a2.5 2.5 0 0 1-4.9 0m11.117 6.5a1.667 1.667 0 1 0-3.334 0 1.667 1.667 0 0 0 3.334 0M13.5 11a2.5 2.5 0 0 1 2.45 2h1.55a.5.5 0 0 1 0 1h-1.55a2.5 2.5 0 0 1-4.9 0H2.5a.5.5 0 0 1 0-1h8.55a2.5 2.5 0 0 1 2.45-2"/></svg>
           </span>
-          <span class="twcss-ml-4 twcss-text-xl twcss-tracking-wide twcss-transition-[text-decoration] twcss-duration-[100ms] twcss-ease-in-out mobile-facets__open-label button-label md:twcss-hidden medium-hide large-up-hide">
+          <span class="twcss-ml-4 twcss-tracking-wide twcss-transition-[text-decoration] twcss-duration-[100ms] twcss-ease-in-out twcss-font-inter mobile-facets__open-label twcss-text-[15px] button-label md:twcss-hidden medium-hide large-up-hide">
             {%- if enable_filtering and enable_sorting -%}
               {{ 'products.facets.filter_and_sort' | t }}
             {%- elsif enable_filtering -%}
@@ -457,14 +465,14 @@
               {{ 'products.facets.sort_button' | t }}
             {%- endif -%}
           </span>
-          <span class="twcss-ml-4 twcss-text-xl twcss-tracking-wide twcss-transition-[text-decoration] twcss-duration-[100ms] twcss-ease-in-out mobile-facets__open-label button-label small-hide">
+          <span class="twcss-ml-4 twcss-tracking-wide twcss-transition-[text-decoration] twcss-duration-[100ms] twcss-ease-in-out twcss-font-inter mobile-facets__open-label button-label small-hide maxsm:twcss-hidden twcss-text-[15px]">
             {%- if enable_filtering -%}
               {{ 'products.facets.filter_button' | t }}
             {%- endif -%}
           </span>
         </span>
         <span tabindex="0" class="twcss-hidden twcss-fixed twcss-top-[0.7rem] twcss-right-4 twcss-w-[4.4rem] twcss-h-[4.4rem] twcss-z-[101] twcss-opacity-0 twcss-flex twcss-items-center twcss-justify-center twcss-transition-opacity twcss-duration-[100ms] twcss-ease-in-out mobile-facets__close">
-          <span class="twcss-w-[2.2rem] twcss-h-[20px] twcss-inline-flex twcss-justify-center twcss-items-center twcss-bg-gray-200 twcss-rounded svg-wrapper">
+          <span class="twcss-w-[2.2rem] twcss-h-[20px] twcss-inline-flex twcss-justify-center twcss-items-center twcss-bg-gray-200 twcss-rounded twcss-bg-transparent svg-wrapper">
             {{- 'icon-close.svg' | inline_asset_content -}}
           </span>
         </span>
@@ -474,7 +482,7 @@
           <div class="twcss-bg-[rgb(255,255,255)] twcss-w-[calc(100%-5rem)] twcss-ml-auto twcss-h-full twcss-overflow-y-auto twcss-pointer-events-auto twcss-transition-transform twcss-duration-[200ms] twcss-ease-in-out twcss-max-w-[37.5rem] twcss-flex twcss-flex-col mobile-facets__inner gradient">
             <div class="twcss-border-b twcss-border-[0.1rem] twcss-px-10 twcss-py-4 twcss-text-center twcss-flex twcss-sticky twcss-top-0 twcss-z-20 mobile-facets__header">
               <div class="twcss-flex-grow twcss-relative mobile-facets__header-inner">
-                <h2 class="twcss-text-[1.4rem] twcss-m-0 md:twcss-hidden mobile-facets__heading medium-hide large-up-hide">
+                <h2 class="twcss-text-[1.4rem] twcss-m-0 md:twcss-hidden mobile-facets__heading medium-hide large-up-hide twcss-font-inter ">
                   {%- if enable_filtering and enable_sorting -%}
                     {{ 'products.facets.filter_and_sort' | t }}
                   {%- elsif enable_filtering -%}
@@ -483,7 +491,7 @@
                     {{ 'products.facets.sort_button' | t }}
                   {%- endif -%}
                 </h2>
-                <h2 class="twcss-text-[1.4rem] twcss-m-0 md:twcss-hidden mobile-facets__heading small-hide">
+                <h2 class="twcss-text-[1.4rem] twcss-m-0 twcss-font-inter maxsm:twcss-hidden">
                   {%- if enable_filtering -%}
                     {{ 'products.facets.filter_button' | t }}
                   {%- endif -%}
@@ -526,7 +534,7 @@
                       >
                         <summary class="twcss-px-10 twcss-py-[1.3rem] twcss-cursor-pointer twcss-list-none twcss-relative twcss-box-border twcss-list-item mobile-facets__summary focus-inset">
                           <div class="twcss-flex twcss-items-center">
-                            <span>{{ filter.label | escape }}</span>
+                            <span class="twcss-font-inter">{{ filter.label | escape }}</span>
                             <span class="twcss-ml-auto twcss-block mobile-facets__arrow">
                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="twcss-w-6 icon icon-arrow" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/></svg>
                             </span>
@@ -576,7 +584,7 @@
                                 <span class="facet-checkbox__text" aria-hidden="true">
                                   <span class="facet-checkbox__text-label">{{- value.label | escape }}</span> ({{- value.count -}})
                                 </span>
-                                <span class="visually-hidden">
+                                <span class="twcss-hidden">
                                   {{- value.label | escape -}} (
                                   {%- if value.count == '1' -%}
                                     {{- 'products.facets.product_count_simple.one' | t: count: value.count -}}
@@ -646,7 +654,7 @@
 
                           <div class="twcss-sticky twcss-bottom-0 twcss-flex twcss-z-[2] twcss-mt-auto twcss-p-8 twcss-border-t-[0.1rem] twcss-border-t-[0.1rem] twcss-border-[rgba(18,18,18,0.08)] mobile-facets__footer gradient">
                             <facet-remove class="twcss-w-1/2 twcss-flex twcss-items-center twcss-justify-center mobile-facets__clear-wrapper">
-                              <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link">
+                              <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link twcss-font-inter">
                                 {{- 'products.facets.clear' | t -}}
                               </a>
                             </facet-remove>
@@ -668,7 +676,7 @@
                       >
                         <summary class="twcss-px-10 twcss-py-[1.3rem] twcss-cursor-pointer twcss-list-none twcss-relative twcss-box-border twcss-list-item mobile-facets__summary focus-inset">
                           <div class="twcss-flex twcss-items-center">
-                            <span>{{ filter.label | escape }}</span>
+                            <span class="twcss-font-inter">{{ filter.label | escape }}</span>
                             <span class="twcss-ml-auto twcss-block mobile-facets__arrow">
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="twcss-w-6 icon icon-arrow" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/></svg>
                             </span>
@@ -697,7 +705,7 @@
                           </price-range>
                           <div class="twcss-border-t twcss-border-t-[0.1rem] twcss-border-t-[rgba(18,18,18,0.08)] twcss-p-8 twcss-bottom-0 twcss-sticky twcss-flex twcss-z-[2] twcss-mt-auto twcss-bg-white mobile-facets__footer">
                             <facet-remove class="twcss-w-1/2 twcss-flex twcss-items-center twcss-justify-center mobile-facets__clear-wrapper">
-                              <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link">
+                              <a href="{{ filter.url_to_remove }}" class="twcss-font-inter mobile-facets__clear underlined-link">
                                 {{- 'products.facets.clear' | t -}}
                               </a>
                             </facet-remove>
@@ -742,7 +750,7 @@
                             </option>
                           {%- endfor -%}
                         </select>
-                        <span class="twcss-ml-auto twcss-h-[0.6rem] twcss-w-[1rem] twcss-pointer-events-none twcss-absolute twcss-top-[calc(50%-0.2rem)] twcss-right-0 twcss-inline-flex twcss-justify-center twcss-items-center svg-wrapper">
+                        <span class="twcss-ml-auto twcss-h-[0.6rem] twcss-w-[1rem] twcss-pointer-events-none twcss-absolute twcss-top-[calc(50%-0.2rem)] twcss-right-0 twcss-inline-flex twcss-justify-center twcss-items-center svg-wrapper twcss-hidden">
                           <svg class="twcss-right-0 twcss-ml-auto twcss-block w-[10px] twcss-align-middle icon icon-caret" viewBox="0 0 10 6"><path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/></svg>
                         </span>
                       </div>
@@ -753,7 +761,7 @@
 
               <div class="twcss-border-t twcss-border-t-[0.1rem] twcss-border-t-[rgba(18,18,18,0.08)] twcss-p-8 twcss-bottom-0 twcss-sticky twcss-flex twcss-z-[2] twcss-mt-auto twcss-bg-white mobile-facets__footer">
                 <facet-remove class="twcss-w-1/2 twcss-flex twcss-items-center twcss-justify-center mobile-facets__clear-wrapper">
-                  <a href="{{ results_url }}" class="twcss-transition-[text-decoration-thickness] twcss-ease-in twcss-duration-100 mobile-facets__clear underlined-link">
+                  <a href="{{ results_url }}" class="twcss-font-inter twcss-transition-[text-decoration-thickness] twcss-ease-in twcss-duration-100 mobile-facets__clear underlined-link">
                     {{- 'products.facets.clear_all' | t -}}
                   </a>
                 </facet-remove>
@@ -791,7 +799,7 @@
               <span class="svg-wrapper">
                 {{- 'icon-close-small.svg' | inline_asset_content -}}
               </span>
-              <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+              <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
             </span>
           </a>
         </facet-remove>
@@ -808,7 +816,7 @@
                 <span class="svg-wrapper">
                   {{- 'icon-close-small.svg' | inline_asset_content -}}
                 </span>
-                <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
               </span>
             </a>
           </facet-remove>
@@ -823,7 +831,7 @@
   </div>
   {% comment %} Sort, product count and filter pills at the end when filter is type of Drawer for the correct tabbing order {% endcomment %}
   {%- if enable_sorting and filter_type == 'drawer' -%}
-    <facet-filters-form class="facets small-hide">
+    <facet-filters-form class="facets maxsm:twcss-hidden">
       <form id="FacetSortDrawerForm" class="facets__form">
         <div class="facet-filters sorting caption small-hide">
           <div class="facet-filters__field">
@@ -834,7 +842,8 @@
               {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
               <select
                 name="sort_by"
-                class="twcss-background-none facet-filters__sort select__select caption-large"
+                class="
+                 twcss-bg-transparent twcss-border-none twcss-outline-none twcss-cursor-pointer twcss-text-[1.4rem] twcss-rounded-none twcss-min-w-[auto] twcss-min-h-[auto] twcss-transition-none twcss-shadow-none twcss-filter-none twcss-bg-transparent twcss-border-0 twcss-text-[1.4rem]twcss-h-auto twcss-m-0 twcss-pl-0 twcss-pr-[1.75rem] twcss-leading-[calc(1+0.5/var(1.0))] twcss-not-italic twcss-font-normal facet-filters__sort select__select caption-large"
                 id="SortBy"
                 aria-describedby="a11y-refresh-page-message"
               >
@@ -849,7 +858,7 @@
                   </option>
                 {%- endfor -%}
               </select>
-              <span class="svg-wrapper">
+              <span class="twcss-hidden svg-wrapper">
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </span>
             </div>
@@ -868,10 +877,13 @@
     </facet-filters-form>
   {%- endif -%}
   <div
-    class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide{% endif %}"
+    class="twcss-self-center twcss-relative twcss-text-right product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide large-up-hide lg:twcss-hidden{% endif %}"
     role="status"
   >
-    <h2 class="product-count__text text-body">
+    <h2 class="product-count__text text-body twcss-text-[1.4rem]
+  twcss-leading-[calc(1+0.5/var(--font-body-scale))] 
+  twcss-tracking-[0.06rem] twcss-not-italic
+  twcss-font-[var(--font-body-weight)] twcss-m-0">
       <span id="ProductCount">
         {%- if results.results_count -%}
           {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
@@ -900,7 +912,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-close-small.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                    <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                   </span>
                 </a>
               </facet-remove>
@@ -917,7 +929,7 @@
                       <span class="svg-wrapper">
                         {{- 'icon-close-small.svg' | inline_asset_content -}}
                       </span>
-                      <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+                      <span class="twcss-hidden">{{ 'products.facets.clear_filter' | t }}</span>
                     </span>
                   </a>
                 </facet-remove>

@@ -22,7 +22,7 @@
           <nav class="menu-drawer__navigation twcss-pt-12 twcss-pb-12">
             <ul class="menu-drawer__menu has-submenu list-menu twcss-list-none twcss-p-0 twcss-m-0" role="list">
               {%- for link in section.settings.menu.links -%}
-                <li class="twcss-mb-1">
+                <li class="twcss-mb-1 twcss-flex">
                   {%- if link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                       <summary
@@ -172,7 +172,7 @@
                   <localization-form>
                     {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
                       <div>
-                        <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
+                        <h2 class="twcss-hidden" id="HeaderCountryMobileLabel">
                           {{ 'localization.country_label' | t }}
                         </h2>
                         {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
@@ -185,7 +185,7 @@
                   <localization-form>
                     {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
                       <div>
-                        <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
+                        <h2 class="twcss-hidden" id="HeaderLanguageMobileLabel">
                           {{ 'localization.language_label' | t }}
                         </h2>
                         {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
@@ -202,7 +202,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-twitter.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.twitter' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}
@@ -212,7 +212,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-facebook.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.facebook' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}
@@ -222,7 +222,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-pinterest.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.pinterest' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}
@@ -232,7 +232,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-instagram.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.instagram' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}
@@ -242,7 +242,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-tiktok.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.tiktok' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}
@@ -252,7 +252,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-tumblr.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.tumblr' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}
@@ -262,7 +262,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-snapchat.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.snapchat' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}
@@ -272,7 +272,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-youtube.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.youtube' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}
@@ -282,7 +282,7 @@
                     <span class="svg-wrapper">
                       {{- 'icon-vimeo.svg' | inline_asset_content -}}
                     </span>
-                    <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+                    <span class="twcss-hidden">{{ 'general.social.links.vimeo' | t }}</span>
                   </a>
                 </li>
               {%- endif -%}

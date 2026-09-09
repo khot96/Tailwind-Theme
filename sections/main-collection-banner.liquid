@@ -12,13 +12,13 @@
 <div class="md:twcss-p-0 collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="twcss-flex twcss-flex-col md:twcss-items-center md:twcss-flex-row md:twcss-pb-0 md:twcss-py-0 md:twcss-px-[5rem] twcss-max-w-[120rem] twcss-mx-auto twcss-px-[1.5rem] twcss-py-0 collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <div class="collection-hero__text-wrapper twcss-basis-full">
-      <h1 class="collection-hero__title md:twcss-text-[4rem] twcss-text-[3rem] twcss-my-10 twcss-mx-0">
-        <span class="visually-hidden twcss-sr-only">{{ 'sections.collection_template.title' | t }}: </span>
+      <h1 class="collection-hero__title twcss-font-satoshi md:twcss-text-[4rem] twcss-text-[3rem] twcss-my-10 twcss-mx-0">
+        <span class="twcss-hidden twcss-sr-only">{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
       </h1>
 
       {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte md:twcss-text-[1.8rem] md:twcss-mt-8 md:twcss-mb-8 twcss-mt-6 twcss-mb-6 twcss-text-[1.6rem]">{{ collection.description }}</div>
+        <div class="twcss-font-inter collection-hero__description rte md:twcss-text-[1.8rem] md:twcss-mt-8 md:twcss-mb-8 twcss-mt-6 twcss-mb-6 twcss-text-[1.6rem]">{{ collection.description }}</div>
       {%- endif -%}
     </div>
 

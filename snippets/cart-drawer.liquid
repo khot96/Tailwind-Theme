@@ -19,36 +19,36 @@
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
-    <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
+    <div id="CartDrawer-Overlay" class="twcss-fixed twcss-inset-0 cart-drawer__overlay"></div>
     <div
-      class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+      class="twcss-h-full twcss-w-[40rem] twcss-max-w-[calc(100vw-3rem)] twcss-px-6 twcss-py-0 twcss-border-[0.1rem] twcss-border-solid twcss-border-[rgb(var(--color-foreground)/0.2)] twcss-border-r-0 twcss-overflow-hidden twcss-flex-col twcss-translate-x-full twcss-transition-transform  twcss-duration-[var(--duration-default)] twcss-items-center twcss-p-0 twcss-text-center twcss-ease-in drawer__inner gradient color-{{ settings.cart_color_scheme }}"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'sections.cart.title' | t }}"
       tabindex="-1"
     >
       {%- if cart == empty -%}
-        <div class="drawer__inner-empty">
-          <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
+        <div class="drawer__inner-empty twcss-h-full twcss-px-6 twcss-py-0 twcss-overflow-hidden twcss-flex twcss-flex-col">
+          <div class="cart-drawer__warnings twcss-flex twcss-flex-col twcss-flex-1 twcss-justify-center center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
             <div class="cart-drawer__empty-content">
-              <h2 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h2>
+              <h2 class="cart__empty-text twcss-mt-[4.5rem] twcss-mb-[2rem] lg:twcss-mt-0 lg:twcss-mb-[3rem] twcss-font-inter twcss-text-[20px] twcss-text-[#000]">{{ 'sections.cart.empty' | t }}</h2>
               <button
-                class="drawer__close"
+                class="drawer__close twcss-inline-block twcss-p-0 twcss-min-w-[4.4rem] twcss-min-h-[4.4rem] twcss-shadow-[0_0_0_0.2rem_rgba(var(--color-button),0)] twcss-absolute twcss-top-[10px] twcss-right-[-10px] twcss-text-[rgb(var(--color-foreground))] twcss-bg-transparent twcss-border-0 twcss-cursor-pointer"
                 type="button"
                 onclick="this.closest('cart-drawer').close()"
                 aria-label="{{ 'accessibility.close' | t }}"
               >
-                <span class="svg-wrapper">
+                <span class="svg-wrapper twcss-inline-flex twcss-justify-center twcss-items-center">
                   {{- 'icon-close.svg' | inline_asset_content -}}
                 </span>
               </button>
-              <a href="{{ routes.all_products_collection_url }}" class="button">
+              <a href="{{ routes.all_products_collection_url }}" class="button twcss-inline-flex twcss-justify-center twcss-items-center twcss-border-0 twcss-px-[3rem] twcss-cursor-pointer twcss-font-[inherit] twcss-text-[1.5rem] twcss-no-underline twcss-text-[rgb(var(--color-button-text))] twcss-transition-shadow twcss-duration-[var(--duration-short)] twcss-ease-[ease] twcss-bg-[#000] twcss-min-w-[calc(12rem+var(--buttons-border-width)*2)] twcss-font-inter twcss-min-h-[calc(4.5rem+var(--buttons-border-width)*2)]">
                 {{ 'general.continue_shopping' | t }}
               </a>
 
               {%- if shop.customer_accounts_enabled and customer == null -%}
-                <p class="cart__login-title h3">{{ 'sections.cart.login.title' | t }}</p>
-                <p class="cart__login-paragraph">
+                <p class="cart__login-title twcss-font-inter twcss-mt-[5.5rem] twcss-mb-[0.5rem] h3">{{ 'sections.cart.login.title' | t }}</p>
+                <p class="cart__login-paragraph twcss-mt-[0.8rem]  twcss-font-inter">
                   {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
                 </p>
               {%- endif -%}
@@ -61,15 +61,15 @@
           {%- endif -%}
         </div>
       {%- endif -%}
-      <div class="drawer__header">
-        <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+      <div class="drawer__header twcss-relative twcss-py-[1.5rem] twcss-flex twcss-justify-between  twcss-items-center">
+        <h2 class="drawer__heading twcss-mb-[1rem]">{{ 'sections.cart.title' | t }}</h2>
         <button
           class="drawer__close"
           type="button"
           onclick="this.closest('cart-drawer').close()"
           aria-label="{{ 'accessibility.close' | t }}"
         >
-          <span class="svg-wrapper">
+          <span class="svg-wrapper twcss-inline-flex twcss-justify-center twcss-items-center twcss-h-[2rem] twcss-w-[2rem]">
             {{- 'icon-close.svg' | inline_asset_content -}}
           </span>
         </button>
@@ -82,21 +82,21 @@
         <form
           action="{{ routes.cart_url }}"
           id="CartDrawer-Form"
-          class="cart__contents cart-drawer__form"
+          class="cart__contents cart-drawer__form twcss-grow twcss-flex twcss-flex-wrap"
           method="post"
         >
-          <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
+          <div id="CartDrawer-CartItems" class="twcss-grow twcss-flex twcss-flex-col drawer__contents js-contents">
             {%- if cart != empty -%}
-              <div class="drawer__cart-items-wrapper">
-                <table class="cart-items" role="table">
-                  <thead role="rowgroup">
-                    <tr role="row">
-                      <th id="CartDrawer-ColumnProductImage" role="columnheader">
-                        <span class="visually-hidden">{{ 'sections.cart.headings.image' | t }}</span>
+              <div class="drawer__cart-items-wrapper twcss-grow">
+                <table class="cart-items twcss-block twcss-w-full md:twcss-table md:twcss-w-full md:twcss-border-separate md:twcss-shadow-none" role="table">
+                  <thead role="rowgroup" class="twcss-inline-table twcss-w-full twcss-mb-[0.5rem]">
+                    <tr role="row" class="twcss-table-row twcss-mb-0">
+                      <th id="CartDrawer-ColumnProductImage" role="columnheader" class=" twcss-first:twcss-w-0 twcss-first:twcss-p-0 twcss-last:twcss-w-0 twcss-last:twcss-p-0 twcss-border-b-[0.1rem] twcss-border-b-[rgba(var(--color-foreground),0.08)]">
+                        <span class="twcss-hidden">{{ 'sections.cart.headings.image' | t }}</span>
                       </th>
                       <th
                         id="CartDrawer-ColumnProduct"
-                        class="caption-with-letter-spacing"
+                        class="caption-with-letter-spacing twcss-hidden"
                         scope="col"
                         role="columnheader"
                       >
@@ -111,14 +111,14 @@
                         {{ 'sections.cart.headings.total' | t }}
                       </th>
                       <th id="CartDrawer-ColumnQuantity" role="columnheader">
-                        <span class="visually-hidden">{{ 'sections.cart.headings.quantity' | t }}</span>
+                        <span class="twcss-hidden">{{ 'sections.cart.headings.quantity' | t }}</span>
                       </th>
                     </tr>
                   </thead>
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
-                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item" role="row">
+                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item twcss-grid twcss-grid-rows-[repeat(2,auto)] twcss-grid-cols-[repeat(3,1fr)] twcss-gap-[1rem] twcss-mb-0 twcss-text-left " role="row">
                         <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
                           {% if item.image %}
                             {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
@@ -134,24 +134,24 @@
                           {% endif %}
                         </td>
 
-                        <td class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
+                        <td class="twcss-w-auto twcss-col-[2/4] md:twcss-w-[35rem] lg:twcss-w-[50rem] twcss-pl-[1rem] twcss-pt-[1.7rem] cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
                           {%- if settings.show_vendor -%}
                             <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
                           {%- endif -%}
 
-                          <a href="{{ item.url }}" class="cart-item__name h4 break">
+                          <a href="{{ item.url }}" class="twcss-text-[14px] twcss-font-inter   cart-item__name h4 break">
                             {{- item.product.title | escape -}}
                           </a>
 
                           {%- if item.original_price != item.final_price -%}
                             <div class="cart-item__discounted-prices">
-                              <span class="visually-hidden">
+                              <span class="twcss-hidden">
                                 {{ 'products.product.price.regular_price' | t }}
                               </span>
                               <s class="cart-item__old-price product-option">
                                 {{- item.original_price | money -}}
                               </s>
-                              <span class="visually-hidden">
+                              <span class="twcss-hidden">
                                 {{ 'products.product.price.sale_price' | t }}
                               </span>
                               <strong class="cart-item__final-price product-option">
@@ -227,13 +227,13 @@
                           <div class="cart-item__price-wrapper">
                             {%- if item.original_line_price != item.final_line_price -%}
                               <div class="cart-item__discounted-prices">
-                                <span class="visually-hidden">
+                                <span class="twcss-hidden">
                                   {{ 'products.product.price.regular_price' | t }}
                                 </span>
                                 <s class="cart-item__old-price price price--end">
                                   {{ item.original_line_price | money }}
                                 </s>
-                                <span class="visually-hidden">
+                                <span class="twcss-hidden">
                                   {{ 'products.product.price.sale_price' | t }}
                                 </span>
                                 <span class="price price--end">
@@ -248,10 +248,10 @@
 
                             {%- if item.variant.available and item.unit_price_measurement -%}
                               <div class="unit-price caption">
-                                <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                                <span class="twcss-hidden">{{ 'products.product.price.unit_price' | t }}</span>
                                 {{ item.unit_price | money }}
                                 <span aria-hidden="true">/</span>
-                                <span class="visually-hidden"
+                                <span class="twcss-hidden"
                                   >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
                                 >
                                 {%- if item.unit_price_measurement.reference_value != 1 -%}
@@ -283,7 +283,7 @@
                               <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
                                 <quantity-input class="quantity cart-quantity">
                                   <button class="quantity__button" name="minus" type="button">
-                                    <span class="visually-hidden">
+                                    <span class="twcss-hidden">
                                       {{-
                                         'products.product.quantity.decrease'
                                         | t: product: item.product.title
@@ -314,7 +314,7 @@
                                     data-index="{{ item.index | plus: 1 }}"
                                   >
                                   <button class="quantity__button" name="plus" type="button">
-                                    <span class="visually-hidden">
+                                    <span class="twcss-hidden">
                                       {{-
                                         'products.product.quantity.increase'
                                         | t: product: item.product.title
@@ -446,8 +446,8 @@
                 </table>
               </div>
             {%- endif -%}
-            <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
-            <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
+            <p id="CartDrawer-LiveRegionText" class="twcss-hidden" role="status"></p>
+            <p id="CartDrawer-LineItemStatus" class="twcss-hidden" aria-hidden="true" role="status">
               {{ 'accessibility.loading' | t }}
             </p>
           </div>
@@ -464,7 +464,7 @@
               </span>
             </summary>
             <cart-note class="cart__note field">
-              <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
+              <label class="twcss-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
               <textarea
                 id="CartDrawer-Note"
                 class="text-area text-area--resize-vertical field__input"

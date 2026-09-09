@@ -339,7 +339,7 @@
 
 .card--horizontal
   .card-information
-  > *:not(.visually-hidden:first-child)
+  > *:not(.twcss-hidden:first-child)
   + *:not(.rating):not(.card__information-volume-pricing-note) {
   margin-top: 0;
 }
@@ -516,7 +516,7 @@
 
 /* Specificity needed due to the changes below */
 .card-information
-  > *:not(.visually-hidden:first-child)
+  > *:not(.twcss-hidden:first-child)
   + quantity-popover:not(.rating):not(.card__information-volume-pricing-note),
 .card-information
   .card__information-volume-pricing-note.card__information-volume-pricing-note--button {
@@ -524,7 +524,7 @@
 }
 
 .card-information
-  > *:not(.visually-hidden:first-child)
+  > *:not(.twcss-hidden:first-child)
   + *:not(.rating):not(.card__information-volume-pricing-note) {
   margin-top: 0.7rem;
 }

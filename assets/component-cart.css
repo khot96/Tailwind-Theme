@@ -10,10 +10,10 @@ cart-items.is-empty .title-wrapper-with-link,
   display: none;
 }
 
-.is-empty .cart__empty-text,
+/*.is-empty .cart__empty-text,
 .is-empty .cart__warnings {
   display: block;
-}
+}*/
 
 .cart__warnings {
   display: none;
@@ -21,21 +21,21 @@ cart-items.is-empty .title-wrapper-with-link,
   padding: 3rem 0 1rem;
 }
 
-.cart__empty-text {
+/*.cart__empty-text {
   margin: 4.5rem 0 2rem;
 }
-
+*/
 .cart__contents > * + * {
   margin-top: 2.5rem;
 }
 
-.cart__login-title {
+/*.cart__login-title {
   margin: 5.5rem 0 0.5rem;
-}
+}*/
 
-.cart__login-paragraph {
+/*.cart__login-paragraph {
   margin-top: 0.8rem;
-}
+}*/
 
 .cart__login-paragraph a {
   font-size: inherit;
@@ -46,9 +46,9 @@ cart-items.is-empty .title-wrapper-with-link,
     padding: 7rem 0 1rem;
   }
 
-  .cart__empty-text {
+/*  .cart__empty-text {
     margin: 0 0 3rem;
-  }
+  }*/
 }
 
 cart-items {

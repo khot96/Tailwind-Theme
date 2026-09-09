@@ -91,3 +91,31 @@ details[open] .modal-overlay:after {
     transition: box-shadow var(--duration-short) ease;
     z-index: 1;
 }
+menu-drawer > details.mobile-facets__disclosure[open] > summary::before {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity var(--duration-default) ease, visibility var(--duration-default) ease;
+    height: 100vh;
+    z-index: 3;
+}
+.disclosure-has-popup[open] > summary::before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  cursor: default;
+  content: " ";
+  background: transparent;
+}
+.is-empty .cart__empty-text,
+.is-empty .cart__warnings {
+  display: block;
+}
+@media screen and (min-width: 750px) {
+    .facets .disclosure-has-popup[open]>summary+* {
+        z-index: 2;
+    }
+}

@@ -53,14 +53,14 @@
   {%- endcapture -%}
 
   {%- capture label_unavailable -%}
-    <span class="visually-hidden label-unavailable">
+    <span class="twcss-hidden label-unavailable">
       {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
     </span>
   {%- endcapture -%}
 
   {%- if picker_type == 'swatch' -%}
     {%- capture help_text -%}
-      <span class="visually-hidden">{{ value | escape }}</span>
+      <span class="twcss-hidden">{{ value | escape }}</span>
       {{ label_unavailable }}
     {%- endcapture -%}
     {%
