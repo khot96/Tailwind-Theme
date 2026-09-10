@@ -132,7 +132,7 @@
 
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
-        <h1 class="md:twcss-justify-start twcss-grid">
+        <h1 class="md:twcss-justify-start twcss-grid twcss-justify-center">
       {%- endif -%}
           <a href="{{ routes.root_url }}" class="twcss-border-0 twcss-inline-block twcss-cursor-pointer twcss-p-3 twcss-no-underline twcss-break-words twcss-shadow-none twcss-bg-transparent twcss-text-2xl">
             {%- if settings.logo != blank -%}

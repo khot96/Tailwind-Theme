@@ -96,7 +96,7 @@
                       </th>
                       <th
                         id="CartDrawer-ColumnProduct"
-                        class="caption-with-letter-spacing twcss-hidden"
+                        class="caption-with-letter-spacing twcss-text-left twcss-text-[12px] twcss-font-inter twcss-font-[500]"
                         scope="col"
                         role="columnheader"
                       >
@@ -104,7 +104,7 @@
                       </th>
                       <th
                         id="CartDrawer-ColumnTotal"
-                        class="right caption-with-letter-spacing"
+                        class="right caption-with-letter-spacing twcss-text-right twcss-text-[12px] twcss-font-inter twcss-font-[500]"
                         scope="col"
                         role="columnheader"
                       >
@@ -274,12 +274,12 @@
                           endif
                         -%}
                         <td
-                          class="cart-item__quantity {% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}"
+                          class="twcss-pt-0 twcss-col-[2/5] md:twcss-pl-[5rem] lg:twcss-pl-[6rem]cart-item__quantity {% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}"
                           role="cell"
                           headers="CartDrawer-ColumnQuantity"
                         >
-                          <quantity-popover>
-                            <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
+                          <quantity-popover class="twcss-relative twcss-block">
+                            <div class="twcss-flex cart-item__quantity-wrapper quantity-popover-wrapper">
                               <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
                                 <quantity-input class="quantity cart-quantity">
                                   <button class="quantity__button" name="minus" type="button">

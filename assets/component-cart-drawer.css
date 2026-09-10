@@ -228,10 +228,10 @@ cart-drawer-items {
   padding: 0;
 }*/
 
-.cart-drawer .cart-items thead th:nth-child(2) {
+/*.cart-drawer .cart-items thead th:nth-child(2) {
   width: 50%;
   padding-left: 0;
-}
+}*/
 
 /*.cart-drawer .cart-items thead tr {
   display: table-row;
@@ -259,10 +259,10 @@ cart-drawer-items {
   padding-left: 1rem;
 }*/
 
-.cart-drawer .cart-item__details {
+/*.cart-drawer .cart-item__details {
   width: auto;
   grid-column: 2 / 4;
-}
+}*/
 
 /*.cart-drawer .cart-item__totals {
   pointer-events: none;

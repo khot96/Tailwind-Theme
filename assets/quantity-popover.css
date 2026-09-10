@@ -1,7 +1,7 @@
-quantity-popover {
+/*quantity-popover {
   position: relative;
   display: block;
-}
+}*/
 
 quantity-popover volume-pricing li:nth-child(odd) {
   background: rgba(var(--color-foreground), 0.03);

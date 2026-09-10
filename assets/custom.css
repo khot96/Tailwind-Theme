@@ -114,6 +114,43 @@ menu-drawer > details.mobile-facets__disclosure[open] > summary::before {
 .is-empty .cart__warnings {
   display: block;
 }
+.cart-drawer .cart-items thead th:first-child, .cart-drawer .cart-items thead th:last-child {
+    width: 0;
+    padding: 0;
+}
+
+.cart-drawer .cart-items thead th:nth-child(2) {
+    width: 50%;
+    padding-left: 0;
+}
+
+.quantity:before {
+    background: rgb(var(--color-background));
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: var(--inputs-radius-outset);
+    box-shadow: var(--inputs-shadow-horizontal-offset) var(--inputs-shadow-vertical-offset) var(--inputs-shadow-blur-radius) rgba(var(--color-shadow), var(--inputs-shadow-opacity));
+    z-index: -1;
+}
+.quantity:after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: var(--inputs-border-width);
+    right: var(--inputs-border-width);
+    bottom: var(--inputs-border-width);
+    left: var(--inputs-border-width);
+    border: .1rem solid transparent;
+    border-radius: var(--inputs-radius);
+    box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground), var(--inputs-border-opacity));
+    transition: box-shadow var(--duration-short) ease;
+    z-index: 1;
+}
 @media screen and (min-width: 750px) {
     .facets .disclosure-has-popup[open]>summary+* {
         z-index: 2;

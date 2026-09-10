@@ -28,8 +28,7 @@
   endif
 -%}
 
-<div class="twcss-py-[20px] twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %}   md:twcss-flex md:twcss-flex-row md:twcss-flex-wrap md:twcss-items-center md:twcss-gap-x-0 facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-<div class="abc twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<div class="abc md:twcss-flex md:twcss-flex-row md:twcss-flex-wrap md:twcss-items-center md:twcss-gap-x-0 twcss-grid twcss-grid-cols-[repeat(2,_auto)] twcss-grid-rows-[repeat(2,_auto)] twcss-pt-4 facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
     <facet-filters-form class="twcss-block twcss-col-span-2 facets maxsm:twcss-hidden">
       <form
