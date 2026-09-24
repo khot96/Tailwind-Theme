@@ -283,7 +283,7 @@
       }
     },
     "cart": {
-      "title": "Το καλάθι σας",
+      "title": "Καροτσάκι",
       "caption": "Στοιχεία στο καλάθι",
       "remove_title": "Κατάργηση {{ title }}",
       "note": "Ειδικές οδηγίες παραγγελίας",
@@ -303,7 +303,7 @@
         "title": "Έχετε λογαριασμό;",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Συνδεθείτε</a> για ταχύτερη ολοκλήρωση των αγορών σας."
       },
-      "estimated_total": "Εκτιμώμενο σύνολο",
+      "estimated_total": "Μερικό σύνολο",
       "new_estimated_total": "Νέο εκτιμώμενο σύνολο",
       "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Οι δασμοί και οι φόροι συμπεριλαμβάνονται. Οι εκπτώσεις και τα έξοδα <a href=\"{{ link }}\">αποστολής</a> υπολογίζονται κατά την ολοκλήρωση της αγοράς.",
       "duties_and_taxes_included_shipping_at_checkout_without_policy": "Οι δασμοί και οι φόροι συμπεριλαμβάνονται. Οι εκπτώσεις και τα έξοδα αποστολής υπολογίζονται κατά την ολοκλήρωση της αγοράς",

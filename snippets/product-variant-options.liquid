@@ -63,7 +63,7 @@
       <span class="twcss-hidden">{{ value | escape }}</span>
       {{ label_unavailable }}
     {%- endcapture -%}
-    {%
+    {% comment %}{%
       render 'swatch-input',
       id: input_id,
       name: input_name,
@@ -75,7 +75,7 @@
       shape: block.settings.swatch_shape,
       help_text: help_text,
       additional_props: input_dataset
-    %}
+    %}{% endcomment %}
   {%- elsif picker_type == 'button' -%}
     <input
       type="radio"

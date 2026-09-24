@@ -1,4 +1,4 @@
-.drawer {
+/*.drawer {
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -10,10 +10,10 @@
   background-color: rgba(var(--color-foreground), 0.5);
   transition: visibility var(--duration-default) ease;
 }
-
-.drawer.active {
+*/
+/*.drawer.active {
   visibility: visible;
-}
+}*/
 
 /*.drawer__inner {
   height: 100%;
@@ -64,10 +64,10 @@ cart-drawer:not(.is-empty) .cart-drawer__collection {
   margin-top: 2.5rem;
 }
 
-.drawer.active .drawer__inner {
+/*.drawer.active .drawer__inner {
   transform: translateX(0);
 }
-
+*/
 /*.drawer__header {
   position: relative;
   padding: 1.5rem 0;
@@ -110,10 +110,10 @@ cart-drawer:not(.is-empty) .cart-drawer__collection {
   flex-direction: column;
 }
 */
-.drawer__footer {
+/*.drawer__footer {
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.2);
   padding: 1.5rem 0;
-}
+}*/
 
 cart-drawer-items.is-empty + .drawer__footer {
   display: none;
@@ -193,10 +193,10 @@ cart-drawer-items {
   cart-drawer-items {
     overflow: visible;
   }
-
+/*
   .drawer__inner {
     overflow: scroll;
-  }
+  }*/
 }
 
 /*.cart-drawer .cart-item {
@@ -296,22 +296,22 @@ cart-drawer-items {
   }
 }
 
-.cart-drawer__footer > * + * {
+/*.cart-drawer__footer > * + * {
   margin-top: 1rem;
 }
-
-.cart-drawer .totals {
+*/
+/*.cart-drawer .totals {
   justify-content: space-between;
-}
+}*/
 
 .cart-drawer .price {
   line-height: 1;
 }
 
-.cart-drawer .tax-note {
+/*.cart-drawer .tax-note {
   margin: 1.2rem 0 2rem auto;
   text-align: left;
-}
+}*/
 
 .cart-drawer .product-option dd {
   word-break: break-word;
@@ -385,18 +385,18 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   margin-top: 31px;
 }
 
-.cart-drawer .quantity-popover-container {
+/*.cart-drawer .quantity-popover-container {
   padding: 0;
-}
+}*/
 
 .cart-drawer .quantity-popover__info.global-settings-popup {
   transform: translateY(0);
   top: 100%;
 }
 
-.cart-drawer .cart-item__error {
+/*.cart-drawer .cart-item__error {
   margin-top: 0.8rem;
-}
+}*/
 
 .cart-drawer .quantity-popover__info + .cart-item__error {
   margin-top: 0.2rem;
@@ -407,7 +407,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
     padding-left: 0;
   }
 
-  .cart-drawer .cart-item__error {
+ /* .cart-drawer .cart-item__error {
     margin-left: 0;
-  }
+  }*/
 }

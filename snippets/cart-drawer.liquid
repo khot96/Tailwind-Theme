@@ -5,8 +5,8 @@
   {% render 'cart-drawer' %}
 {% endcomment %}
 
-{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{% comment %}{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}{% endcomment %}
+{% comment %}{{ 'component-card.css' | asset_url | stylesheet_tag }}{% endcomment %}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
@@ -17,11 +17,11 @@
   }
 </style>
 
-<cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
+<cart-drawer class="twcss-fixed twcss-z-[1000] twcss-left-0 twcss-top-0 twcss-w-screen twcss-h-full twcss-flex twcss-justify-end twcss-bg-[rgba(var(--color-foreground),0.5)] twcss-transition-[visibility] twcss-duration-[var(--duration-default)] drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="twcss-fixed twcss-inset-0 cart-drawer__overlay"></div>
     <div
-      class="twcss-h-full twcss-w-[40rem] twcss-max-w-[calc(100vw-3rem)] twcss-px-6 twcss-py-0 twcss-border-[0.1rem] twcss-border-solid twcss-border-[rgb(var(--color-foreground)/0.2)] twcss-border-r-0 twcss-overflow-hidden twcss-flex-col twcss-translate-x-full twcss-transition-transform  twcss-duration-[var(--duration-default)] twcss-items-center twcss-p-0 twcss-text-center twcss-ease-in drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+      class="twcss-h-full twcss-w-[44rem] twcss-max-w-[calc(100vw-3rem)] twcss-px-6 twcss-py-0  twcss-border-[rgb(var(--color-foreground)/0.2)] twcss-overflow-hidden twcss-flex-col twcss-translate-x-full twcss-transition-transform  twcss-duration-[var(--duration-default)] twcss-items-center twcss-p-0 twcss-text-center twcss-ease-in drawer__inner gradient color-{{ settings.cart_color_scheme }}"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'sections.cart.title' | t }}"
@@ -88,8 +88,8 @@
           <div id="CartDrawer-CartItems" class="twcss-grow twcss-flex twcss-flex-col drawer__contents js-contents">
             {%- if cart != empty -%}
               <div class="drawer__cart-items-wrapper twcss-grow">
-                <table class="cart-items twcss-block twcss-w-full md:twcss-table md:twcss-w-full md:twcss-border-separate md:twcss-shadow-none" role="table">
-                  <thead role="rowgroup" class="twcss-inline-table twcss-w-full twcss-mb-[0.5rem]">
+                <table class="cart-items maxsm:twcss-block maxsm:twcss-w-full md:twcss-table md:twcss-w-full md:twcss-border-separate md:twcss-shadow-none" role="table">
+                  <thead role="rowgroup" class="twcss-hidden twcss-inline-table twcss-w-full twcss-mb-[0.5rem]">
                     <tr role="row" class="twcss-table-row twcss-mb-0">
                       <th id="CartDrawer-ColumnProductImage" role="columnheader" class=" twcss-first:twcss-w-0 twcss-first:twcss-p-0 twcss-last:twcss-w-0 twcss-last:twcss-p-0 twcss-border-b-[0.1rem] twcss-border-b-[rgba(var(--color-foreground),0.08)]">
                         <span class="twcss-hidden">{{ 'sections.cart.headings.image' | t }}</span>
@@ -118,7 +118,7 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
-                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item twcss-grid twcss-grid-rows-[repeat(2,auto)] twcss-grid-cols-[repeat(3,1fr)] twcss-gap-[1rem] twcss-mb-0 twcss-text-left " role="row">
+                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item twcss-pt-[2.4rem] twcss-pb-[1.4rem] twcss-grid twcss-grid-rows-[repeat(2,auto)] twcss-grid-cols-[repeat(3,1fr)] twcss-gap-[1rem] twcss-mb-0 twcss-text-left " role="row">
                         <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
                           {% if item.image %}
                             {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
@@ -134,12 +134,12 @@
                           {% endif %}
                         </td>
 
-                        <td class="twcss-w-auto twcss-col-[2/4] md:twcss-w-[35rem] lg:twcss-w-[50rem] twcss-pl-[1rem] twcss-pt-[1.7rem] cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
+                        <td class="twcss-w-auto twcss-col-[2/4] cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
                           {%- if settings.show_vendor -%}
                             <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
                           {%- endif -%}
 
-                          <a href="{{ item.url }}" class="twcss-text-[14px] twcss-font-inter   cart-item__name h4 break">
+                          <a href="{{ item.url }}" class="twcss-text-[1.5rem] twcss-text-[#000] twcss-font-inter   cart-item__name h4 break">
                             {{- item.product.title | escape -}}
                           </a>
 
@@ -159,7 +159,7 @@
                               </strong>
                             </div>
                           {%- else -%}
-                            <div class="product-option">
+                            <div class="product-option twcss-hidden">
                               {{ item.original_price | money }}
                             </div>
                           {%- endif -%}
@@ -168,11 +168,11 @@
                             or item.properties.size != 0
                             or item.selling_plan_allocation != null
                           -%}
-                            <dl>
+                            <dl class="twcss-flex twcss-mt-[0.7rem] twcss-mb-0 twcss-items-center">
                               {%- if item.product.has_only_default_variant == false -%}
                                 {%- for option in item.options_with_values -%}
-                                  <div class="product-option">
-                                    <dt>{{ option.name }}:</dt>
+                                  <div class="product-option twcss-text-[#000] twcss-flex twcss-items-center">
+                                    <dt class="twcss-hidden">{{ option.name }}:</dt>
                                     <dd>
                                       {{ option.value -}}
                                       {%- unless forloop.last %}, {% endunless %}
@@ -205,7 +205,7 @@
                               {%- endfor -%}
                             </dl>
 
-                            <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                            <p class="twcss-hidden product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                           {%- endif -%}
 
                           <ul
@@ -236,12 +236,12 @@
                                 <span class="twcss-hidden">
                                   {{ 'products.product.price.sale_price' | t }}
                                 </span>
-                                <span class="price price--end">
+                                <span class="price price--end twcss-text-[1.6rem] twcss-tracking-[0.1rem] twcss-leading-[calc(1+0.5/var(--font-body-scale))] twcss-text-[rgb(var(--color-foreground))]">
                                   {{ item.final_line_price | money }}
                                 </span>
                               </div>
                             {%- else -%}
-                              <span class="price price--end">
+                              <span class="price price--end twcss-font-inter twcss-text-[1.5rem] twcss-tracking-[0.1rem] twcss-leading-[calc(1+0.5/var(--font-body-scale))] twcss-text-[rgb(var(--color-foreground))]">
                                 {{ item.original_line_price | money }}
                               </span>
                             {%- endif -%}
@@ -274,15 +274,15 @@
                           endif
                         -%}
                         <td
-                          class="twcss-pt-0 twcss-col-[2/5] md:twcss-pl-[5rem] lg:twcss-pl-[6rem]cart-item__quantity {% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}"
+                          class="twcss-pt-0 twcss-col-[2/5] cart-item__quantity {% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}"
                           role="cell"
                           headers="CartDrawer-ColumnQuantity"
                         >
                           <quantity-popover class="twcss-relative twcss-block">
-                            <div class="twcss-flex cart-item__quantity-wrapper quantity-popover-wrapper">
-                              <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
-                                <quantity-input class="quantity cart-quantity">
-                                  <button class="quantity__button" name="minus" type="button">
+                            <div class="twcss-flex twcss-items-center twcss-justify-between cart-item__quantity-wrapper quantity-popover-wrapper">
+                              <div class="twcss-flex twcss-w-[8rem] twcss-h-[3rem] twcss-items-center quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
+                                <quantity-input class="twcss-text-[rgba(var(--color-foreground))] twcss-relative twcss-flex twcss-rounded-[var(--inputs-radius)] twcss-w-[8rem] twcss-h-[3rem] twcss-border-[0.1rem] twcss-border-[#ccc] twcss-bg-[rgb(var(--color-background-input))] twcss-rounded-[var(--border-radius-button)] twcss-transition-[border] twcss-duration-[var(--duration-default)] quantity cart-quantity">
+                                  <button class="quantity__button twcss-w-[3rem] twcss-p-0 twcss-shrink-0 twcss-text-[1.2rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-text-[rgb(var(--color-foreground))] twcss-transition-[opacity] twcss-duration-[var(--duration-default)]" name="minus" type="button">
                                     <span class="twcss-hidden">
                                       {{-
                                         'products.product.quantity.decrease'
@@ -290,12 +290,12 @@
                                         | escape
                                       -}}
                                     </span>
-                                    <span class="svg-wrapper">
+                                    <span class="svg-wrapper twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-[1rem] twcss-h-[20px]">
                                       {{- 'icon-minus.svg' | inline_asset_content -}}
                                     </span>
                                   </button>
                                   <input
-                                    class="quantity__input"
+                                    class="quantity__input twcss-font-[var(--font-body-family)] twcss-text-[1.2rem] twcss-text-black twcss-text-center twcss-bg-transparent twcss-border-0 twcss-w-full twcss-grow twcss-appearance-none"
                                     type="number"
                                     data-quantity-variant-id="{{ item.variant.id }}"
                                     name="updates[]"
@@ -313,7 +313,7 @@
                                     id="Drawer-quantity-{{ item.index | plus: 1 }}"
                                     data-index="{{ item.index | plus: 1 }}"
                                   >
-                                  <button class="quantity__button" name="plus" type="button">
+                                  <button class="quantity__button twcss-w-[3rem] twcss-p-0 twcss-shrink-0 twcss-text-[1.2rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-text-[rgb(var(--color-foreground))] twcss-transition-[opacity] twcss-duration-[var(--duration-default)]" name="plus" type="button">
                                     <span class="twcss-hidden">
                                       {{-
                                         'products.product.quantity.increase'
@@ -321,19 +321,19 @@
                                         | escape
                                       -}}
                                     </span>
-                                    <span class="svg-wrapper">
+                                    <span class="svg-wrapper twcss-inline-flex twcss-justify-center twcss-items-center twcss-w-[1rem] twcss-h-[20px]">
                                       {{- 'icon-plus.svg' | inline_asset_content -}}
                                     </span>
                                   </button>
                                 </quantity-input>
                               </div>
-                              <cart-remove-button
+                              <cart-remove-button class="twcss-flex twcss-ml-[1rem]"
                                 id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
                                 data-index="{{ item.index | plus: 1 }}"
                               >
                                 <button
                                   type="button"
-                                  class="button button--tertiary cart-remove-button"
+                                  class="twcss-min-w-[calc(4.5rem/var(--font-body-scale))] twcss-min-h-[4.5rem] twcss-p-0 twcss-mr-[0.1rem] twcss-mb-[0.1rem] button button--tertiary cart-remove-button"
                                   aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
                                   data-variant-id="{{ item.variant.id }}"
                                 >
@@ -430,10 +430,10 @@
                             {%- endif -%}
                             <div
                               id="CartDrawer-LineItemError-{{ item.index | plus: 1 }}"
-                              class="cart-item__error"
+                              class="cart-item__error md:twcss-ml-0 md:twcss-ml-[0.3rem]"
                               role="alert"
                             >
-                              <small class="cart-item__error-text"></small>
+                              <small class="cart-item__error-text twcss-text-[1.3rem] twcss-leading-[1.4] twcss-tracking-[0.04rem]"></small>
                               <span class="svg-wrapper">
                                 {{- 'icon-error.svg' | inline_asset_content -}}
                               </span>
@@ -454,7 +454,7 @@
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
       </cart-drawer-items>
-      <div class="drawer__footer">
+      <div class="drawer__footer twcss-border-t-[0.1rem] twcss-border-t-[rgba(var(--color-foreground),0.2)] twcss-py-[1.5rem] ">
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
             <summary>
@@ -493,12 +493,12 @@
             {%- endif -%}
           </div>
 
-          <div class="totals" role="status">
-            <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-            <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+          <div class="totals twcss-flex twcss-justify-between twcss-items-end" role="status">
+            <h2 class="totals__total twcss-text-[15px] twcss-text-[#000] twcss-font-inter">{{ 'sections.cart.estimated_total' | t }}</h2>
+            <p class="totals__total-value twcss-text-[15px] twcss-text-[#000] twcss-font-inter">{{ cart.total_price | money_with_currency }}</p>
           </div>
 
-          <small class="tax-note caption-large rte">
+          <small class="twcss-py-[10px] twcss-px-[14px] twcss-border twcss-border-[#e6e6e6] twcss-rounded-none twcss-bg-[#8080801f] twcss-cursor-pointer twcss-transition-all twcss-duration-[0.2s] twcss-ease-in-out twcss-text-[13px] twcss-text-[#6b7280] twcss-font-inter tax-note caption-large rte twcss-mt-[1.2rem] twcss-mr-0 twcss-mb-[2rem] twcss-ml-auto twcss-text-left twcss-block">
             {%- if cart.duties_included and cart.taxes_included -%}
               {%- if shop.shipping_policy.body == blank -%}
                 {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
@@ -541,11 +541,11 @@
 
         <!-- CTAs -->
 
-        <div class="cart__ctas" {{ block.shopify_attributes }}>
+        <div class="cart__ctas md:twcss-flex md:twcss-gap-[1rem]" {{ block.shopify_attributes }}>
           <button
             type="submit"
             id="CartDrawer-Checkout"
-            class="cart__checkout-button button"
+            class="twcss-max-w-full twcss-w-full twcss-border-0 twcss-flex twcss-justify-center twcss-items-center twcss-bg-[#000000] twcss-relative twcss-cursor-pointer twcss-py-[5px] twcss-px-[10px] twcss-h-[36px] twcss-text-[#fff] twcss-font-inter cart__checkout-button button"
             name="checkout"
             form="CartDrawer-Form"
             {% if cart == empty %}

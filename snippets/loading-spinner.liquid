@@ -7,6 +7,6 @@
   {% render 'loading-spinner' %}
 {% endcomment %}
 
-<div class="{% if class %}{{ class }}{% else %}twcss-absolute twcss-left-1/2 twcss--translate-x-1/2 twcss--translate-y-1/2 twcss-items-center twcss-h-12 twcss-w-12 twcss-w-[1.8rem] twcss-absolute twcss-z-[1] loading__spinner twcss-hidden{% endif %}">
+<div class="{% if class %}{{ class }}{% else %}twcss-top-0 twcss-left-auto twcss-right-auto twcss-bottom-0 twcss-p-0 twcss-absolute twcss-left-1/2 twcss--translate-x-1/2 twcss--translate-y-1/2 twcss-items-center twcss-h-12 twcss-w-12 twcss-w-[1.8rem] twcss-absolute twcss-z-[1] loading__spinner twcss-hidden{% endif %}">
   {{ 'loading-spinner.svg' | inline_asset_content }}
 </div>

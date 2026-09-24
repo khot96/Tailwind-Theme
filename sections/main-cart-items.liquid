@@ -53,7 +53,7 @@
       <div class="md:twcss-col-start-1 md:twcss-col-end-3 md:twcss-pb-16 twcss-relative twcss-pb-12 twcss-border-b twcss-border-[rgba(18,18,18,0.08)] twcss-border-b-[0.1rem] cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
           {%- if cart != empty -%}
-            <table class="cart-items md:twcss-table md:twcss-w-full md:twcss-border-separate md:twcss-border-spacing-0 md:twcss-shadow-none">
+            <table class="twcss-block twcss-w-full cart-items md:twcss-table md:twcss-w-full md:twcss-border-separate md:twcss-border-spacing-0 md:twcss-shadow-none">
               <caption class="twcss-sr-only twcss-hidden">
                 {{ 'sections.cart.title' | t }}
               </caption>
@@ -66,13 +66,13 @@
                     {{ 'sections.cart.headings.total' | t }}
                   </th>
                   <th
-                    class="twcss-text-base twcss-tracking-[0.13rem] twcss-leading-[1.2] twcss-uppercase twcss-border-none twcss-font-normal twcss-pb-[1.8rem] twcss-text-left twcss-uppercase cart-items__heading--wide cart-items__heading--quantity small-hide caption-with-letter-spacing"
+                    class="twcss-text-base twcss-tracking-[0.13rem] twcss-leading-[1.2] twcss-uppercase twcss-border-none twcss-font-normal twcss-pb-[1.8rem] twcss-text-left twcss-uppercase cart-items__heading--wide cart-items__heading--quantity   maxsm:twcss-hidden small-hide caption-with-letter-spacing"
                     colspan="1"
                     scope="col"
                   >
                     {{ 'sections.cart.headings.quantity' | t }}
                   </th>
-                  <th class="twcss-text-base twcss-tracking-[0.13rem] twcss-leading-[1.2] twcss-uppercase md:twcss-pl-16 twcss-text-right md:twcss-border-b md:twcss-border-neutral-900/10 twcss-font-normal twcss-pb-[1.8rem] twcss-text-left twcss-border-none twcss-uppercase small-hide right caption-with-letter-spacing" colspan="1" scope="col">
+                  <th class="twcss-text-base twcss-tracking-[0.13rem] twcss-leading-[1.2] twcss-uppercase md:twcss-pl-16 twcss-text-right md:twcss-border-b md:twcss-border-neutral-900/10 twcss-font-normal twcss-pb-[1.8rem] twcss-text-left twcss-border-none twcss-uppercase small-hide right caption-with-letter-spacing maxsm:twcss-hidden" colspan="1" scope="col">
                     {{ 'sections.cart.headings.total' | t }}
                   </th>
                 </tr>
@@ -80,7 +80,7 @@
 
               <tbody>
                 {%- for item in cart.items -%}
-                  <tr class="md:twcss-table md:twcss-table-row cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+                  <tr class="maxsm:twcss-grid maxsm:twcss-[grid-template:repeat(2,auto)/repeat(4,1fr)] maxsm:twcss-gap-[1.5rem] maxsm:twcss-mb-[3.5rem] md:twcss-table md:twcss-table-row cart-item" id="CartItem-{{ item.index | plus: 1 }}">
                     <td class="md:twcss-align-top md:twcss-pt-16 twcss-border-0 twcss-relative md:twcss-w-40 cart-item__media">
                       {% if item.image %}
                         {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
@@ -135,7 +135,7 @@
                         <dl class="twcss-mt-[0.6rem] twcss-mr-0 twcss-mb-0 twcss-ml-0 twcss-max-w-[30rem]">
                           {%- if item.product.has_only_default_variant == false -%}
                             {%- for option in item.options_with_values -%}
-                              <div class="twcss-text-[1.4rem] twcss-break-words twcss-leading-[calc(1+0.5/var(1.0))] twcss-mt-[0.6rem] twcss-m-0 twcss-max-w-[30rem]product-option">
+                              <div class="twcss-flex twcss-gap-[5px] twcss-text-[1.4rem] twcss-break-words twcss-leading-[calc(1+0.5/var(1.0))] twcss-mt-[0.6rem] twcss-m-0 twcss-max-w-[30rem]product-option">
                                 <dt>{{ option.name }}:</dt>
                                 <dd class="twcss-m-0">{{ option.value }}</dd>
                               </div>
@@ -227,7 +227,7 @@
                         assign has_vol_pricing = true
                       endif
                     -%}
-                    <td class="twcss-relative twcss-block md:twcss-align-top md:twcss-pt-16 md:twcss-pl-20 lg:twcss-pl-24 twcss-p-0 twcss-border-none cart-item__quantity{% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}">
+                    <td class="twcss-relative twcss-block md:twcss-align-top md:twcss-pt-16 md:twcss-pl-20 lg:twcss-pl-14 twcss-p-0 twcss-border-none cart-item__quantity{% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}">
                       <quantity-popover class="twcss-relative twcss-flex twcss-block">
                         <div class="twcss-flex cart-item__quantity-wrapper quantity-popover-wrapper">
                           <label class="twcss-sr-only twcss-hidden" for="Quantity-{{ item.index | plus: 1 }}">
@@ -243,7 +243,7 @@
                                 {{- 'icon-info.svg' | inline_asset_content -}}
                               </button>
                             {%- endif -%}
-                            <quantity-input class="twcss-bg-white twcss-relative twcss-flex twcss-rounded-none twcss-min-h-[74px] twcss-w-[14.125rem] quantity cart-quantity">
+                            <quantity-input class="twcss-bg-white twcss-relative twcss-flex twcss-rounded-none twcss-min-h-[42px] twcss-border twcss-border-[#ccc] twcss-p-[10px] twcss-w-[14.125rem] quantity cart-quantity">
                               <button class="twcss-[4.5rem] twcss-shrink-0 twcss-text-[1.8rem] twcss-border-0 twcss-bg-transparent twcss-cursor-pointer twcss-flex twcss-items-center twcss-justify-center twcss-p-0 quantity__button" name="minus" type="button">
                                 <span class="twcss-sr-only twcss-hidden">
                                   {{- 'products.product.quantity.decrease' | t: product: item.product.title | escape -}}
@@ -391,9 +391,9 @@
                       </quantity-popover>
                     </td>
 
-                    <td class="md:twcss-align-top md:twcss-pt-16 twcss-text-right twcss-pl-16 twcss-relative twcss-border-none cart-item__totals right small-hide">
+                    <td class="md:twcss-align-top md:twcss-pt-16 twcss-text-right twcss-pl-16 twcss-relative twcss-border-none maxsm:twcss-hidden cart-item__totals right small-hide">
                       {%- render 'loading-spinner' -%}
-                      <div class="cart-item__price-wrapper">
+                      <div class="abc twcss-hidden cart-item__price-wrapper">
                         {%- if item.original_line_price != item.final_line_price -%}
                           <dl class="cart-item__discounted-prices">
                             <dt class="twcss-sr-only twcss-hidden">

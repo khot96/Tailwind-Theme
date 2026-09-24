@@ -124,7 +124,7 @@ menu-drawer > details.mobile-facets__disclosure[open] > summary::before {
     padding-left: 0;
 }
 
-.quantity:before {
+/*.quantity:before {
     background: rgb(var(--color-background));
     pointer-events: none;
     content: "";
@@ -150,6 +150,97 @@ menu-drawer > details.mobile-facets__disclosure[open] > summary::before {
     box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground), var(--inputs-border-opacity));
     transition: box-shadow var(--duration-short) ease;
     z-index: 1;
+}*/
+.quantity__input::-webkit-outer-spin-button,
+.quantity__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.drawer .cart-item:not(:last-child) {
+    border-bottom: .1rem solid #e1e1e1;
+}
+.drawer .cart-item:first-child {
+    padding-top: 0;
+}
+.cart-drawer__footer > * + * {
+    margin-top: 1rem;
+}
+.cart-item__error-text:empty + .svg-wrapper {
+    display: none;
+}
+
+.quantity-popover-container:not(.quantity-popover-container--hover) {
+    align-items: center;
+}
+quantity-popover .quantity__button:not(:focus-visible):not(.focused), quantity-popover .quantity__input:not(:focus-visible):not(.focused) {
+    background-color: initial;
+}
+.product-option:not(:last-child):after {
+    content: "";
+    display: block;
+    position: relative;
+    width: .3rem;
+    height: .3rem;
+    background: rgba(var(--color-foreground), .3);
+    margin: 0 .6rem;
+}
+.cart-drawer__footer > * + * {
+    margin-top: 1rem;
+}
+.totals > * + * {
+  margin-left: 2rem;
+}
+.totals * {
+  line-height: 1;
+}
+
+.cart__contents > * + * {
+    margin-top: 2.5rem;
+}
+.drawer.active {
+  visibility: visible;
+}
+.drawer.active .drawer__inner {
+    transform: translateX(0);
+}
+.cart-notification.active {
+  transform: translateY(0);
+  transition: transform var(--duration-default) ease, visibility 0s;
+  visibility: visible;
+}
+.cart-notification-wrapper .cart-notification {
+    display: block;
+}
+.cart-count-bubble:empty {
+  display: none;
+}
+
+.cart-count-bubble {
+  position: absolute;
+  background-color: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  height: 1.7rem;
+  width: 1.7rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  bottom: 0.8rem;
+  left: 2.2rem;
+  line-height: calc(1 + 0.1 / var(--font-body-scale));
+}
+
+@media screen and (min-width: 750px) {
+    .cart__contents > * + * {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .drawer__inner {
+        overflow: scroll;
+    }
 }
 @media screen and (min-width: 750px) {
     .facets .disclosure-has-popup[open]>summary+* {

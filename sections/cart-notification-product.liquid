@@ -1,8 +1,8 @@
-{%- if cart != empty -%}
+  {%- if cart != empty -%}
   {%- for item in cart.items -%}
     <div id="cart-notification-product-{{ item.key }}" class="cart-item">
       {%- if item.image -%}
-        <div class="cart-notification-product__image global-media-settings">
+        <div class="twcss-inline-flex twcss-mr-[1.5rem] twcss-mt-[0.5rem]   cart-notification-product__image global-media-settings">
           <img
             src="{{ item.image | image_url: width: 140 }}"
             alt="{{ item.image.alt | escape }}"
@@ -16,11 +16,11 @@
         {%- if settings.show_vendor -%}
           <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
         {%- endif -%}
-        <h3 class="cart-notification-product__name h4">{{ item.product.title | escape }}</h3>
+        <h3 class="twcss-font-inter cart-notification-product__name h4">{{ item.product.title | escape }}</h3>
         <dl>
           {%- unless item.product.has_only_default_variant -%}
             {%- for option in item.options_with_values -%}
-              <div class="product-option">
+              <div class="product-option twcss-flex twcss-gap-[5px] twcss-font-inter">
                 <dt>{{ option.name }}:</dt>
                 <dd>{{ option.value }}</dd>
               </div>

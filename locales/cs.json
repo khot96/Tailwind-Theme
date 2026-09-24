@@ -303,7 +303,7 @@
       }
     },
     "cart": {
-      "title": "Váš košík",
+      "title": "Vozík",
       "caption": "Položky košíku",
       "remove_title": "Odebrat: {{ title }}",
       "note": "Zvláštní pokyny k objednávce",
@@ -323,7 +323,7 @@
         "title": "Máte účet?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Přihlaste se</a>, abyste si urychlili proces pokladny."
       },
-      "estimated_total": "Odhadovaný součet",
+      "estimated_total": "Mezisoučet",
       "new_estimated_total": "Nový odhadovaný součet",
       "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Včetně cla a daní. Slevy a <a href=\"{{ link }}\">poštovné</a> se vypočítají na pokladně.",
       "duties_and_taxes_included_shipping_at_checkout_without_policy": "Včetně cla a daní. Slevy a poštovné se vypočítají na pokladně.",

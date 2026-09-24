@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+{% comment %}<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">{% endcomment %}
 
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -268,7 +268,7 @@
           {% endif %}
         <span class="twcss-sr-only twcss-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
-          <div class="twcss-bg-black twcss-text-white twcss-absolute twcss-h-[1.7rem] twcss-w-[1.7rem] twcss-rounded-full twcss-flex twcss-items-center twcss-justify-center twcss-text-[0.9rem] twcss-bottom-[0.8rem] twcss-left-[2.2rem] cart-count-bubble">
+          <div class="abc twcss-bg-black twcss-text-white twcss-absolute twcss-h-[1.7rem] twcss-w-[1.7rem] twcss-rounded-full twcss-flex twcss-items-center twcss-justify-center twcss-text-[0.9rem] twcss-bottom-[0.8rem] twcss-left-[2.2rem] cart-count-bubble">
             {%- if cart.item_count < 100 -%}
               <span aria-hidden="true" class="twcss-h-full twcss-flex twcss-items-center twcss-justify-center">{{ cart.item_count }}</span>
             {%- endif -%}
